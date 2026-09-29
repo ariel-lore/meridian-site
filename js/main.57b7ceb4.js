@@ -12,6 +12,17 @@
   var form = document.getElementById("request-form");
   if (!form) return;
 
+  var params = new URLSearchParams(window.location.search);
+  var interest = params.get("interest") || "";
+  var interestInput = document.getElementById("interest");
+  if (interestInput && interest) interestInput.value = interest;
+  if (interest) {
+    var tools = document.getElementById("tools");
+    if (tools) tools.required = false;
+    var subject = form.querySelector('[name="_subject"]');
+    if (subject) subject.value = "Meridian inquiry: " + interest;
+  }
+
   form.addEventListener("submit", function (e) {
     e.preventDefault();
     var success = document.getElementById("form-success");
@@ -63,16 +74,21 @@
     var tools = data.get("tools") || "";
     var problem = data.get("problem") || "";
     var repo = data.get("repo") || "";
+    var interestValue = data.get("interest") || "";
     var body =
       "Name: " + name +
       "\nEmail: " + email +
       "\nCompany: " + company +
+      "\nInterest: " + interestValue +
       "\nTools: " + tools +
       "\nRepo (optional): " + repo +
       "\n\nProblem:\n" + problem;
+    var subject = interestValue
+      ? "Meridian inquiry: " + interestValue
+      : "Vibe Code Rescue diagnostic request";
     var mailto =
       "mailto:hello@meridian.dev?subject=" +
-      encodeURIComponent("Vibe Code Rescue diagnostic request") +
+      encodeURIComponent(subject) +
       "&body=" +
       encodeURIComponent(body);
     window.location.href = mailto;

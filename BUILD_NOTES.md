@@ -4,7 +4,7 @@
 **Path:** `/workspace/vibe-code-rescue/site/`  
 **Stack:** Plain HTML + CSS + minimal JS; `build.py` regenerates pages
 
-## Pages created (24 HTML)
+## Pages created (26 HTML)
 
 | URI | Purpose |
 |-----|---------|
@@ -13,6 +13,8 @@
 | `/product-engineering/` | Stub — coming soon / inquire |
 | `/security-hardening/` | Stub — coming soon / inquire |
 | `/fractional-cto/` | Stub — coming soon / inquire |
+| `/customer-growth/` | Scoped customer-growth package — root path, not under `/services/` |
+| `/virtual-bookkeeping/` | Monthly bookkeeping and admin package — root path, not under `/services/` |
 | `/pricing/` | Transparent ladder + not-for-you |
 | `/request/` | Lead capture form |
 | `/diagnostic/` | Alias of request form |
@@ -35,7 +37,7 @@
 - Internal linking: tool ↔ symptom ↔ pricing ↔ request
 - `/robots.txt` allows GPTBot, ChatGPT-User, OAI-SearchBot, ClaudeBot, Claude-User, anthropic-ai, PerplexityBot, Google-Extended, Googlebot
 - Real markdown `/llms.txt` and `/llms-full.txt` (not HTML shells)
-- `/sitemap.xml` with 27 URLs
+- `/sitemap.xml` with 29 URLs
 - Sample redacted audit: `/artifacts/sample-audit.md`
 
 ## Design

@@ -103,6 +103,8 @@ def header(path):
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">Menu</button>
     <nav class="nav" id="site-nav">
       <a href="{p}vibe-code-rescue/">Vibe Code Rescue</a>
+      <a href="{p}customer-growth/">Customer growth</a>
+      <a href="{p}virtual-bookkeeping/">Bookkeeping</a>
       <a href="{p}pricing/">Pricing</a>
       <a href="{p}guides/what-is-vibe-code-rescue/">Guides</a>
       <a href="{p}faq/">FAQ</a>
@@ -126,6 +128,8 @@ def footer(path):
       <h4>Services</h4>
       <ul>
         <li><a href="{p}vibe-code-rescue/">Vibe Code Rescue</a></li>
+        <li><a href="{p}customer-growth/">Customer growth</a></li>
+        <li><a href="{p}virtual-bookkeeping/">Virtual bookkeeping</a></li>
         <li><a href="{p}product-engineering/">Product engineering</a></li>
         <li><a href="{p}security-hardening/">Security hardening</a></li>
         <li><a href="{p}fractional-cto/">Fractional CTO</a></li>
@@ -208,7 +212,7 @@ ORG = (
   '"name":"Meridian","url":"' + BASE + '/","email":"' + CONTACT + '",'
   '"description":"Senior software studio with 30+ years combined experience across video games, finance, and web. Home of Vibe Code Rescue.",'
   '"areaServed":["CA","US","GB","EU"],'
-  '"knowsAbout":["Vibe Code Rescue","AI-generated code","Software security","Product engineering","Fractional CTO"]}'
+  '"knowsAbout":["Vibe Code Rescue","AI-generated code","Software security","Product engineering","Fractional CTO","Customer growth","Virtual bookkeeping"]}'
   "</script>"
 )
 
@@ -244,6 +248,32 @@ VCR_FAQS = [
   "No. Empathy, no shame. Shipping a prototype fast was rational. Production is a different job."),
  ("Who owns the code?",
   "You do. We work in your repo or a fork you control. No hostage source."),
+]
+
+GROWTH_FAQS = [
+ ("Do I get a weekly marketing call?",
+  "No. Customer growth is a scoped package: search, campaigns, landing pages, CRM, and follow-up through to booking. Reporting and questions are async. There is no weekly account-management meeting."),
+ ("Is this a fractional CMO or a call-centre follow-up service?",
+  "No. A fractional CMO works the plan with you week to week. This package covers the campaign, the pages, the CRM, and the follow-up sequence through to booking. You are not asked to run it, and we do not put a caller on a weekly roster."),
+ ("How do leads get followed up?",
+  "Follow-up is part of the package: email or SMS sequences and booking, inside the scope you approved. Questions about a lead are handled in writing, not on a standing call."),
+ ("What do I need to provide?",
+  "Access to the site, ad accounts, and CRM, plus one approval of the offer and the voice. After that, questions and changes stay on the package cadence."),
+ ("How do I start?",
+  "Use the inquire form and describe the business and the offer. We reply with whether a growth package fits."),
+]
+
+BOOKS_FAQS = [
+ ("Do you join a weekly bookkeeping call?",
+  "No. The package is a monthly close: capture, categorisation, reconciliation, and a written report, plus the admin tasks in scope. Questions are async. We are not on a standing weekly call."),
+ ("Is this a virtual assistant who sits in my day?",
+  "No. Admin in this package is inbox triage, scheduling, and document handling, delivered with the monthly books work. It is not white-glove assistant work that depends on someone sitting with you."),
+ ("What does the monthly close include?",
+  "Receipt and invoice capture, categorisation, reconciliation items, and a monthly report. If something needs your decision, we flag it in writing. That is not a weekly check-in."),
+ ("Will this replace my accountant?",
+  "No. You get cleaner books and less day-to-day admin. Tax filing, audit opinions, and licensed advice stay with your CPA."),
+ ("How do I start?",
+  "Use the inquire form and describe how you invoice and where documents land today. We reply with whether a monthly close package fits."),
 ]
 
 TOOLS = [
@@ -360,8 +390,11 @@ def page_home():
 <section class="section">
 <div class="container">
 <h2 class="section-title">Services</h2>
+<p class="lede">Flagship rescue, plus scoped packages for customer growth and for books and admin.</p>
 <div class="grid-2" style="margin-top:1.5rem">
 <div class="card"><span class="pill pill-ok">Flagship</span><h3>Vibe Code Rescue</h3><p>Salvage AI-built apps (Cursor, Lovable, Bolt, v0, Replit Agent, Claude Code, Windsurf) into production-ready software. 48h diagnostic. Fixed scope.</p><a class="card-link" href="{p}vibe-code-rescue/">View service →</a></div>
+<div class="card"><span class="pill pill-ok">Package</span><h3>Customer growth</h3><p>Search, campaigns, landing pages, CRM, and follow-up through to booking. A scoped package with a clear cadence, not a weekly marketing meeting.</p><a class="card-link" href="{p}customer-growth/">View service →</a></div>
+<div class="card"><span class="pill pill-ok">Package</span><h3>Virtual bookkeeping</h3><p>Professional books and admin on a monthly close: capture, categorisation, reconciliation, and a written report, plus inbox, scheduling, and documents.</p><a class="card-link" href="{p}virtual-bookkeeping/">View service →</a></div>
 <div class="card"><span class="pill pill-muted">Inquire</span><h3>Product engineering</h3><p>Feature delivery, architecture, and product partnership beyond a one-time rescue.</p><a class="card-link" href="{p}product-engineering/">Learn more →</a></div>
 <div class="card"><span class="pill pill-muted">Inquire</span><h3>Security hardening</h3><p>Threat-focused hardening for apps that already have users or diligence on the calendar.</p><a class="card-link" href="{p}security-hardening/">Learn more →</a></div>
 <div class="card"><span class="pill pill-muted">Inquire</span><h3>Fractional CTO</h3><p>Ongoing technical leadership after rescue — roadmap, hiring, vendor calls, AI guardrails.</p><a class="card-link" href="{p}fractional-cto/">Learn more →</a></div>
@@ -460,6 +493,8 @@ def page_vcr():
 <li>Optional: CI gates, agent rules, post-rescue guardrails</li>
 </ul>
 <div class="callout"><strong>Sample artifact:</strong> See a redacted example of how we write findings — <a href="{p}artifacts/sample-audit.md">sample-audit.md</a>.</div>
+<h2>Other productized services</h2>
+<p>Meridian is the studio. Two sibling packages sit beside rescue: <a href="{p}customer-growth/">Customer growth</a> (search, campaigns, landing pages, and follow-up) and <a href="{p}virtual-bookkeeping/">Virtual bookkeeping</a> (monthly books and admin). Both are scoped work, not a standing weekly meeting.</p>
 <h2>FAQ</h2>
 {faq_html(VCR_FAQS)}
 </div></section>
@@ -489,6 +524,7 @@ def page_stub(slug, name, blurb, body_text):
 <section class="section"><div class="narrow prose">
 <p>{body_text}</p>
 <p>Meanwhile, our flagship offering is ready: <a href="{p}vibe-code-rescue/">Vibe Code Rescue</a>.</p>
+{"" if slug != "fractional-cto" else f'<p>If you want a packaged growth or books engagement rather than a weekly leadership retainer, see <a href="{p}customer-growth/">Customer growth</a> and <a href="{p}virtual-bookkeeping/">Virtual bookkeeping</a>.</p>'}
 <div class="btn-row">
 <a class="btn btn-primary" href="{p}request/?interest={slug}">Inquire</a>
 <a class="btn btn-secondary" href="mailto:{CONTACT}?subject={name}%20inquiry">Email {CONTACT}</a>
@@ -498,6 +534,159 @@ def page_stub(slug, name, blurb, body_text):
 {footer(path)}
 """
     write(path + "index.html", head(path, title, blurb, "/" + path, extra) + body)
+
+OFFERINGS = [
+ {
+  "slug": "customer-growth",
+  "name": "Customer growth",
+  "title": "Customer growth — campaigns, pages, and follow-up | Meridian",
+  "desc": "A scoped customer-growth package: search, paid campaigns, landing pages, CRM capture, and email or SMS follow-up through to booking. Clear process and a reporting cadence. Not a weekly marketing meeting.",
+  "kicker": "Meridian service · Package",
+  "quick": "Customer growth is a scoped package for search, paid campaigns, landing pages, CRM capture, and email or SMS follow-up through to booking. You approve the offer once. Reporting and questions stay on that cadence. It is not a weekly marketing meeting, a caller chasing leads, or a fractional CMO engagement.",
+  "what_h": "What it is",
+  "what": [
+   "Search content and paid campaign setup for a defined offer",
+   "Landing pages that turn visits into inquiries",
+   "CRM capture so every lead has a home",
+   "Email and SMS follow-up sequences, and booking, inside the agreed scope",
+  ],
+  "not": [
+   "A weekly marketing call or a roster of follow-up calls",
+   "A fractional CMO engagement that needs you to run the plan",
+   "An open-ended retainer with someone in your calendar every week",
+  ],
+  "steps": [
+   ("Scope the offer", "Tell us what you sell, where you sell it, and where a new customer should land."),
+   ("Build the package", "Campaigns, landing page, CRM, and follow-up sequences. You approve the offer and the voice once."),
+   ("Deliver the scope", "Leads, follow-up, and booking stay inside the package. Changes and questions are async."),
+   ("Report on cadence", "You receive a clear read of leads and bookings. There is no standing weekly status meeting."),
+  ],
+  "who": [
+   "Owners who want a steady path from attention to a booked conversation",
+   "Businesses with a clear offer and a way to take a booking or a sale",
+   "Teams who want a defined package and a written cadence, not an open marketing calendar",
+  ],
+  "not_who": [
+   "Brands that want a strategist in the room every week",
+   "Offers that change daily and need a new plan each time",
+   "Engagements that depend on a standing call for the work to move",
+  ],
+  "delivery": "A fixed-scope growth package. Setup, follow-up sequences, and a reporting cadence are in the scope. We do not book a weekly account-management meeting.",
+  "faqs": GROWTH_FAQS,
+  "sibling_slug": "virtual-bookkeeping",
+  "sibling_name": "Virtual bookkeeping",
+  "sibling_blurb": "monthly books and admin",
+  "cta_title": "See if a growth package fits",
+  "cta_sub": "Tell us the offer and where a new customer should land. We reply with a scoped next step.",
+ },
+ {
+  "slug": "virtual-bookkeeping",
+  "name": "Virtual bookkeeping",
+  "title": "Virtual bookkeeping — monthly books and admin | Meridian",
+  "desc": "A professional books and admin package: receipt and invoice capture, categorisation, reconciliation, and a monthly close report, plus inbox triage, scheduling, and document handling.",
+  "kicker": "Meridian service · Package",
+  "quick": "Virtual bookkeeping is a professional books and admin package: receipt and invoice capture, categorisation, reconciliation, and a monthly close report, plus inbox triage, scheduling, and document handling. You review the monthly package. It is not a bookkeeper in your meetings, and it is not open-ended assistant work.",
+  "what_h": "What it is",
+  "what": [
+   "Bookkeeping: receipt and invoice capture, categorisation, and reconciliation",
+   "A monthly close package with a written report",
+   "Admin support: inbox triage, scheduling, and document handling",
+   "A written note when a transaction needs your decision",
+  ],
+  "not": [
+   "A weekly books meeting",
+   "White-glove assistant work that depends on someone sitting with you",
+   "A bookkeeper who joins your internal meetings",
+  ],
+  "steps": [
+   ("Open the books", "We connect the bank feed, receipt inbox, and the documents you already use."),
+   ("Keep the books current", "Receipts, invoices, and routine transactions are categorised through the month. You hear about exceptions, not every line."),
+   ("Close the month", "A written report when the month closes, with reconciliation items called out."),
+   ("Admin on the same package", "Inbox triage, scheduling, and document handling, delivered async. We do not join your calendar as a standing attendee."),
+  ],
+  "who": [
+   "Owners who want clean numbers and a monthly report they can read",
+   "Small businesses with a steady flow of receipts, invoices, and paperwork",
+   "Operators who want a defined monthly package rather than an open assistant calendar",
+  ],
+  "not_who": [
+   "Firms that want someone in every finance meeting",
+   "Work that is really a full-time executive assistant",
+   "Engagements that need licensed tax advice or an audit opinion — clean books are not a CPA replacement",
+  ],
+  "delivery": "A monthly close package. Books, the written report, and the admin tasks in scope are delivered async. There is no standing weekly call.",
+  "faqs": BOOKS_FAQS,
+  "sibling_slug": "customer-growth",
+  "sibling_name": "Customer growth",
+  "sibling_blurb": "scoped campaigns, pages, and follow-up",
+  "cta_title": "See if a monthly close fits",
+  "cta_sub": "Tell us how you invoice and where documents land today. We reply with whether a books and admin package fits.",
+ },
+]
+
+
+def page_offering(o):
+    path = o["slug"] + "/"
+    p = depth(path)
+    name = o["name"]
+    title = o["title"]
+    desc = o["desc"]
+    faqs = o["faqs"]
+    extra = (crumbs_json([("Home", "/"), (name, "/" + path)])
+        + service_schema(name, "/" + path, desc)
+        + faq_schema(faqs) + ORG)
+    crumbs = crumbs_html([("Home", p), (name, None)])
+    what_lis = "".join(f"<li>{x}</li>" for x in o["what"])
+    not_lis = "".join(f"<li>{x}</li>" for x in o["not"])
+    who_lis = "".join(f"<li>{x}</li>" for x in o["who"])
+    not_who_lis = "".join(f"<li>{x}</li>" for x in o["not_who"])
+    step_lis = "".join(f"<li><strong>{t}</strong> {b}</li>" for t, b in o["steps"])
+    body = f"""
+{header(path)}
+<main>
+<section class="page-hero"><div class="container">
+{crumbs}
+<p class="hero-kicker">{o["kicker"]}</p>
+<h1>{name}</h1>
+<p class="answer-first"><strong>Quick answer:</strong> {o["quick"]}</p>
+<p class="meta-line">Last updated: {LAST}</p>
+<div class="btn-row">
+<a class="btn btn-primary" href="{p}request/?interest={o["slug"]}">Inquire</a>
+<a class="btn btn-secondary" href="mailto:{CONTACT}?subject={name.replace(" ", "%20")}%20inquiry">Email {CONTACT}</a>
+</div></div></section>
+<section class="section"><div class="narrow prose">
+<h2>{o["what_h"]}</h2>
+<ul>{what_lis}</ul>
+<h2>What it is not</h2>
+<ul>{not_lis}</ul>
+<h2>How it works</h2>
+<ol class="steps">
+{step_lis}
+</ol>
+<h2>Who it is for</h2>
+<ul>{who_lis}</ul>
+<h2>Who it is not for</h2>
+<ul>{not_who_lis}</ul>
+<div class="callout"><strong>Delivery model:</strong> {o["delivery"]}</div>
+<h2>Same studio, different job</h2>
+<p>These pages sit under Meridian, next to <a href="{p}vibe-code-rescue/">Vibe Code Rescue</a>. The sibling service is <a href="{p}{o["sibling_slug"]}/">{o["sibling_name"]}</a> — {o["sibling_blurb"]}. The inquire form is the same one used for a rescue diagnostic. If the tool list does not apply, choose Mixed / other and describe the business.</p>
+<h2>FAQ</h2>
+{faq_html(faqs)}
+</div></section>
+<section class="cta-band">
+  <div class="container">
+    <h2>{o["cta_title"]}</h2>
+    <p>{o["cta_sub"]}</p>
+    <div class="btn-row" style="justify-content:center">
+      <a class="btn btn-primary btn-lg" href="{p}request/?interest={o["slug"]}">Inquire</a>
+      <a class="btn btn-secondary btn-lg" href="mailto:{CONTACT}?subject={name.replace(" ", "%20")}%20inquiry">Email {CONTACT}</a>
+    </div>
+  </div>
+</section>
+</main>
+{footer(path)}
+"""
+    write(path + "index.html", head(path, title, desc, "/" + path, extra) + body)
 
 def page_pricing():
     path = "pricing/"
@@ -583,6 +772,7 @@ def page_request(slug="request"):
 <p class="answer-first"><strong>Quick answer:</strong> Tell us what you built, which AI tools you used, and what is broken or scary. We reply with next steps and aim for a written diagnostic within 48 hours of access. Do not paste API keys, tokens, or passwords into this form.</p>
 <p class="meta-line">Last updated: {LAST}</p>
 {alias}
+<p>The same form covers <a href="{p}customer-growth/">Customer growth</a> and <a href="{p}virtual-bookkeeping/">Virtual bookkeeping</a>. If the tool list does not apply, choose Mixed / other and describe the business. Do not paste secrets.</p>
 </div></section>
 <section class="section"><div class="container" style="max-width:640px">
 <div id="form-success" class="form-success" role="status">
@@ -592,6 +782,7 @@ def page_request(slug="request"):
 <div class="form-warning"><strong>Do not paste secrets.</strong> No API keys, <code>.env</code> contents, private keys, access tokens, or passwords. Describe the problem; share the repo privately after we reply (NDA available).</div>
 <form id="request-form" data-formspree="https://formspree.io/f/YOUR_FORM_ID" novalidate>
 <input type="hidden" name="_subject" value="Meridian diagnostic request">
+<input type="hidden" name="interest" id="interest" value="">
 <div class="form-group"><label for="name">Name</label><input id="name" name="name" type="text" required autocomplete="name"></div>
 <div class="form-group"><label for="email">Email</label><input id="email" name="email" type="email" required autocomplete="email"></div>
 <div class="form-group"><label for="company">Company <span class="hint">(optional)</span></label><input id="company" name="company" type="text" autocomplete="organization"></div>
@@ -723,7 +914,7 @@ SITE_FAQS = VCR_FAQS + [
   "We work remotely with clients in Canada, the US, and internationally. Correspondence: hello@meridian.dev."),
  ("Do you invent fake case studies?",
   "No. We do not publish invented client names or metrics. Ask us directly about fit for your stack."),
-]
+] + [q for q in GROWTH_FAQS + BOOKS_FAQS if q[0] != "How do I start?"]
 
 def page_faq():
     path = "faq/"
@@ -738,12 +929,12 @@ def page_faq():
 <section class="page-hero"><div class="container">
 {crumbs}
 <h1>Frequently asked questions</h1>
-<p class="answer-first"><strong>Quick answer:</strong> Meridian Vibe Code Rescue salvages AI-built apps with a 48-hour diagnostic, security-first fixed-scope work, and clear ownership. Empathy, no shame. Pricing bands are public on the pricing page.</p>
+<p class="answer-first"><strong>Quick answer:</strong> Meridian Vibe Code Rescue salvages AI-built apps with a 48-hour diagnostic, security-first fixed-scope work, and clear ownership. Empathy, no shame. Pricing bands are public on the pricing page. Customer growth and virtual bookkeeping are separate packages: scoped growth work, and a monthly books and admin close.</p>
 <p class="meta-line">Last updated: {LAST}</p>
 </div></section>
 <section class="section"><div class="narrow">
 {faq_html(SITE_FAQS)}
-<p>Deep dive: <a href="{p}vibe-code-rescue/">service page</a> · <a href="{p}guides/what-is-vibe-code-rescue/">What is vibe code rescue?</a> · <a href="{p}request/">Request diagnostic</a></p>
+<p>Deep dive: <a href="{p}vibe-code-rescue/">Vibe Code Rescue</a> · <a href="{p}customer-growth/">Customer growth</a> · <a href="{p}virtual-bookkeeping/">Virtual bookkeeping</a> · <a href="{p}guides/what-is-vibe-code-rescue/">What is vibe code rescue?</a> · <a href="{p}request/">Request diagnostic</a></p>
 </div></section>
 </main>
 {footer(path)}
@@ -776,6 +967,13 @@ def page_about():
 <li>You own the repository and the outcomes</li>
 <li>Optional guardrails so AI remains a tool, not a liability</li>
 </ul>
+<h2>Services under the studio</h2>
+<p><a href="{p}vibe-code-rescue/">Vibe Code Rescue</a> is the flagship: salvage AI-built apps into production-ready software. Two sibling packages sit beside it:</p>
+<ul>
+<li><a href="{p}customer-growth/">Customer growth</a> — search, campaigns, landing pages, CRM, and follow-up through to booking. A defined package, not a weekly marketing meeting.</li>
+<li><a href="{p}virtual-bookkeeping/">Virtual bookkeeping</a> — monthly books and admin: capture, categorisation, reconciliation, a written close, plus inbox, scheduling, and documents.</li>
+</ul>
+<p>Product engineering, security hardening, and fractional CTO remain inquire-only while those packages are scoped.</p>
 <h2>Contact</h2>
 <p>Email <a href="mailto:{CONTACT}">{CONTACT}</a> or use the <a href="{p}request/">diagnostic request form</a>.</p>
 <p>We do not invent fake case-study metrics or client names. Fit conversations happen one-to-one.</p>
@@ -944,6 +1142,10 @@ Last updated: {LAST}
 - [Won't deploy]({BASE}/problems/wont-deploy/)
 - [AI fix loop]({BASE}/problems/ai-fix-loop/)
 
+## Service packages
+- [Customer growth]({BASE}/customer-growth/): Scoped package for search, paid campaigns, landing pages, CRM, and follow-up through to booking. Not a weekly marketing meeting.
+- [Virtual bookkeeping]({BASE}/virtual-bookkeeping/): Monthly books and admin package — capture, categorisation, reconciliation, a written close, inbox triage, scheduling, and documents. Not a bookkeeper in your meetings.
+
 ## Other services (inquire)
 - [Product engineering]({BASE}/product-engineering/)
 - [Security hardening]({BASE}/security-hardening/)
@@ -1000,9 +1202,23 @@ A: The client. Work happens in their repo or a fork they control.
 Q: Will you shame vibe coders?
 A: No. Empathy, no shame.
 
+Q: Does customer growth include a weekly marketing call?
+A: No. It is a scoped package for search, paid campaigns, landing pages, CRM, and follow-up through to booking. Reporting is async. It is not a weekly account-management meeting, a caller roster, or a fractional CMO engagement.
+
+Q: Does virtual bookkeeping include a weekly books call?
+A: No. It is a monthly close package: receipt and invoice capture, categorisation, reconciliation, a written report, plus inbox triage, scheduling, and document handling. Questions are async. It is not a bookkeeper in your meetings, and it does not replace a CPA.
+
+## Sibling service packages
+Customer growth: {BASE}/customer-growth/
+Virtual bookkeeping: {BASE}/virtual-bookkeeping/
+
+Both sit under the Meridian umbrella, next to Vibe Code Rescue. They are scoped professional packages — growth, and books plus admin — delivered async or as a monthly close. They do not include a standing weekly meeting. Clients use the same inquire form at {BASE}/request/.
+
 ## Key URLs
 {BASE}/
 {BASE}/vibe-code-rescue/
+{BASE}/customer-growth/
+{BASE}/virtual-bookkeeping/
 {BASE}/pricing/
 {BASE}/request/
 {BASE}/faq/
@@ -1124,6 +1340,8 @@ def main():
     page_vcr()
     for slug, name, blurb, text in STUBS:
         page_stub(slug, name, blurb, text)
+    for offering in OFFERINGS:
+        page_offering(offering)
     page_pricing()
     page_request("request")
     page_request("diagnostic")
@@ -1144,6 +1362,8 @@ def main():
         "/product-engineering/",
         "/security-hardening/",
         "/fractional-cto/",
+        "/customer-growth/",
+        "/virtual-bookkeeping/",
         "/pricing/",
         "/request/",
         "/diagnostic/",
