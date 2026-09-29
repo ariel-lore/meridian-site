@@ -1,4 +1,4 @@
-# Meridian — allow major search and AI crawlers
+# Meridian: allow major search and AI crawlers
 User-agent: *
 Allow: /
 

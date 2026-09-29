@@ -1,11 +1,11 @@
-# Meridian — static marketing site
+# Meridian static marketing site
 
 Production-ready static site for **Meridian** (senior software studio), flagship service **Vibe Code Rescue**, and packaged services at `/customer-growth/` and `/virtual-bookkeeping/`.
 
 - Real HTML files (not SPA-only) for crawlers and `llms.txt`
 - Mobile-first, indigo/slate palette, Inter + system fonts
 - Canadian English (en-CA)
-- Last content update: **27 September 2026**
+- Last content update: **29 September 2026**
 
 ## Preview locally
 
@@ -18,7 +18,7 @@ npm run preview
 
 Open http://localhost:4173
 
-Regenerate HTML from the Python builder (optional — committed HTML is already built):
+Regenerate HTML from the Python builder (optional; committed HTML is already built):
 
 ```bash
 npm run build
@@ -72,8 +72,8 @@ Do not point bookkeeping traffic at `/request/` or `/diagnostic/`. Those pages r
 
 No analytics snippet is installed. `js/main.js` emits events only when `window.dataLayer`, `window.gtag`, or `window.plausible` already exists:
 
-- `bookkeeping_fit_check_submit` — inquiry, source, package, software, behind, needs, budget, timing, delivery (`formspree`, `mailto`, or `mailto_fallback`). No name, email, or free text.
-- `bookkeeping_cta_click` — label and href, from `data-track` on bookkeeping calls to action.
+- `bookkeeping_fit_check_submit`: inquiry, source, package, software, behind, needs, budget, timing, delivery (`formspree`, `mailto`, or `mailto_fallback`). No name, email, or free text.
+- `bookkeeping_cta_click`: label and href, from `data-track` on bookkeeping calls to action.
 
 To collect them, add the provider snippet in `head()` (or before `js/main.js`) and confirm the provider name matches one of those three.
 

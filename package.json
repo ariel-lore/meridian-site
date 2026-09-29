@@ -2,7 +2,7 @@
   "name": "meridian-site",
   "version": "1.0.0",
   "private": true,
-  "description": "Meridian static marketing site \u2014 Vibe Code Rescue",
+  "description": "Meridian static marketing site: Vibe Code Rescue",
   "scripts": {
     "build": "python3 build.py",
     "preview": "python3 -m http.server 4173",

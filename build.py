@@ -139,7 +139,7 @@ def footer(path, variant="studio"):
             f'<a href="{p}vibe-code-rescue/">Vibe Code Rescue</a> is a separate engagement.</p></div>'
         )
     else:
-        studio_blurb = "Senior software studio. We salvage AI-built apps into production-ready software."
+        studio_blurb = "Senior studio. We take AI-built apps into production, and we run monthly books and a scoped growth package."
     if variant == "books":
         col_services = f"""<h4>Bookkeeping</h4>
       <ul>
@@ -268,7 +268,7 @@ ORG = (
   "</script>"
 )
 
-def cta(path, title="Ready for a 48-hour diagnostic?", sub="Tell us what you built and where it hurts. No shame. Fixed-scope options after the audit."):
+def cta(path, title="If the app is stuck, start with a diagnostic.", sub="Tell us what you built and what is in the way. Written scorecard within about 48 hours of access."):
     p = depth(path)
     return f"""<section class="cta-band">
   <div class="container">
@@ -285,34 +285,34 @@ def cta(path, title="Ready for a 48-hour diagnostic?", sub="Tell us what you bui
 
 VCR_FAQS = [
  ("What is vibe code rescue?",
-  "Vibe code rescue is a productized engineering service that takes apps built primarily with AI coding tools and makes them production-ready without a full rewrite — starting with a short diagnostic, then fixed-scope hardening of security, auth, data, and payments."),
+  "A defined engagement for apps built mostly with AI coding tools. We look first, then harden security, auth, data, and payments on a fixed scope. A full rewrite is the exception."),
  ("How is rescue different from a rewrite?",
-  "Rescue keeps the product surface and salvageable code. We rank severity, fix what is dangerous or blocking, and only recommend a rebuild when structure or risk makes salvage uneconomical."),
+  "Rescue keeps the screens and the code that still make sense. We rank what is dangerous, fix that, and only recommend a rebuild when the structure would make patching slower than starting over."),
  ("Which AI tools do you support?",
-  "Cursor, Lovable, Bolt, v0, Replit Agent, Claude Code, Windsurf, and similar stacks."),
+  "Cursor, Lovable, Bolt, v0, Replit Agent, Claude Code, Windsurf, and stacks that look like them."),
  ("How fast is the diagnostic?",
-  "We aim for a written diagnostic within 48 hours of receiving access and your problem brief. Complex monorepos may need a bit longer — we say so up front."),
+  "A written diagnostic within 48 hours of access and a short brief, in most cases. A large monorepo can take longer. We say so before we start."),
  ("What do you deliver?",
-  "A severity-ranked audit, keep/harden/rebuild recommendation, fixed-scope rescue quote when appropriate, and after engagement: patched code, rotated-secrets guidance, tests/CI where scoped, deploy notes, and optional AI guardrails."),
+  "A severity-ranked audit, a keep / harden / rebuild call, and a fixed quote if salvage is the right move. If you go ahead: patched code, notes on rotating secrets, tests or CI where we scoped them, deploy notes, and optional rules so the agent does not undo the fixes."),
  ("Do you keep our AI workflow after rescue?",
-  "Yes, if you want it. Optional post-rescue guardrails include agent scope files, Cursor/Claude rules, CI gates, and checklists."),
+  "If you want it. We can leave agent scope files, Cursor or Claude rules, CI checks, and a short checklist. Plenty of teams keep shipping with the tools. They just stop shipping the same holes."),
  ("Will you shame us for vibe coding?",
-  "No. Empathy, no shame. Shipping a prototype fast was rational. Production is a different job."),
+  "No. Getting a prototype out fast was a reasonable bet. Production is a different job, and that is the one we do."),
  ("Who owns the code?",
-  "You do. We work in your repo or a fork you control. No hostage source."),
+  "You do. We work in your repo, or a fork you control."),
 ]
 
 GROWTH_FAQS = [
  ("Do I get a weekly marketing call?",
-  "No. Customer growth is a scoped package: search, campaigns, landing pages, CRM, and follow-up through to booking. Reporting and questions are async. There is no weekly account-management meeting."),
+  "No. The package is the campaign, the pages, the CRM, and the follow-up through to a booking. You get a written report on the schedule we agreed. We do not hold a weekly account meeting."),
  ("Is this a fractional CMO or a call-centre follow-up service?",
-  "No. A fractional CMO works the plan with you week to week. This package covers the campaign, the pages, the CRM, and the follow-up sequence through to booking. You are not asked to run it, and we do not put a caller on a weekly roster."),
+  "Neither. A fractional CMO works the plan with you week to week. A call centre puts someone on the phone. Here, follow-up is email or SMS inside the scope you approved, and questions about a lead come back in writing."),
  ("How do leads get followed up?",
-  "Follow-up is part of the package: email or SMS sequences and booking, inside the scope you approved. Questions about a lead are handled in writing, not on a standing call."),
+  "Email or SMS sequences, and a booking step, both inside the scope. If a lead needs a judgement call, we ask in writing. There is no standing call to review the inbox."),
  ("What do I need to provide?",
-  "Access to the site, ad accounts, and CRM, plus one approval of the offer and the voice. After that, questions and changes stay on the package cadence."),
+  "Access to the site, the ad accounts, and the CRM. One approval of the offer and the voice. After that, changes stay on the package schedule."),
  ("How do I start?",
-  "Use the inquire form and describe the business and the offer. We reply with whether a growth package fits."),
+  "Use the inquire form. Say what you sell and where a new customer should land. We will tell you if a growth package fits."),
 ]
 
 BOOKS_FAQS = [
@@ -321,7 +321,7 @@ BOOKS_FAQS = [
  ("What software do you work in?",
   "QuickBooks Online and Xero primarily. Wave, spreadsheets, and other tools: say so on the fit check and we will tell you if a migration makes sense."),
  ("How do we communicate?",
-  "Async by default — email, shared checklists, and the monthly written report. A call only when a decision actually needs a conversation."),
+  "In writing: email, a shared checklist, and the monthly report. We book a call only when a decision actually needs one."),
  ("What is light admin?",
   "Inbox triage, scheduling, and document handling tied to running the business cleanly. It is on Standard only, capped at 3 hours a month. It is not personal errands or full executive-assistant cover. Starter is the monthly close with no admin."),
  ("How much does virtual bookkeeping cost?",
@@ -336,61 +336,73 @@ BOOKS_FAQS = [
 
 TOOLS = [
  ("lovable","Lovable",
-  "Lovable apps often look finished in preview while hiding client-side auth gaps, weak Supabase RLS, and Stripe stubs. Meridian rescues Lovable builds into production-ready software.",
-  ["Preview-quality UI with incomplete server enforcement","Supabase tables with RLS disabled or overly broad policies","Secrets in client-visible config","Stripe Checkout that works in test mode only","Deploy surprises when leaving Lovable hosting assumptions"]),
+  "A Lovable app can look finished in the preview and still have auth that never leaves the browser, Supabase with RLS off, and a Stripe button that only works in test mode. We treat that as a salvage job, not a reason to throw the UI away.",
+  ["UI that looks done while the server does not enforce much","Supabase tables with RLS off, or policies that allow everything","Keys sitting where the client bundle can see them","Checkout that succeeds in test and falls over live","Deploy surprises once you leave Lovable hosting assumptions"],
+  "Lovable apps can look finished while auth, Supabase RLS, and Stripe are still demo-quality. We salvage them."),
  ("bolt","Bolt",
-  "Bolt prototypes ship fast and often stall on auth, env separation, and production deploy. We salvage Bolt apps without a full rewrite.",
-  ["Environment variables confused between preview and prod","Auth patterns that only work in the builder sandbox","Dependency and build failures on Vercel/Netlify","Payment and webhook handlers left as TODOs","AI churn that rewrites the same files unsuccessfully"]),
+  "Bolt gets a prototype up quickly. The stall is usually auth that only works inside the builder, env vars mixed between preview and production, or a deploy that dies on Vercel. We keep the product and fix the part that will not leave the sandbox.",
+  ["Preview env and production env tangled together","Auth that assumes the Bolt sandbox","Builds that fail once they are on Vercel or Netlify","Payment and webhook handlers left as TODOs","The agent rewriting the same files without the bug moving"],
+  "Bolt prototypes stall on auth, env separation, and production deploy. We salvage them without a full rewrite."),
  ("cursor","Cursor",
-  "Cursor-built codebases can be large and inconsistent — agent edits without tests, security holes, and architectural drift. Meridian stabilises Cursor projects for production.",
-  ["Inconsistent patterns across agent sessions","Missing tests while features keep landing","Secrets committed or logged","Half-finished refactors left in tree","Fix-loops where the agent regenerates the same bug"]),
+  "Cursor codebases get big. Agent sessions do not share a style, tests lag the features, and a secret ends up in a log. We stabilise the project, then leave enough structure that the next session does not undo it.",
+  ["Patterns that change every time the agent opens the repo","Features landing with no test beside them","Secrets committed or printed in logs","Half-finished refactors still in the tree","The same bug regenerated after each fix"],
+  "Cursor codebases get large and uneven: missing tests, secrets in logs, drift between sessions. We stabilise them for production."),
  ("v0","v0",
-  "v0 shines at UI generation; production gaps show up in data, auth, and backend wiring. We connect v0 frontends to real, safe backends — or harden what you already wired.",
-  ["UI-complete, backend-thin applications","Client-only validation presented as security","Ad-hoc API routes without authz checks","No tenancy model for multi-user data","Deploy config missing for real environments"]),
+  "v0 is good at the interface. The gaps show up behind it: no real authz, checks that only run in the browser, no idea which user owns which row. We either wire the frontend to a backend that checks, or harden the one you already sketched.",
+  ["Screens done, server thin","Client-side checks treated as security","API routes with no authz","No tenancy model once a second user shows up","Deploy config that was never written for a real environment"],
+  "v0 is strong at UI. The production gaps are usually data, auth, and backend wiring. We connect or harden that."),
  ("replit","Replit Agent",
-  "Replit Agent projects often work in the Replit environment and fail when exported or scaled. We rescue Replit-built apps for production hosting and security.",
-  ["Environment-specific assumptions","Networking and binding issues on export","Database URLs and credentials mishandled","Limited separation between demo and live data","Incomplete payment and webhook verification"]),
+  "Replit Agent projects often run fine inside Replit and come apart on export: binding, database URLs, demo data mixed with live. We get them onto production hosting and close the obvious security holes.",
+  ["Assumptions that only hold inside Replit","Networking and port binding that break on export","Database URLs and credentials handled loosely","Demo rows and live rows in the same place","Webhooks accepted without a signature check"],
+  "Replit Agent projects often work inside Replit and fail on export. We move them to production hosting and close the security holes."),
  ("claude-code","Claude Code",
-  "Claude Code can produce ambitious multi-file changes quickly — and leave security and deploy debt. Meridian audits and hardens Claude Code projects with fixed scope.",
-  ["Large diffs without regression tests","Auth and RLS treated as follow-ups","Over-abstracted structure that obscures data flow","CI missing or always red","Agent instructions that reintroduce bad patterns"]),
+  "Claude Code will rewrite half the repo in an afternoon. The debt shows up as missing tests, auth left for later, and CI that is red or absent. We audit the result and harden a fixed slice, instead of prompting for another large diff.",
+  ["Large diffs and no regression test","Auth and RLS marked as follow-ups","Structure so abstract you cannot see where data goes","CI missing, or red and ignored","Agent instructions that put the bad pattern back"],
+  "Claude Code can land a large diff in an afternoon and leave security and deploy debt. We audit it and harden a fixed slice."),
  ("windsurf","Windsurf",
-  "Windsurf-assisted codebases share the usual AI failure modes: speed without enforcement. We rescue Windsurf projects with the same security-first salvage approach.",
-  ["Rapid feature growth without tenancy review","Copied insecure snippets across files","Deploy pipelines incomplete","Stripe and webhook edge cases ignored","No guardrails for continued AI editing"]),
+  "Windsurf moves fast and does not enforce much on its own. Tenancy gets skipped, the same insecure snippet gets pasted around, the deploy pipeline never quite finishes. Same salvage approach as the other tools: severity first, then a scope you can budget.",
+  ["Features added before anyone reviewed tenancy","The same insecure snippet pasted into several files","A pipeline that does not actually ship","Stripe edge cases left for later","Nothing stopping the next AI edit from reopening a hole"],
+  "Windsurf moves fast and does not enforce tenancy, deploy, or payment edge cases. We rank those and quote a fixed scope."),
 ]
 
 PROBLEMS = [
  ("secrets-exposed","Secrets exposed in an AI-built app",
-  "If API keys, tokens, or credentials landed in your repo, client bundle, or chat logs, treat them as burned: rotate first, then fix how the app loads secrets. Meridian flags exposure paths and hardens configuration.",
-  ["Rotate every exposed key before anything else","Remove secrets from git history where feasible","Move to server-only env / secret manager","Block client bundles from embedding privileged keys","Add CI checks so secrets do not return"],
-  "Exposed secrets are the fastest path from demo to incident. We prioritise rotation guidance and configuration hardening in every rescue."),
+  "If a key, token, or password landed in the repo, the client bundle, or a chat log, treat it as burned. Rotate it before you do anything else. Then fix how the app loads secrets so the next agent session does not put it back.",
+  ["Rotate every exposed key before other work","Strip secrets from git history where you can","Load them from server-only env or a secret manager","Stop the client bundle from embedding privileged keys","Add a CI check so they do not return"],
+  "This is the short path from a demo to an incident. Rotation and config hardening come first on every rescue we take.",
+  "If a key or token landed in the repo, the client bundle, or a chat log, rotate it first, then fix how the app loads secrets."),
  ("rls-tenancy","RLS and tenancy failures",
-  "Disabled or weak Row Level Security (and missing tenancy checks) let users read or write each other data. Common in Supabase/Firebase vibe apps. We fix policies and server-side authz before feature work.",
-  ["Enable and test RLS on every user-data table","Replace client-trusted user IDs with verified auth context","Add automated tests for cross-tenant denial","Review storage buckets and public URLs","Document the tenancy model for future AI edits"],
-  "Tenancy bugs fail diligence and destroy trust. Our audits always include a cross-tenant read/write check."),
+  "If Row Level Security is off, or the only check is a user id the browser sent, one account can read another's rows. We see it constantly on Supabase and Firebase apps. Policies and server-side authz come before new features.",
+  ["Turn RLS on and test it for every table that holds user data","Stop trusting a user id that came from the client","Add a test that proves cross-tenant reads and writes fail","Check storage buckets and public URLs","Write the tenancy model down so the next AI edit has something to follow"],
+  "A tenancy bug fails diligence and loses the customer who notices. The audit always includes a cross-tenant read and write.",
+  "Weak or disabled Row Level Security lets one account read another's data. We fix policies and server-side authz before feature work."),
  ("stripe-payments","Stripe and payments broken",
-  "AI-built Stripe integrations often have test-mode-only checkout, unsigned webhooks, or subscription state that lies. We harden payment flows so money and entitlements match reality.",
-  ["Verify webhooks with signing secrets","Reconcile customer and subscription state server-side","Remove client-trusted payment-success flags","Separate test and live keys cleanly","Cover upgrade/cancel/fail paths"],
-  "Payments are in our fix-first list with secrets and auth."),
+  "The usual Stripe mess in these apps: checkout that only works in test mode, webhooks with no signature check, subscription state that does not match what Stripe says. We line up money and entitlements so they describe the same fact.",
+  ["Verify webhooks with the signing secret","Reconcile customer and subscription state on the server","Delete client-side flags that claim payment succeeded","Keep test keys and live keys apart","Cover upgrade, cancel, and failure, not just the happy path"],
+  "Payments sit with secrets and auth on the fix-first list.",
+  "AI-built Stripe setups often work only in test mode, or accept unsigned webhooks. We line up money and entitlements."),
  ("wont-deploy","Works locally / preview, will not deploy",
-  "Preview success is not production. Env mismatch, build failures, wrong Node versions, and host assumptions are classic vibe-code blockers. We get you to a repeatable production deploy.",
-  ["Align env vars across preview and production","Fix build and SSR/edge assumptions","Pin runtimes and document deploy steps","Add a minimal smoke check post-deploy","Separate demo data from live data"],
-  "If preview looks fine but production fails, start with a diagnostic — often a short fixed scope."),
+  "Preview is not production. The usual blockers are env vars that exist in one place, a Node version the host does not have, or code that assumes the builder's filesystem. We get you to a deploy you can run again.",
+  ["Line up env vars between preview and production","Fix build and SSR or edge assumptions","Pin the runtime and write the deploy steps down","Add a small smoke check after deploy","Keep demo data off the live database"],
+  "If preview is fine and production is not, the diagnostic is often a short fixed scope.",
+  "Preview success is not production. We fix env mismatch, build failures, and host assumptions until the deploy repeats."),
  ("ai-fix-loop","Stuck in an AI fix loop",
-  "When the agent keeps fixing the same bug and introducing new ones, you need a human severity map and a stop-the-bleeding scope — not more unscoped prompts.",
-  ["Freeze drive-by refactors","Reproduce the bug with a failing test or script","Fix root cause in a minimal diff","Add guardrails before unlocking AI again","Decide salvage vs rewrite with evidence"],
-  "Empathy, no shame. Loops happen. We break them with diagnosis and fixed scope."),
+  "The agent fixes the bug, introduces two more, then fixes those. Another prompt will not break that. You need someone to map severity and stop the bleeding on a scope small enough to finish.",
+  ["Stop the drive-by refactors","Reproduce the bug with a failing test or a short script","Fix the cause in a small diff","Put guardrails in before you turn the agent back on","Then decide salvage or rewrite from the evidence, not from frustration"],
+  "Loops happen. We break them with a diagnosis and a scope, not with a lecture.",
+  "When the agent keeps fixing the same bug and adding new ones, you need a severity map and a small scope. Not another unscoped prompt."),
 ]
 
 STUBS = [
  ("product-engineering","Product engineering",
-  "Senior product engineering for features, architecture, and shipping cadence — beyond a one-time rescue.",
-  "Coming soon as a packaged engagement. If you need ongoing product engineering after a rescue or from a clean start, inquire and we will scope it."),
+  "Senior product engineering for features, architecture, and help shipping, past a one-time rescue.",
+  "Not packaged yet. If you need engineers on the product after a rescue, or you already have a codebase and want senior help shipping, write and we will scope a fixed engagement. It will not be an open hourly tab."),
  ("security-hardening","Security hardening",
-  "Focused security hardening for apps with users, payments, or diligence — threat-led, not checkbox theatre.",
-  "Coming soon as a packaged engagement. For AI-built apps, start with Vibe Code Rescue diagnostic; for broader hardening, inquire."),
+  "Security work for an app with users, payments, or a diligence date. Aimed at the risks that matter, not a checklist for show.",
+  "Not packaged yet. If the app was built with AI tools, start with a Vibe Code Rescue diagnostic. If you want a broader hardening pass on something already in production, inquire and name the deadline."),
  ("fractional-cto","Fractional CTO",
-  "Part-time technical leadership: roadmap, hiring, vendor decisions, and AI delivery guardrails.",
-  "Coming soon as a packaged retainer. Many clients start with rescue, then retain fractional CTO hours — inquire to discuss fit."),
+  "Part-time technical leadership: roadmap, hiring, vendor choices, and rules for how AI tools get used on the codebase.",
+  "Not packaged as a retainer yet. A lot of people start with a rescue and then want a few hours a month. If that is you, inquire and we will talk about fit."),
 ]
 
 
@@ -398,8 +410,8 @@ STUBS = [
 def page_home():
     path = ""
     p = depth(path)
-    title = "Meridian — Senior software studio | Vibe Code Rescue"
-    desc = "Meridian is a senior software studio with 30+ years combined experience in games, finance, and web. Home of Vibe Code Rescue — salvage AI-built apps into production-ready software."
+    title = "Meridian | Senior software studio"
+    desc = "Meridian is a senior software studio. 30+ years combined in games, finance, and web. Vibe Code Rescue takes AI-built apps the rest of the way into production."
     extra = ORG + service_schema("Vibe Code Rescue", "/vibe-code-rescue/",
         "Senior engineers who salvage AI-built apps into production-ready software. Audit in 48 hours.",
         "Diagnostic free–$500; rescue $500–$12,500+")
@@ -409,59 +421,50 @@ def page_home():
 <section class="hero">
 <div class="container">
 <p class="hero-kicker">Meridian · Senior software studio</p>
-<h1>Production software from AI-built prototypes — and the studio behind it</h1>
-<p class="answer-first"><strong>Quick answer:</strong> Meridian is a senior software studio with 30+ years combined experience across video games, finance, and web development. Our flagship service, <a href="{p}vibe-code-rescue/">Vibe Code Rescue</a>, audits AI-built apps in 48 hours, fixes security, auth, data, and payments first, keeps what works, and ships fixed-scope salvage — you own the code.</p>
+<h1>From an AI-built prototype to software you can run.</h1>
+<p class="answer-first">Meridian is a small senior studio. Between us, 30+ years in video games, finance, and web. Most of what comes in is an app someone built in Cursor, Lovable, Bolt, or a cousin of those. <a href="{p}vibe-code-rescue/">Vibe Code Rescue</a> is how we take that on: a written look in about 48 hours, then a fixed scope. Secrets, auth, tenancy, and payments first. We keep what already works. The repo stays yours.</p>
 <p class="meta-line">Last updated: {LAST}</p>
 <div class="btn-row">
 <a class="btn btn-primary btn-lg" href="{p}request/">Request a 48h diagnostic</a>
-<a class="btn btn-secondary btn-lg" href="{p}vibe-code-rescue/">Explore Vibe Code Rescue</a>
-</div>
-<div class="stat-row">
-<div class="stat"><div class="num">30+</div><div class="label">Years combined experience</div></div>
-<div class="stat"><div class="num">48h</div><div class="label">Written diagnostic</div></div>
-<div class="stat"><div class="num">3</div><div class="label">Domains: games · finance · web</div></div>
+<a class="btn btn-secondary btn-lg" href="{p}vibe-code-rescue/">See Vibe Code Rescue</a>
 </div>
 </div>
 </section>
 <section class="section">
 <div class="container">
-<h2 class="section-title">What we promise</h2>
-<p class="lede">Empathy, no shame. Rescue is not a rewrite. We fix the dangerous parts first, keep the product that already works, and leave you owning every line.</p>
-<div class="grid-3" style="margin-top:1.5rem">
-<div class="card"><div class="card-icon">01</div><h3>Audit before you commit</h3><p>A written, severity-ranked diagnostic in 48 hours: keep, harden, or rebuild — with a fixed-scope quote when salvage makes sense.</p></div>
-<div class="card"><div class="card-icon">02</div><h3>Security &amp; money first</h3><p>Secrets, auth, tenancy/RLS, and payments before polish. The failures that lose customers and diligence get fixed first.</p></div>
-<div class="card"><div class="card-icon">03</div><h3>You own the code</h3><p>Fixed scope. Clear deliverables. Optional AI guardrails so you can keep shipping with Cursor, Claude, and friends — safely.</p></div>
+<h2 class="section-title">On a rescue</h2>
+<div class="prose" style="max-width:40rem">
+<p>You get a written diagnostic, usually within 48 hours of access. It says keep, harden, or rebuild, and it ranks what we found. If salvage makes sense, a fixed quote is attached. You can stop there.</p>
+<p>If you continue, we start with the things that cause incidents and failed diligence: secrets, auth, tenancy, payments. Polish waits. The work lands in your repo. When it is done you can keep using Cursor or Claude. We will leave rules and a CI check if you want the same bug to stay fixed.</p>
 </div>
 </div>
 </section>
 <section class="section section-alt">
 <div class="container">
-<h2 class="section-title">Experience that shows up in production</h2>
-<p class="lede">Senior engineers who have shipped under game launch pressure, financial controls, and web scale.</p>
-<div class="grid-3" style="margin-top:1.5rem">
-<div class="card"><span class="pill">Video games</span><h3>Ship under launch pressure</h3><p>Performance, reliability, and player-facing quality when the date does not move.</p></div>
-<div class="card"><span class="pill">Finance</span><h3>Controls &amp; correctness</h3><p>Auth, auditability, and payment flows that survive scrutiny — not demo-day stubs.</p></div>
-<div class="card"><span class="pill">Web</span><h3>Product that deploys</h3><p>Multi-tenant SaaS, CI/CD, observability, and the boring glue that keeps apps alive.</p></div>
+<h2 class="section-title">Where that judgement comes from</h2>
+<div class="prose" style="max-width:40rem">
+<p>The 30+ years are not one job repeated.</p>
+<p>Game launches, where the date does not move and the build has to be stable on Friday. Finance work, where auth and payments have to survive someone reading them. A checkout that only works in test mode does not count. Web products, where tenancy, deploys, and logs are the actual product, even when nobody puts them on the homepage.</p>
 </div>
 </div>
 </section>
 <section class="section">
 <div class="container">
-<h2 class="section-title">Services</h2>
-<p class="lede">Flagship rescue, plus scoped packages for customer growth and for books and admin.</p>
+<h2 class="section-title">What we sell</h2>
+<p class="lede">Rescue is the main offer. Growth and books are separate packages, already scoped. The other three are conversations, not packages yet.</p>
 <div class="grid-2" style="margin-top:1.5rem">
-<div class="card"><span class="pill pill-ok">Flagship</span><h3>Vibe Code Rescue</h3><p>Salvage AI-built apps (Cursor, Lovable, Bolt, v0, Replit Agent, Claude Code, Windsurf) into production-ready software. 48h diagnostic. Fixed scope.</p><a class="card-link" href="{p}vibe-code-rescue/">View service →</a></div>
-<div class="card"><span class="pill pill-ok">Package</span><h3>Customer growth</h3><p>Search, campaigns, landing pages, CRM, and follow-up through to booking. A scoped package with a clear cadence, not a weekly marketing meeting.</p><a class="card-link" href="{p}customer-growth/">View service →</a></div>
-<div class="card"><span class="pill pill-ok">Package</span><h3>Virtual bookkeeping</h3><p>Async monthly close for technical founders. Standard from $449/month, Starter from $299/month, catch-up from $200 per month behind. Tax stays with your CPA.</p><a class="card-link" href="{p}virtual-bookkeeping/">View service →</a></div>
-<div class="card"><span class="pill pill-muted">Inquire</span><h3>Product engineering</h3><p>Feature delivery, architecture, and product partnership beyond a one-time rescue.</p><a class="card-link" href="{p}product-engineering/">Learn more →</a></div>
-<div class="card"><span class="pill pill-muted">Inquire</span><h3>Security hardening</h3><p>Threat-focused hardening for apps that already have users or diligence on the calendar.</p><a class="card-link" href="{p}security-hardening/">Learn more →</a></div>
-<div class="card"><span class="pill pill-muted">Inquire</span><h3>Fractional CTO</h3><p>Ongoing technical leadership after rescue — roadmap, hiring, vendor calls, AI guardrails.</p><a class="card-link" href="{p}fractional-cto/">Learn more →</a></div>
+<div class="card"><span class="pill pill-ok">Flagship</span><h3>Vibe Code Rescue</h3><p>For apps built in Cursor, Lovable, Bolt, v0, Replit Agent, Claude Code, or Windsurf. Diagnostic first. Then a fixed scope on the parts that would hurt you in production.</p><a class="card-link" href="{p}vibe-code-rescue/">View service →</a></div>
+<div class="card"><span class="pill pill-ok">Package</span><h3>Customer growth</h3><p>Search, a paid campaign, a landing page, CRM capture, and email or SMS through to a booking. You approve the offer once. No weekly marketing meeting.</p><a class="card-link" href="{p}customer-growth/">View service →</a></div>
+<div class="card"><span class="pill pill-ok">Package</span><h3>Virtual bookkeeping</h3><p>Monthly close in writing. Standard from $449/month (featured; light admin, 3 hours cap). Starter from $299/month, close only. Catch-up from $200 per month behind. Tax stays with your CPA.</p><a class="card-link" href="{p}virtual-bookkeeping/">View service →</a></div>
+<div class="card"><span class="pill pill-muted">Inquire</span><h3>Product engineering</h3><p>Features and architecture after a rescue, or on a codebase you already trust. Not packaged yet.</p><a class="card-link" href="{p}product-engineering/">Learn more →</a></div>
+<div class="card"><span class="pill pill-muted">Inquire</span><h3>Security hardening</h3><p>A hardening pass for an app that already has users, or a diligence date. If it was vibe-coded, start with rescue.</p><a class="card-link" href="{p}security-hardening/">Learn more →</a></div>
+<div class="card"><span class="pill pill-muted">Inquire</span><h3>Fractional CTO</h3><p>Roadmap, hiring, vendor calls, and rules for the AI tools. A few hours, not a full-time CTO.</p><a class="card-link" href="{p}fractional-cto/">Learn more →</a></div>
 </div>
 </div>
 </section>
 <section class="section section-alt">
 <div class="container">
-<h2 class="section-title">Built with AI tools? We know their failure modes</h2>
+<h2 class="section-title">Built in one of these?</h2>
 <div class="chip-row">
 <a class="chip" href="{p}rescue/lovable/">Lovable</a>
 <a class="chip" href="{p}rescue/bolt/">Bolt</a>
@@ -471,7 +474,7 @@ def page_home():
 <a class="chip" href="{p}rescue/claude-code/">Claude Code</a>
 <a class="chip" href="{p}rescue/windsurf/">Windsurf</a>
 </div>
-<h3>Common symptoms we fix</h3>
+<h3>The failures that show up most</h3>
 <div class="chip-row">
 <a class="chip" href="{p}problems/secrets-exposed/">Secrets exposed</a>
 <a class="chip" href="{p}problems/rls-tenancy/">RLS / tenancy</a>
@@ -490,8 +493,8 @@ def page_home():
 def page_vcr():
     path = "vibe-code-rescue/"
     p = depth(path)
-    title = "Vibe Code Rescue — Salvage AI-built apps | Meridian"
-    desc = "Senior engineers who salvage AI-built apps into production-ready software. Audit in 48 hours. Fix security, auth, data, and payments first. Keep what works. Fixed scope. You own the code."
+    title = "Vibe Code Rescue | Meridian"
+    desc = "We salvage AI-built apps: a written audit in about 48 hours, then a fixed scope on security, auth, data, and payments. You keep the code."
     extra = (crumbs_json([("Home","/"),("Vibe Code Rescue","/vibe-code-rescue/")])
         + service_schema("Vibe Code Rescue","/vibe-code-rescue/",desc,"Diagnostic free–$500; audit $299–$2,500; rescue $500–$12,500+")
         + faq_schema(VCR_FAQS) + ORG)
@@ -503,7 +506,7 @@ def page_vcr():
 {crumbs}
 <p class="hero-kicker">Meridian service</p>
 <h1>Vibe Code Rescue</h1>
-<p class="answer-first"><strong>Quick answer:</strong> Senior engineers who salvage AI-built apps into production-ready software. Audit in 48 hours. Fix security, auth, data, and payments first. Keep what works. Fixed scope. You own the code. Optional AI guardrails after rescue. Empathy, no shame.</p>
+<p class="answer-first">Most of these apps are partly fine. The UI works. Someone has used the flow. What is dangerous is usually a short list: a key in the client bundle, auth that only exists in React, RLS off, a Stripe webhook that does not check signatures, a deploy that only succeeds in preview. We write that down in about 48 hours, then quote a fixed scope. You keep the repo.</p>
 <p class="meta-line">Last updated: {LAST}</p>
 <div class="btn-row">
 <a class="btn btn-primary" href="{p}request/">Request 48h diagnostic</a>
@@ -511,8 +514,8 @@ def page_vcr():
 <a class="btn btn-ghost" href="{p}artifacts/sample-audit.md">Sample audit (markdown)</a>
 </div></div></section>
 <section class="section"><div class="narrow prose">
-<h2>Rescue ≠ rewrite</h2>
-<p>Most AI-built products are partly salvageable. We do not throw away a working UI or a validated workflow for ego. We stabilise what is dangerous, decide keep vs harden vs rebuild with evidence, then execute a fixed scope you can budget.</p>
+<h2>Rescue is not a rewrite</h2>
+<p>We do not throw away a working UI because a rewrite would feel cleaner. We stabilise what is dangerous, then say keep, harden, or rebuild from what we actually found. The scope after that is something you can budget.</p>
 <p>Read the full decision guide: <a href="{p}guides/rescue-vs-rewrite/">Rescue vs rewrite</a>.</p>
 <h2>Tools we rescue from</h2>
 <div class="chip-row">
@@ -526,10 +529,10 @@ def page_vcr():
 </div>
 <h2>Process</h2>
 <ol class="steps">
-<li><strong>Stabilise intake</strong> — Brief + repo access (or export). Do not paste secrets in the form. We confirm NDA if needed.</li>
-<li><strong>48-hour diagnostic</strong> — Severity-ranked findings: secrets, auth, tenancy, payments, deploy, architecture debt. Keep / harden / rebuild recommendation.</li>
-<li><strong>Fixed-scope rescue</strong> — Quote with boundaries. Security and money paths first. You approve before we cut code.</li>
-<li><strong>Harden &amp; hand off</strong> — Patches in your repo, deploy notes, optional tests/CI and AI guardrails so the same bugs do not return.</li>
+<li><strong>Intake.</strong> A brief and repo access, or an export. Do not paste secrets in the form. We will do an NDA if you need one.</li>
+<li><strong>Diagnostic, about 48 hours.</strong> Findings ranked by severity: secrets, auth, tenancy, payments, deploy, structural debt. Then a keep, harden, or rebuild call.</li>
+<li><strong>A quote with edges.</strong> Security and money paths first. You approve before we change code.</li>
+<li><strong>Harden, then hand it back.</strong> Patches in your repo, deploy notes, and tests or CI if they were in scope. Optional guardrails so the next agent session does not undo the work.</li>
 </ol>
 <h2>What we fix first</h2>
 <ul>
@@ -540,7 +543,7 @@ def page_vcr():
 <li><a href="{p}problems/wont-deploy/">Preview works, production will not</a></li>
 <li><a href="{p}problems/ai-fix-loop/">AI fix-loop / regression spiral</a></li>
 </ul>
-<h2>Deliverables</h2>
+<h2>What you get back</h2>
 <ul>
 <li>Written diagnostic with severity ranking</li>
 <li>Keep / harden / rebuild recommendation</li>
@@ -550,9 +553,9 @@ def page_vcr():
 <li>Deploy and runbook notes for the scoped work</li>
 <li>Optional: CI gates, agent rules, post-rescue guardrails</li>
 </ul>
-<div class="callout"><strong>Sample artifact:</strong> See a redacted example of how we write findings — <a href="{p}artifacts/sample-audit.md">sample-audit.md</a>.</div>
-<h2>Other productized services</h2>
-<p>Meridian is the studio. Two sibling packages sit beside rescue: <a href="{p}customer-growth/">Customer growth</a> (search, campaigns, landing pages, and follow-up) and <a href="{p}virtual-bookkeeping/">Virtual bookkeeping</a> (monthly books and admin). Both are scoped work, not a standing weekly meeting.</p>
+<div class="callout"><strong>Sample artifact:</strong> A redacted example of how findings get written: <a href="{p}artifacts/sample-audit.md">sample-audit.md</a>. It is illustrative. It is not a client.</div>
+<h2>Other work in the studio</h2>
+<p>Two packages sit beside rescue, and neither one is engineering. <a href="{p}customer-growth/">Customer growth</a> is campaigns, pages, and follow-up. <a href="{p}virtual-bookkeeping/">Virtual bookkeeping</a> is a monthly close plus some admin (Standard from $449/month, Starter from $299/month). Neither is a standing weekly meeting. Bookkeeping starts at the fit check, not this diagnostic.</p>
 <h2>FAQ</h2>
 {faq_html(VCR_FAQS)}
 </div></section>
@@ -565,7 +568,7 @@ def page_vcr():
 def page_stub(slug, name, blurb, body_text):
     path = f"{slug}/"
     p = depth(path)
-    title = f"{name} — Meridian"
+    title = f"{name} | Meridian"
     extra = crumbs_json([("Home","/"),(name,f"/{slug}/")]) + service_schema(name, f"/{slug}/", blurb)
     crumbs = crumbs_html([("Home",p),(name,None)])
     body = f"""
@@ -575,14 +578,14 @@ def page_stub(slug, name, blurb, body_text):
 {crumbs}
 <p class="hero-kicker">Meridian service · Inquire</p>
 <h1>{name}</h1>
-<p class="answer-first"><strong>Quick answer:</strong> {blurb}</p>
+<p class="answer-first">{blurb}</p>
 <p class="meta-line">Last updated: {LAST}</p>
-<p><span class="pill pill-warn">Coming soon / inquire</span></p>
+<p><span class="pill pill-warn">Not packaged yet</span></p>
 </div></section>
 <section class="section"><div class="narrow prose">
 <p>{body_text}</p>
-<p>Meanwhile, our flagship offering is ready: <a href="{p}vibe-code-rescue/">Vibe Code Rescue</a>.</p>
-{"" if slug != "fractional-cto" else f'<p>If you want a packaged growth or books engagement rather than a weekly leadership retainer, see <a href="{p}customer-growth/">Customer growth</a> and <a href="{p}virtual-bookkeeping/">Virtual bookkeeping</a>.</p>'}
+<p><a href="{p}vibe-code-rescue/">Vibe Code Rescue</a> is the service you can book today.</p>
+{"" if slug != "fractional-cto" else f'<p>If the job is growth or the books rather than a leadership retainer, those packages already exist: <a href="{p}customer-growth/">Customer growth</a> and <a href="{p}virtual-bookkeeping/">Virtual bookkeeping</a>.</p>'}
 <div class="btn-row">
 <a class="btn btn-primary" href="{p}request/?interest={slug}">Inquire</a>
 <a class="btn btn-secondary" href="mailto:{CONTACT}?subject={name}%20inquiry">Email {CONTACT}</a>
@@ -597,43 +600,42 @@ OFFERINGS = [
  {
   "slug": "customer-growth",
   "name": "Customer growth",
-  "title": "Customer growth — campaigns, pages, and follow-up | Meridian",
-  "desc": "A scoped customer-growth package: search, paid campaigns, landing pages, CRM capture, and email or SMS follow-up through to booking. Clear process and a reporting cadence. Not a weekly marketing meeting.",
-  "kicker": "Meridian service · Package",
-  "quick": "Customer growth is a scoped package for search, paid campaigns, landing pages, CRM capture, and email or SMS follow-up through to booking. You approve the offer once. Reporting and questions stay on that cadence. It is not a weekly marketing meeting, a caller chasing leads, or a fractional CMO engagement.",
-  "what_h": "What it is",
+  "title": "Customer growth: campaigns, pages, and follow-up | Meridian",
+  "desc": "Search, paid campaigns, landing pages, CRM capture, and email or SMS follow-up through to a booking. A defined package. Not a weekly marketing meeting.",
+  "kicker": "Growth package",
+  "quick": "If you have an offer and a place to take a booking, we can build the path: search or ads, a landing page, the CRM, and an email or SMS sequence through to the booking. You approve the offer and the voice once. After that, questions and reporting stay in writing. No weekly marketing meeting, and nobody chasing leads by phone on a roster.",
+  "what_h": "What you actually get",
   "what": [
-   "Search content and paid campaign setup for a defined offer",
-   "Landing pages that turn visits into inquiries",
-   "CRM capture so every lead has a home",
-   "Email and SMS follow-up sequences, and booking, inside the agreed scope",
+   "Search content and a paid campaign for one defined offer",
+   "A landing page that asks for the inquiry, not a brochure",
+   "CRM capture so the lead is not sitting in a spreadsheet someone forgets",
+   "Email or SMS follow-up, and a booking step, inside the scope you signed off",
   ],
   "not": [
-   "A weekly marketing call or a roster of follow-up calls",
-   "A fractional CMO engagement that needs you to run the plan",
-   "An open-ended retainer with someone in your calendar every week",
+   "A weekly marketing call, or a roster of people phoning leads",
+   "A fractional CMO who works the plan with you every week",
+   "An open retainer that only moves when someone is on your calendar",
   ],
   "steps": [
-   ("Scope the offer", "Tell us what you sell, where you sell it, and where a new customer should land."),
-   ("Build the package", "Campaigns, landing page, CRM, and follow-up sequences. You approve the offer and the voice once."),
-   ("Deliver the scope", "Leads, follow-up, and booking stay inside the package. Changes and questions are async."),
-   ("Report on cadence", "You receive a clear read of leads and bookings. There is no standing weekly status meeting."),
+   ("Name the offer.", "What you sell, where you sell it, and where a new customer should land. If that is fuzzy, the rest of the package will be too."),
+   ("Build it.", "Campaigns, the page, the CRM, the sequences. One approval of the offer and the voice."),
+   ("Run the follow-up.", "Leads get the sequence. Bookings happen inside the scope. Questions come back in writing."),
+   ("A written read.", "Leads and bookings, on the schedule we set. No status meeting to narrate the same numbers."),
   ],
   "who": [
-   "Owners who want a steady path from attention to a booked conversation",
-   "Businesses with a clear offer and a way to take a booking or a sale",
-   "Teams who want a defined package and a written cadence, not an open marketing calendar",
+   "An owner with a clear offer and a way to take a booking or a sale",
+   "Someone who wants the path built, then left to run",
   ],
   "not_who": [
-   "Brands that want a strategist in the room every week",
-   "Offers that change daily and need a new plan each time",
-   "Engagements that depend on a standing call for the work to move",
+   "You want a strategist in the room every week",
+   "The offer changes daily and needs a new plan each time",
+   "Nothing moves unless there is a call",
   ],
-  "delivery": "A fixed-scope growth package. Setup, follow-up sequences, and a reporting cadence are in the scope. We do not book a weekly account-management meeting.",
+  "delivery": "Setup, sequences, and a reporting schedule are in the scope. We do not book a weekly account-management meeting.",
   "faqs": GROWTH_FAQS,
   "sibling_slug": "virtual-bookkeeping",
   "sibling_name": "Virtual bookkeeping",
-  "sibling_blurb": "monthly books and admin",
+  "sibling_blurb": "a monthly close plus light admin on Standard",
   "cta_title": "See if a growth package fits",
   "cta_sub": "Tell us the offer and where a new customer should land. We reply with a scoped next step.",
  },
@@ -663,7 +665,7 @@ def page_offering(o):
 {crumbs}
 <p class="hero-kicker">{o["kicker"]}</p>
 <h1>{name}</h1>
-<p class="answer-first"><strong>Quick answer:</strong> {o["quick"]}</p>
+<p class="answer-first">{o["quick"]}</p>
 <p class="meta-line">Last updated: {LAST}</p>
 <div class="btn-row">
 <a class="btn btn-primary" href="{p}request/?interest={o["slug"]}">Inquire</a>
@@ -672,19 +674,19 @@ def page_offering(o):
 <section class="section"><div class="narrow prose">
 <h2>{o["what_h"]}</h2>
 <ul>{what_lis}</ul>
-<h2>What it is not</h2>
+<h2>What stays out</h2>
 <ul>{not_lis}</ul>
-<h2>How it works</h2>
+<h2>How a package runs</h2>
 <ol class="steps">
 {step_lis}
 </ol>
-<h2>Who it is for</h2>
+<h2>Where it fits</h2>
 <ul>{who_lis}</ul>
-<h2>Who it is not for</h2>
+<p>It is a poor fit if:</p>
 <ul>{not_who_lis}</ul>
-<div class="callout"><strong>Delivery model:</strong> {o["delivery"]}</div>
-<h2>Same studio, different job</h2>
-<p>These pages sit under Meridian, next to <a href="{p}vibe-code-rescue/">Vibe Code Rescue</a>. The sibling service is <a href="{p}{o["sibling_slug"]}/">{o["sibling_name"]}</a> — {o["sibling_blurb"]}. This inquire form is the same one used for a rescue diagnostic. Bookkeeping does not use it — start at the <a href="{p}{FIT_PATH}">bookkeeping fit check</a>. If the tool list does not apply, choose Mixed / other and describe the business.</p>
+<div class="callout"><strong>How it is delivered:</strong> {o["delivery"]}</div>
+<h2>Same studio</h2>
+<p>This sits next to <a href="{p}vibe-code-rescue/">Vibe Code Rescue</a>. The other scoped package is <a href="{p}{o["sibling_slug"]}/">{o["sibling_name"]}</a>, {o["sibling_blurb"]}. This inquire form is the same one used for a rescue diagnostic. Bookkeeping does not use it. Start at the <a href="{p}{FIT_PATH}">bookkeeping fit check</a>. If the tool list does not apply, choose Mixed / other and describe the business.</p>
 <h2>FAQ</h2>
 {faq_html(faqs)}
 </div></section>
@@ -709,7 +711,7 @@ CATCHUP_FAQS = [
  ("What if I only want catch-up, not monthly?",
   "That is fine. Catch-up is a project. Ongoing Starter or Standard is optional."),
  ("Is catch-up a flat $200 for every month?",
-  "No. $200 per month behind is the public starting point. We quote after the fit check. Simple, clean books can be lower. Complex books — more entities, messy source data, a long backlog — are higher."),
+  "No. $200 per month behind is the public starting point. We quote after the fit check. Simple, clean books can be lower. Complex books (more entities, messy source data, a long backlog) are higher."),
  ("Will this fix my taxes?",
   "We organise the books. Your CPA files and advises. We coordinate the handoff."),
  ("What slows catch-up down?",
@@ -762,7 +764,7 @@ def books_cta(title, sub, primary_label, primary_href, primary_track, secondary_
 
 def books_fit_form():
     return f"""<div id="books-form-success" class="form-success" role="status" tabindex="-1">
-<p><strong>Thanks — we've got your fit check.</strong></p>
+<p><strong>Thanks. We have your fit check.</strong></p>
 <p>We'll review your answers and reply to your email within one business day. If you're a strong fit for async monthly close, we'll suggest next steps, including catch-up if the books are behind.</p>
 <p>What we don't do: CPA or tax filing, weekly stand-ups, or full executive assistant work. If you need those, we'll say so plainly.</p>
 <p id="books-form-delivery" class="form-delivery-note" hidden></p>
@@ -901,9 +903,9 @@ def books_fit_form():
 <label for="bk-package">Package interest</label>
 <select id="bk-package" name="package" required aria-describedby="bk-package-error">
 <option value="">Select…</option>
-<option value="Starter">Starter — from $299/mo</option>
-<option value="Standard">Standard — from $449/mo</option>
-<option value="Catch-up">Catch-up — from $200 per month behind</option>
+<option value="Starter">Starter, from $299/mo</option>
+<option value="Standard">Standard, from $449/mo</option>
+<option value="Catch-up">Catch-up, from $200 per month behind</option>
 <option value="Not sure">Not sure</option>
 </select>
 <p class="field-error" id="bk-package-error"></p>
@@ -951,7 +953,7 @@ def books_fit_form():
 <label for="bk-notes">Anything else we should know? <span class="hint">(optional)</span></label>
 <textarea id="bk-notes" name="notes" maxlength="2000"></textarea>
 </div>
-<button class="btn btn-primary btn-lg" type="submit">Check fit — we'll reply within 1 business day</button>
+<button class="btn btn-primary btn-lg" type="submit">Check fit. We'll reply within 1 business day</button>
 <p class="form-endpoint-note">We'll only use this to assess fit and reply. No spam, no tax advice, no weekly meeting upsell.</p>
 <p class="form-endpoint-note">Addressed to <a href="mailto:{CONTACT}">{CONTACT}</a>. A real Formspree id is still required for email delivery: replace <code>YOUR_BOOKKEEPING_FORM_ID</code> in <code>BOOKS_FORM</code> inside <code>build.py</code>. Until then, submit opens a draft in your email app. The draft is not sent until you send it.</p>
 </form>
@@ -962,7 +964,7 @@ def books_fit_form():
 def page_bookkeeping():
     path = "virtual-bookkeeping/"
     p = depth(path)
-    title = "Virtual Bookkeeping — Async Monthly Close + Admin | Meridian"
+    title = "Virtual bookkeeping: monthly close and admin | Meridian"
     desc = "Receipt and invoice capture, categorisation, reconciliation, and a written monthly report. Standard from $449/mo, Starter from $299/mo. For technical founders and SaaS operators."
     extra = (
         crumbs_json([("Home", "/"), ("Virtual bookkeeping", "/virtual-bookkeeping/")])
@@ -984,9 +986,9 @@ def page_bookkeeping():
 <main>
 <section class="page-hero"><div class="container">
 {crumbs}
-<p class="hero-kicker">Virtual bookkeeping · Async by design</p>
-<h1>Monthly close without the meeting treadmill</h1>
-<p class="lede">Meridian handles receipt and invoice capture, categorisation, reconciliation, and a written monthly report — plus light admin for inbox triage, scheduling, and documents on Standard. You stay in the product. We keep the books current.</p>
+<p class="hero-kicker">Virtual bookkeeping</p>
+<h1>A monthly close, in writing.</h1>
+<p class="lede">Receipt and invoice capture, categorisation, reconciliation, and a written monthly report. On Standard, light admin as well: inbox triage, scheduling, and documents. You stay in the product. We keep the books current.</p>
 <ul class="trust-bar">
 <li>Standard from $449/mo</li>
 <li>Starter from $299/mo</li>
@@ -1000,12 +1002,12 @@ def page_bookkeeping():
 </div>
 </div></section>
 <section class="section"><div class="narrow prose">
-<h2>Your books are somewhere between “fine” and “I’ll deal with it later”</h2>
-<p>Receipts live in email. Invoices sit in Stripe, PayPal, or a folder named Finance-final-v3. Categories drift. Month-end never quite closes. When your CPA asks for numbers, you spend a weekend reconstructing reality.</p>
-<p>You don’t need another weekly call. You need a reliable async close, and — if you choose Standard — someone who can also clear the admin that blocks shipping.</p>
+<h2>Where the paperwork actually is</h2>
+<p>Receipts live in email. Invoices sit in Stripe, PayPal, or a folder named Finance-final-v3. Categories drift. Month-end never quite closes. When your CPA asks for numbers, you spend a weekend reconstructing them.</p>
+<p>Another weekly call will not fix that. You need the close to happen, and a short written report when it does. If you take Standard, we also clear the admin that blocks shipping: inbox, scheduling, documents. Starter is the close only.</p>
 </div></section>
 <section class="section section-alt" id="included"><div class="container">
-<h2 class="section-title">What’s in the monthly engagement</h2>
+<h2 class="section-title">What the month includes</h2>
 <div class="grid-2" style="margin-top:1.5rem">
 <div class="card"><h3>Monthly close</h3>
 <ul>
@@ -1014,7 +1016,7 @@ def page_bookkeeping():
 <li><strong>Reconciliation.</strong> Bank and key accounts matched each month.</li>
 <li><strong>Written monthly report.</strong> What moved, what’s outstanding, what to decide. Ready to forward to your CPA.</li>
 </ul></div>
-<div class="card"><h3>Light admin — Standard only</h3>
+<div class="card"><h3>Light admin, Standard only</h3>
 <ul>
 <li><strong>Inbox triage.</strong> Finance and operational mail sorted. Drafts or flags where you need to act.</li>
 <li><strong>Scheduling.</strong> Holds and calendar coordination for the meetings that do matter.</li>
@@ -1025,15 +1027,10 @@ def page_bookkeeping():
 </div>
 </div></section>
 <section class="section"><div class="narrow prose">
-<h2>Clear boundaries</h2>
-<ul>
-<li>We are not your CPA. We don’t file taxes or give tax advice.</li>
-<li>We don’t default to weekly stand-ups. The work is async, with written updates.</li>
-<li>We are not a full-time executive assistant.</li>
-<li>We don’t replace your lawyer, payroll provider, or payment processor.</li>
-</ul>
-<p>If you need tax filing, we work cleanly with your CPA. If you need deep assistant cover, we will say so.</p>
-<h2 id="how">Four steps. Mostly async.</h2>
+<h2>A few boundaries</h2>
+<p>We are not your CPA. We do not file taxes or give tax advice. If you need filing, we hand your accountant books they can use.</p>
+<p>We also do not default to a weekly stand-up, and this is not a full-time executive assistant. Lawyer, payroll, and the payment processor stay where they are. If what you actually need is someone in every finance meeting, we will say so.</p>
+<h2 id="how">How a month goes</h2>
 <ol class="steps">
 <li><strong>Fit check.</strong> Tools, how far behind you are, and what “done” looks like.</li>
 <li><strong>Scope and kickoff.</strong> We confirm software, access, and whether catch-up comes first.</li>
@@ -1087,12 +1084,12 @@ def page_bookkeeping():
 <li>Small teams that outgrew a spreadsheet and do not want a full-time bookkeeper on payroll yet</li>
 </ul>
 <p>Less of a fit: on-site staff, a weekly Zoom books meeting, or CPA and tax as the primary service. <a href="{p}virtual-bookkeeping/for-founders/">For founders</a> · <a href="{p}virtual-bookkeeping/for-ecommerce/">For ecommerce</a></p>
-<div class="callout"><strong>Books behind?</strong> Start with a catch-up project. We clear the backlog month by month — from $200 per month behind, quoted after the fit check — then hand you a clean baseline. <a href="{catch}">See catch-up</a>.</div>
+<div class="callout"><strong>Books behind?</strong> Start with a catch-up project. We clear the backlog month by month, from $200 per month behind, quoted after the fit check, then hand you a clean baseline. <a href="{catch}">See catch-up</a>.</div>
 <h2>FAQ</h2>
 {faq_html(BOOKS_FAQS)}
 </div></section>
 {books_cta(
-    "Get the books off your plate — without adding another weekly meeting",
+    "If the close keeps slipping",
     "Tell us where the books stand and what done looks like. We'll reply within one business day.",
     "Start a fit check", fit, "bottom-fit-check",
     "Email hello@meridian.dev", mail, "bottom-email",
@@ -1106,7 +1103,7 @@ def page_bookkeeping():
 def page_catchup_bookkeeping():
     path = "catch-up-bookkeeping/"
     p = depth(path)
-    title = "Catch-Up Bookkeeping — Clear the Backlog | Meridian"
+    title = "Catch-up bookkeeping | Meridian"
     desc = "Bring months of receipts, invoices, and bank activity current. Catch-up from $200 per month behind, then optional Starter from $299/mo or Standard from $449/mo."
     extra = (
         crumbs_json([("Home", "/"), ("Catch-up bookkeeping", "/catch-up-bookkeeping/")])
@@ -1128,9 +1125,9 @@ def page_catchup_bookkeeping():
 <main>
 <section class="page-hero"><div class="container">
 {crumbs}
-<p class="hero-kicker">Catch-up project · Then optional monthly close</p>
-<h1>Clear the backlog. Start the next month clean.</h1>
-<p class="lede">Meridian works through receipts, invoices, and statements month by month — categorisation, reconciliation, and a written summary of what is fixed and what is still open. From $200 per month behind. The quote comes after the fit check. Simple books can be lower; complex books higher.</p>
+<p class="hero-kicker">Catch-up project, then an optional monthly close</p>
+<h1>Books that are not closed yet.</h1>
+<p class="lede">We work through receipts, invoices, and statements month by month: categorisation, reconciliation, and a written note of what is fixed and what is still open. From $200 per month behind. The quote comes after the fit check. Simple books can be lower. Complex books are higher.</p>
 <p class="meta-line">Last updated: {LAST}</p>
 <div class="btn-row">
 <a class="btn btn-primary btn-lg" href="{fit}" data-track="bookkeeping_cta_click" data-track-label="catchup-hero-fit-check">Start a fit check</a>
@@ -1138,7 +1135,7 @@ def page_catchup_bookkeeping():
 </div>
 </div></section>
 <section class="section"><div class="narrow prose">
-<h2>You are looking for a finish line</h2>
+<h2>What people usually send</h2>
 <ul>
 <li>Two to twelve months, or more, of uncategorised transactions</li>
 <li>Receipts in email, Slack, or a drive folder with an unhelpful name</li>
@@ -1167,8 +1164,8 @@ def page_catchup_bookkeeping():
 <li><strong>Handoff.</strong> A clean baseline and a summary. Option to continue on Starter or Standard.</li>
 </ol>
 <p>Typical kickoff is within one to two weeks of approved access. Duration depends on the months behind and how complete the source data is.</p>
-<h2>Don’t fall behind again</h2>
-<p>Most teams move into async monthly close. Starter is the close only. Standard adds inbox triage, scheduling, and document handling inside a {ADMIN_CAP} cap. <a href="{monthly}">Monthly bookkeeping</a>.</p>
+<h2>After the backlog</h2>
+<p>Most teams move onto a monthly close so the same pile does not rebuild. Starter is the close only. Standard adds inbox triage, scheduling, and document handling inside a {ADMIN_CAP} cap. <a href="{monthly}">Monthly bookkeeping</a>.</p>
 <h2>FAQ</h2>
 {faq_html(CATCHUP_FAQS)}
 </div></section>
@@ -1219,8 +1216,8 @@ def page_bookkeeping_founders():
 <section class="page-hero"><div class="container">
 {crumbs}
 <p class="hero-kicker">For technical founders · SaaS · product operators</p>
-<h1>Ship product. We'll close the month.</h1>
-<p class="lede">Meridian runs an async monthly close — receipt and invoice capture, categorisation, reconciliation, and a written report you can send to your CPA — plus light admin on Standard so finance ops don’t eat the roadmap. Standard from $449/mo. Starter from $299/mo if you want the close only.</p>
+<h1>Bookkeeping for people who would rather be in the product.</h1>
+<p class="lede">A monthly close in writing: receipt and invoice capture, categorisation, reconciliation, and a report you can send to your CPA. Standard adds light admin so the inbox and the documents do not eat the week. Standard from $449/mo. Starter from $299/mo if you only want the close.</p>
 <p class="niche-line">Built for technical founders and busy operators who want clean numbers without a weekly finance meeting.</p>
 <p class="meta-line">Last updated: {LAST}</p>
 <div class="btn-row">
@@ -1229,27 +1226,22 @@ def page_bookkeeping_founders():
 </div>
 </div></section>
 <section class="section"><div class="narrow prose">
-<h2>The founder problem, said plainly</h2>
+<h2>The actual problem</h2>
 <p>You can read a P&amp;L. You should not have to assemble one from Stripe exports, Gmail attachments, and a bank CSV every month.</p>
-<p>Meetings-as-bookkeeping don’t help. You need categories that stay consistent, reconciled accounts by a predictable date, a short written report, and — on Standard — someone who can triage the inbox and documents that stall decisions.</p>
-<p>That is the retainer. Not a second co-founder. Not a CPA. Not a weekly Zoom.</p>
-<h2>Async, documented, tool-friendly</h2>
-<ul>
-<li><strong>Your stack.</strong> QuickBooks Online or Xero, bank feeds, and Stripe or PayPal exports when needed.</li>
-<li><strong>Your pace.</strong> Exception lists and written updates. A call only when a decision needs one.</li>
-<li><strong>Your CPA.</strong> Books are handoff-ready. We don’t file taxes or replace advice.</li>
-<li><strong>Your admin load.</strong> On Standard only: inbox triage, scheduling, and document handling, capped at {ADMIN_CAP}.</li>
-</ul>
-<h2>What’s included</h2>
+<p>A weekly finance meeting does not close the books. You need categories that stay put, accounts reconciled by a date you can predict, and a short report. On Standard, someone also triages the inbox and the documents that stall a decision. That is the retainer. Not a second co-founder. Not a CPA. Not a standing Zoom.</p>
+<h2>How the work sits</h2>
+<p>Books live in QuickBooks Online or Xero, with bank feeds and Stripe or PayPal exports when a category needs them. You get an exception list. If a decision actually needs a call, we ask for one. Your CPA still files. We do not replace that advice.</p>
+<p>Admin is Standard only: inbox triage, scheduling, and document handling, capped at {ADMIN_CAP}. Starter does not include it.</p>
+<h2>What is included</h2>
 <p><strong>Monthly close.</strong> Capture, categorise, reconcile, written monthly report. That is Starter, from $299/mo, and the base of Standard.</p>
 <p><strong>Light admin.</strong> Inbox triage, scheduling, document handling. Standard only, from $449/mo, capped at {ADMIN_CAP}.</p>
 <p><strong>If you are behind.</strong> <a href="{catch}">Catch-up</a> from $200 per month behind, quoted after the fit check, then optional ongoing monthly.</p>
 <p>Full detail is on the <a href="{monthly}">monthly bookkeeping page</a>.</p>
 <h2>Pricing anchors</h2>
 <ul>
-<li><strong>Starter</strong> — from $299/mo. Close only. No admin.</li>
-<li><strong>Standard</strong> — from $449/mo. Close plus light admin, {ADMIN_CAP} cap. Published price. Launch promo $399/mo on request.</li>
-<li><strong>Catch-up</strong> — from $200 per month behind. Quoted after the fit check.</li>
+<li><strong>Starter:</strong> from $299/mo. Close only. No admin.</li>
+<li><strong>Standard:</strong> from $449/mo. Close plus light admin, {ADMIN_CAP} cap. This is the published price. Launch promo $399/mo on request.</li>
+<li><strong>Catch-up:</strong> from $200 per month behind. Quoted after the fit check.</li>
 </ul>
 <p>Scope is confirmed after the fit check. Async is the product. We will not switch you onto a weekly meeting after you sign.</p>
 <h2>Who this page is for</h2>
@@ -1329,7 +1321,7 @@ def page_bookkeeping_ecommerce():
 <ul>
 <li>Sales-tax filing, or a stand-in for your CPA</li>
 <li>A weekly ecommerce meeting</li>
-<li>Warehouse inventory accounting as the main job — say so on the fit check if that is what you actually need</li>
+<li>Warehouse inventory accounting as the main job. Say so on the fit check if that is what you actually need.</li>
 </ul>
 <p>Standard light admin is capped at {ADMIN_CAP}. The full boundary of the work is on the <a href="{monthly}">monthly bookkeeping page</a>.</p>
 <h2>FAQ</h2>
@@ -1393,8 +1385,8 @@ def page_bookkeeping_fit_check():
 def page_pricing():
     path = "pricing/"
     p = depth(path)
-    title = "Pricing — Vibe Code Rescue ladder | Meridian"
-    desc = "Transparent pricing for vibe code rescue: diagnostic free–$500, audit $299–$2,500, rescue $500–$12,500+, rebuild path higher. Clear not-for-you criteria."
+    title = "Pricing | Meridian"
+    desc = "Diagnostic free–$500, paid audit $299–$2,500, focused rescue $500–$12,500+. Rebuild is higher and quoted after the diagnostic. Bookkeeping is separate: Starter from $299/mo, Standard from $449/mo."
     faqs = [
       ("How much does vibe code rescue cost?",
        "Typical 2026 bands: diagnostic free to $500; paid audit $299–$2,500; focused rescue $500–$12,500+; full rebuild paths are higher and scoped separately. Exact quotes follow the diagnostic."),
@@ -1408,9 +1400,9 @@ def page_pricing():
 <main>
 <section class="page-hero"><div class="container">
 {crumbs}
-<h1>Transparent pricing ladder</h1>
-<p class="answer-first"><strong>Quick answer:</strong> Diagnostic typically free–$500 (48h written scorecard). Paid audit $299–$2,500. Focused rescue $500–$12,500+. Rebuild / production sprint paths are higher and quoted after the diagnostic. Fixed scope when we cut code. You own everything.</p>
-<p class="meta-line">Last updated: {LAST} · Bands reflect common 2026 market ranges; your quote follows evidence from the audit.</p>
+<h1>Pricing</h1>
+<p class="answer-first">A diagnostic is typically free to $500, and you get a written scorecard in about 48 hours. A deeper audit runs $299–$2,500. Focused rescue is $500–$12,500+. A rebuild costs more, and we only quote it after we have seen the code. When we cut code, the scope is fixed. The repo stays yours.</p>
+<p class="meta-line">Last updated: {LAST}. These are the bands we quote in. Your number comes from the audit.</p>
 </div></section>
 <section class="section"><div class="container">
 <div class="grid-2">
@@ -1433,7 +1425,7 @@ def page_pricing():
 </div>
 <div class="narrow prose" style="margin-top:2.5rem">
 <h2>Virtual bookkeeping</h2>
-<p>A separate package from software rescue. Flat monthly fee. No hourly surprises. Tax stays with your CPA.</p>
+<p>Separate from software rescue. A flat monthly fee, not an hourly tab. Tax stays with your CPA. Standard is the main offer.</p>
 <ul>
 <li><strong>Starter:</strong> from $299/month. Async monthly close only. No admin.</li>
 <li><strong>Standard:</strong> from $449/month. Starter plus light admin, capped at 3 hours a month. Published price is $449. Launch promo $399 on request.</li>
@@ -1445,15 +1437,15 @@ def page_pricing():
 </div>
 </div>
 <div class="not-for-you">
-<h3>Not for you (and that is OK)</h3>
+<h3>Work we turn down</h3>
 <ul>
-<li>You want unlimited hourly tinkering with no scope</li>
-<li>You need us to invent the product idea — we salvage and harden; we do not replace your vision</li>
-<li>You refuse to rotate exposed secrets or grant reasonable access</li>
-<li>You need a same-day miracle on an unscoped enterprise estate</li>
-<li>You only want someone to prompt harder with no engineering ownership</li>
+<li>Unlimited tinkering with no scope</li>
+<li>Inventing the product. We salvage and harden. The vision is yours.</li>
+<li>Engagements where you will not rotate an exposed secret, or will not give reasonable access</li>
+<li>A same-day rescue of an unscoped enterprise estate</li>
+<li>Someone to prompt harder, with no engineer owning the result</li>
 </ul>
-<p>If that is you, we will say so politely after the diagnostic — or sooner by email at <a href="mailto:{CONTACT}">{CONTACT}</a>.</p>
+<p>If that is the ask, we will say so. Sometimes after the diagnostic, sometimes sooner, by email at <a href="mailto:{CONTACT}">{CONTACT}</a>.</p>
 </div>
 <div class="narrow" style="margin-top:2.5rem">
 <h2>FAQ</h2>
@@ -1461,7 +1453,7 @@ def page_pricing():
 <p>More answers on the <a href="{p}faq/">full FAQ</a> and <a href="{p}vibe-code-rescue/">service page</a>.</p>
 </div>
 </div></section>
-{cta(path, "Start with the diagnostic", "No obligation beyond the agreed diagnostic fee (often free). Fixed quotes before rescue work.")}
+{cta(path, "Start with the diagnostic", "The diagnostic fee is agreed up front, and often it is nothing. Rescue work does not start until there is a fixed quote.")}
 </main>
 {footer(path)}
 """
@@ -1484,14 +1476,14 @@ def page_request(slug="request"):
 <section class="page-hero"><div class="container">
 {crumbs}
 <h1>Request a 48-hour diagnostic</h1>
-<p class="answer-first"><strong>Quick answer:</strong> Tell us what you built, which AI tools you used, and what is broken or scary. We reply with next steps and aim for a written diagnostic within 48 hours of access. Do not paste API keys, tokens, or passwords into this form.</p>
+<p class="answer-first">Say what you built, which tools you used, and what is broken or making you nervous. Once we have access, we aim to send a written diagnostic within 48 hours. Do not put API keys, tokens, or passwords in this form.</p>
 <p class="meta-line">Last updated: {LAST}</p>
 {alias}
 <p>This form is for a software diagnostic, and for <a href="{p}customer-growth/">Customer growth</a>. Bookkeeping has its own form: <a href="{p}{FIT_PATH}">check if the package fits</a>. Do not paste secrets.</p>
 </div></section>
 <section class="section"><div class="container" style="max-width:640px">
 <div id="form-success" class="form-success" role="status">
-<strong>Request captured.</strong> If your mail client opened, send the message to complete. Or we received it via Formspree. We will reply from {CONTACT}.
+<strong>Got it.</strong> If your mail client opened, send that message to finish. If Formspree is connected, we already have it. We will reply from {CONTACT}.
 </div>
 <div class="form-card">
 <div class="form-warning"><strong>Do not paste secrets.</strong> No API keys, <code>.env</code> contents, private keys, access tokens, or passwords. Describe the problem; share the repo privately after we reply (NDA available).</div>
@@ -1509,7 +1501,7 @@ def page_request(slug="request"):
 </select></div>
 <div class="form-group"><label for="problem">What is broken or blocking launch?</label>
 <textarea id="problem" name="problem" required placeholder="e.g. Stripe checkout fails in production; Supabase RLS off; deploy errors on Vercel; AI keeps breaking auth…"></textarea></div>
-<div class="form-group"><label for="repo">Repo URL <span class="hint">(optional — public or invite later)</span></label>
+<div class="form-group"><label for="repo">Repo URL <span class="hint">(optional, public link or an invite later)</span></label>
 <input id="repo" name="repo" type="url" placeholder="https://github.com/…"></div>
 <div class="form-group checkbox-row">
 <input id="secrets-ack" name="secrets_ack" type="checkbox" value="yes" required>
@@ -1524,16 +1516,15 @@ def page_request(slug="request"):
 """
     write(path + "index.html", head(path, title, desc, "/" + path, extra) + body)
 
-def page_tool(slug, name, answer, bullets):
+def page_tool(slug, name, answer, bullets, desc):
     path = f"rescue/{slug}/"
     p = depth(path)
-    title = f"{name} rescue — Vibe Code Rescue | Meridian"
-    desc = (answer[:152] + "…") if len(answer) > 155 else answer
+    title = f"{name} rescue | Meridian"
     faqs = [
       (f"Can you fix a {name}-built app without rewriting it?",
-       f"Usually yes for a large portion of the product. We diagnose first, then propose fixed-scope salvage focused on security, auth, data, and payments."),
+       "Often, yes, for a large part of the product. We will not promise that before we have seen it. The diagnostic says what to keep. The quote covers security, auth, data, and payments first."),
       (f"How much does {name} rescue cost?",
-       "Same ladder as our general pricing: diagnostic free–$500, audit $299–$2,500, focused rescue $500–$12,500+. See /pricing/."),
+       "Same ladder as the rest of the rescue work: diagnostic free–$500, audit $299–$2,500, focused rescue $500–$12,500+. The numbers are on /pricing/."),
     ]
     extra = (crumbs_json([("Home","/"),(f"{name} rescue",f"/rescue/{slug}/")])
              + service_schema(f"{name} vibe code rescue", f"/rescue/{slug}/", answer)
@@ -1547,14 +1538,14 @@ def page_tool(slug, name, answer, bullets):
 {crumbs}
 <p class="hero-kicker">Rescue by tool</p>
 <h1>{name} rescue</h1>
-<p class="answer-first"><strong>Quick answer:</strong> {answer}</p>
+<p class="answer-first">{answer}</p>
 <p class="meta-line">Last updated: {LAST}</p>
 <div class="btn-row">
 <a class="btn btn-primary" href="{p}request/">Request diagnostic</a>
 <a class="btn btn-secondary" href="{p}pricing/">Pricing</a>
 </div></div></section>
 <section class="section"><div class="narrow prose">
-<h2>Common {name} failure signatures</h2>
+<h2>What we keep seeing in {name} projects</h2>
 <ul>{lis}</ul>
 <h2>Related problems</h2>
 <div class="chip-row">
@@ -1564,24 +1555,23 @@ def page_tool(slug, name, answer, bullets):
 <a class="chip" href="{p}problems/wont-deploy/">Won't deploy</a>
 <a class="chip" href="{p}problems/ai-fix-loop/">AI fix loop</a>
 </div>
-<h2>How Meridian helps</h2>
-<p>We run the same <a href="{p}vibe-code-rescue/">Vibe Code Rescue</a> process: 48h diagnostic, severity ranking, fixed-scope salvage. Tool-specific experience means we recognise the patterns faster.</p>
+<h2>From here</h2>
+<p>Same path as <a href="{p}vibe-code-rescue/">Vibe Code Rescue</a>: about 48 hours to look, a severity ranking, then a fixed scope if you want the work done. Knowing the tool mostly means less of that time goes to surprises.</p>
 <h2>FAQ</h2>
 {faq_html(faqs)}
 </div></section>
-{cta(path, f"Rescue your {name} app", "48-hour diagnostic. Empathy, no shame. You own the code.")}
+{cta(path, f"Send the {name} repo", "48-hour diagnostic. The code stays yours.")}
 </main>
 {footer(path)}
 """
     write(path + "index.html", head(path, title, desc, "/" + path, extra) + body)
 
-def page_problem(slug, name, answer, bullets, closer):
+def page_problem(slug, name, answer, bullets, closer, desc):
     path = f"problems/{slug}/"
     p = depth(path)
-    title = f"{name} — Meridian Vibe Code Rescue"
-    desc = (answer[:152] + "…") if len(answer) > 155 else answer
+    title = f"{name} | Meridian"
     faqs = [(f"Can Meridian help with {name.lower()}?",
-             "Yes. This is a standard diagnostic and rescue focus area. Request a 48-hour diagnostic and we will rank severity and propose fixed scope.")]
+             "Yes. Bring it as a diagnostic. We will rank how bad it is and, if salvage makes sense, quote a fixed scope.")]
     extra = crumbs_json([("Home","/"),(name,f"/problems/{slug}/")]) + faq_schema(faqs)
     crumbs = crumbs_html([("Home",p),("Problems",f"{p}problems/secrets-exposed/"),(name,None)])
     lis = "".join(f"<li>{b}</li>" for b in bullets)
@@ -1592,7 +1582,7 @@ def page_problem(slug, name, answer, bullets, closer):
 {crumbs}
 <p class="hero-kicker">Problem guide</p>
 <h1>{name}</h1>
-<p class="answer-first"><strong>Quick answer:</strong> {answer}</p>
+<p class="answer-first">{answer}</p>
 <p class="meta-line">Last updated: {LAST}</p>
 <div class="btn-row">
 <a class="btn btn-primary" href="{p}request/">Request diagnostic</a>
@@ -1634,8 +1624,8 @@ SITE_FAQS = VCR_FAQS + [
 def page_faq():
     path = "faq/"
     p = depth(path)
-    title = "FAQ — Vibe Code Rescue | Meridian"
-    desc = "Frequently asked questions about Meridian Vibe Code Rescue: process, pricing, tools, rescue vs rewrite, and ownership."
+    title = "FAQ | Meridian"
+    desc = "Questions on Vibe Code Rescue, pricing, customer growth, and monthly bookkeeping. No invented case studies."
     extra = crumbs_json([("Home","/"),("FAQ","/faq/")]) + faq_schema(SITE_FAQS) + ORG
     crumbs = crumbs_html([("Home",p),("FAQ",None)])
     body = f"""
@@ -1644,7 +1634,7 @@ def page_faq():
 <section class="page-hero"><div class="container">
 {crumbs}
 <h1>Frequently asked questions</h1>
-<p class="answer-first"><strong>Quick answer:</strong> Meridian Vibe Code Rescue salvages AI-built apps with a 48-hour diagnostic, security-first fixed-scope work, and clear ownership. Empathy, no shame. Pricing bands are public on the pricing page. Customer growth and virtual bookkeeping are separate packages: scoped growth work, and a monthly books and admin close.</p>
+<p class="answer-first">Short answers on rescue, pricing, and the two packages that are not rescue: customer growth, and monthly bookkeeping. The dollar figures live on the pricing page and the bookkeeping page. Standard bookkeeping is from $449 a month. Starter is from $299. Catch-up starts at $200 per month behind.</p>
 <p class="meta-line">Last updated: {LAST}</p>
 </div></section>
 <section class="section"><div class="narrow">
@@ -1659,8 +1649,8 @@ def page_faq():
 def page_about():
     path = "about/"
     p = depth(path)
-    title = "About Meridian — Senior software studio"
-    desc = "Meridian is a senior software studio with 30+ years combined experience across video games, finance, and web. Home of Vibe Code Rescue."
+    title = "About Meridian"
+    desc = "Meridian is a senior software studio. 30+ years combined across video games, finance, and web. Vibe Code Rescue is the main service."
     extra = crumbs_json([("Home","/"),("About","/about/")]) + ORG
     crumbs = crumbs_html([("Home",p),("About",None)])
     body = f"""
@@ -1669,29 +1659,29 @@ def page_about():
 <section class="page-hero"><div class="container">
 {crumbs}
 <h1>About Meridian</h1>
-<p class="answer-first"><strong>Quick answer:</strong> Meridian is a senior software studio — an abstract umbrella brand for product and rescue work. We bring 30+ years combined experience across video games, finance, and web development. Our flagship service is Vibe Code Rescue.</p>
+<p class="answer-first">Meridian is the studio. Vibe Code Rescue is the service most people come for. The people doing the work have 30+ years between them, across video games, finance, and web.</p>
 <p class="meta-line">Last updated: {LAST}</p>
 </div></section>
 <section class="section"><div class="narrow prose">
-<h2>Why we exist</h2>
-<p>AI coding tools made it rational to ship prototypes in days. Production still demands senior judgement: security, tenancy, payments, deployability, and maintainability. Meridian sits in that gap — without shaming founders for moving fast.</p>
+<h2>Why the studio exists</h2>
+<p>AI coding tools made it reasonable to ship a prototype in a few days. The production problems did not get cheaper: security, tenancy, payments, whether it deploys, whether anyone can maintain it. That is the gap. We do not scold people for moving fast.</p>
 <h2>How we work</h2>
 <ul>
-<li>Evidence before ego — diagnose, then decide salvage vs rewrite</li>
-<li>Fixed scope when we cut code</li>
-<li>You own the repository and the outcomes</li>
-<li>Optional guardrails so AI remains a tool, not a liability</li>
+<li>We look before we argue about salvage versus a rewrite.</li>
+<li>Once we cut code, the scope is fixed.</li>
+<li>You own the repository.</li>
+<li>If you want to keep the AI tools, we can leave guardrails. The tools stay. The recurring holes should not.</li>
 </ul>
-<h2>Services under the studio</h2>
-<p><a href="{p}vibe-code-rescue/">Vibe Code Rescue</a> is the flagship: salvage AI-built apps into production-ready software. Two sibling packages sit beside it:</p>
+<h2>What sits under the name</h2>
+<p><a href="{p}vibe-code-rescue/">Vibe Code Rescue</a> is the main service: take an AI-built app the rest of the way into production. Two other packages are already scoped:</p>
 <ul>
-<li><a href="{p}customer-growth/">Customer growth</a> — search, campaigns, landing pages, CRM, and follow-up through to booking. A defined package, not a weekly marketing meeting.</li>
-<li><a href="{p}virtual-bookkeeping/">Virtual bookkeeping</a> — async monthly close. Standard from $449/month, Starter from $299/month. <a href="{p}catch-up-bookkeeping/">Catch-up</a> from $200 per month behind. Start at the <a href="{p}{FIT_PATH}">fit check</a>.</li>
+<li><a href="{p}customer-growth/">Customer growth</a>: search, campaigns, landing pages, CRM, and follow-up through to a booking. A defined package, not a weekly marketing meeting.</li>
+<li><a href="{p}virtual-bookkeeping/">Virtual bookkeeping</a>: a monthly close in writing. Standard from $449/month, Starter from $299/month. <a href="{p}catch-up-bookkeeping/">Catch-up</a> from $200 per month behind. Start at the <a href="{p}{FIT_PATH}">fit check</a>.</li>
 </ul>
-<p>Product engineering, security hardening, and fractional CTO remain inquire-only while those packages are scoped.</p>
+<p>Product engineering, security hardening, and fractional CTO are still conversations. Those are not packages yet.</p>
 <h2>Contact</h2>
 <p>Email <a href="mailto:{CONTACT}">{CONTACT}</a>. Software diagnostic: <a href="{p}request/">request form</a>. Bookkeeping: <a href="{p}{FIT_PATH}">fit check</a>.</p>
-<p>We do not invent fake case-study metrics or client names. Fit conversations happen one-to-one.</p>
+<p>We do not publish invented client names or made-up results. If you want to know whether we have seen your stack, ask.</p>
 </div></section>
 {cta(path)}
 </main>
@@ -1703,7 +1693,7 @@ def page_guide_what():
     path = "guides/what-is-vibe-code-rescue/"
     p = depth(path)
     title = "What is vibe code rescue? | Meridian"
-    desc = "Vibe code rescue is a productized service that salvages AI-built apps into production-ready software without a full rewrite — diagnostic first, then fixed-scope hardening."
+    desc = "Vibe code rescue is a defined job: salvage an AI-built app into production software, usually without a full rewrite. Diagnostic first, then a fixed scope."
     faqs = [SITE_FAQS[0], SITE_FAQS[1]]
     extra = crumbs_json([("Home","/"),("What is vibe code rescue?","/guides/what-is-vibe-code-rescue/")]) + faq_schema(faqs)
     crumbs = crumbs_html([("Home",p),("Guides",f"{p}guides/what-is-vibe-code-rescue/"),("What is vibe code rescue?",None)])
@@ -1713,16 +1703,16 @@ def page_guide_what():
 <section class="page-hero"><div class="container">
 {crumbs}
 <h1>What is vibe code rescue?</h1>
-<p class="answer-first"><strong>Quick answer:</strong> Vibe code rescue is a productized engineering service that takes applications built primarily with AI coding tools (Cursor, Lovable, Bolt, v0, Replit Agent, Claude Code, Windsurf, and similar) and makes them production-ready — usually without a full rewrite. Typical flow: short diagnostic, severity-ranked findings, then fixed-scope hardening of security, auth, data, and payments.</p>
+<p class="answer-first">People use the phrase for the cleanup after vibe coding. An app built mostly in Cursor, Lovable, Bolt, v0, Replit, Claude Code, Windsurf, or something similar, that now needs to survive real users. Our version is a short diagnostic, a severity list, then a fixed scope on security, auth, data, and payments. Usually we keep the product. Sometimes the diagnostic says not to.</p>
 <p class="meta-line">Last updated: {LAST}</p>
 </div></section>
 <section class="section"><div class="narrow prose">
-<h2>Why the category exists</h2>
-<p>Vibe coding made prototypes cheap. Production still fails in predictable ways: exposed secrets, fake auth, disabled RLS, Stripe stubs, and deploys that only work in preview. Rescue shops productised the cleanup.</p>
-<h2>What Meridian rescue includes</h2>
-<p>See the full <a href="{p}vibe-code-rescue/">Vibe Code Rescue</a> page for process, tools, deliverables, and FAQ. Pricing bands are on <a href="{p}pricing/">/pricing/</a>.</p>
-<h2>Rescue vs rewrite</h2>
-<p>Not every app should be salvaged. Use our <a href="{p}guides/rescue-vs-rewrite/">rescue vs rewrite guide</a> for the decision frame we use in diagnostics.</p>
+<h2>Why people ask for it</h2>
+<p>Prototypes got cheap. The failures did not get more original. A key in the frontend. Auth that is only a component. RLS switched off. Stripe left in test mode. A deploy that works in preview and dies on the host. A few studios turned the cleanup into a defined job instead of an open-ended "we will figure it out." This is ours.</p>
+<h2>What ours includes</h2>
+<p>A diagnostic, a severity list, and if you continue, code changes in a repo you own. Process, tools, and the rest of the detail are on the <a href="{p}vibe-code-rescue/">Vibe Code Rescue</a> page. Bands are on <a href="{p}pricing/">pricing</a>.</p>
+<h2>When not to rescue</h2>
+<p>Sometimes the honest result is a rewrite. The <a href="{p}guides/rescue-vs-rewrite/">rescue or rewrite</a> guide is the frame we use. We would rather say that early than spend two weeks decorating a bad foundation.</p>
 <h2>FAQ</h2>
 {faq_html(faqs)}
 </div></section>
@@ -1735,7 +1725,7 @@ def page_guide_what():
 def page_guide_vs():
     path = "guides/rescue-vs-rewrite/"
     p = depth(path)
-    title = "Rescue vs rewrite — decision guide | Meridian"
+    title = "Rescue or rewrite | Meridian"
     desc = "When to salvage an AI-built app versus rewrite: security risk, architecture debt, team ability to maintain, and economics. Meridian diagnoses before recommending."
     extra = crumbs_json([("Home","/"),("Rescue vs rewrite","/guides/rescue-vs-rewrite/")])
     crumbs = crumbs_html([("Home",p),("Guides",f"{p}guides/what-is-vibe-code-rescue/"),("Rescue vs rewrite",None)])
@@ -1745,18 +1735,18 @@ def page_guide_vs():
 <section class="page-hero"><div class="container">
 {crumbs}
 <h1>Rescue vs rewrite</h1>
-<p class="answer-first"><strong>Quick answer:</strong> Choose rescue when the product surface works and risk is concentrated in security, auth, data, payments, or deploy — salvageable with fixed scope. Choose rewrite when structure, tenancy model, or defect density makes patching slower and riskier than a clean foundation. Meridian always diagnoses before recommending either path.</p>
+<p class="answer-first">Rescue when the product surface works and the risk sits in security, auth, data, payments, or deploy. That can be a fixed scope. Rewrite when the structure, the tenancy model, or the number of defects means every patch makes the next one harder. We do not pick a side before we have read the code.</p>
 <p class="meta-line">Last updated: {LAST}</p>
 </div></section>
 <section class="section"><div class="narrow prose">
-<h2>Lean rescue when</h2>
+<h2>Rescue is the better bet when</h2>
 <ul>
 <li>Users already validate the workflow or UI</li>
 <li>Core domain logic is understandable</li>
 <li>Failures cluster in secrets, auth, RLS, Stripe, deploy</li>
 <li>A senior engineer can map a 1–3 week fixed scope</li>
 </ul>
-<h2>Lean rewrite when</h2>
+<h2>A rewrite is the better bet when</h2>
 <ul>
 <li>Nobody can explain data flow or tenancy</li>
 <li>Security issues are structural, not local</li>
@@ -1764,7 +1754,7 @@ def page_guide_vs():
 <li>Diligence or regulation demands a clean provenance story</li>
 </ul>
 <h2>How we decide</h2>
-<p>The <a href="{p}vibe-code-rescue/">48-hour diagnostic</a> produces a keep / harden / rebuild recommendation with severity-ranked evidence — not a sales script. Sample tone: <a href="{p}artifacts/sample-audit.md">sample-audit.md</a>.</p>
+<p>The <a href="{p}vibe-code-rescue/">48-hour diagnostic</a> is a keep / harden / rebuild recommendation with the evidence ranked. It is not a script for a sales call. The tone of a write-up is in <a href="{p}artifacts/sample-audit.md">sample-audit.md</a>.</p>
 <div class="btn-row">
 <a class="btn btn-primary" href="{p}request/">Request diagnostic</a>
 <a class="btn btn-secondary" href="{p}pricing/">See pricing</a>
@@ -1777,7 +1767,7 @@ def page_guide_vs():
 
 
 def write_robots():
-    write("robots.txt", f"""# Meridian — allow major search and AI crawlers
+    write("robots.txt", f"""# Meridian: allow major search and AI crawlers
 User-agent: *
 Allow: /
 
@@ -1824,7 +1814,7 @@ def write_sitemap(urls):
 
 def write_llms():
     write("llms.txt", f"""# Meridian
-> Senior software studio. Flagship service: Vibe Code Rescue — salvage AI-built apps into production-ready software.
+> Senior software studio. Flagship service: Vibe Code Rescue, which takes AI-built apps into production.
 
 Site: {BASE}/
 Contact: {CONTACT}
@@ -1832,7 +1822,7 @@ Last updated: {LAST}
 
 ## Primary
 - [Home]({BASE}/): Studio overview, 30+ years combined experience (games, finance, web), services grid
-- [Vibe Code Rescue]({BASE}/vibe-code-rescue/): Full product page — process, tools, deliverables, FAQ
+- [Vibe Code Rescue]({BASE}/vibe-code-rescue/): Process, tools, what you get back, FAQ
 - [Pricing]({BASE}/pricing/): Diagnostic free–$500; audit $299–$2,500; rescue $500–$12,500+; rebuild higher; not-for-you
 - [Request diagnostic]({BASE}/request/): Lead form (also /diagnostic/)
 - [FAQ]({BASE}/faq/)
@@ -1874,9 +1864,9 @@ Last updated: {LAST}
 - [llms-full.txt]({BASE}/llms-full.txt)
 
 ## Positioning
-Senior engineers who salvage AI-built apps into production-ready software. Audit in 48 hours. Fix security, auth, data, and payments first. Keep what works. Fixed scope. You own the code. Optional AI guardrails after rescue. Empathy, no shame.
+Meridian is a senior studio. Vibe Code Rescue audits an AI-built app in about 48 hours, then fixes security, auth, data, and payments on a fixed scope. We keep the parts that work. The client owns the code. Guardrails after rescue are optional, for teams that want to keep shipping with AI tools. Customer growth and virtual bookkeeping are separate packages. Bookkeeping is not framed as an AI product: Starter from $299/month, Standard from $449/month, catch-up from $200 per month behind.
 """)
-    write("llms-full.txt", f"""# Meridian — full AI/citation brief
+    write("llms-full.txt", f"""# Meridian: full citation brief
 Last updated: {LAST}
 Contact: {CONTACT}
 Canonical site: {BASE}/
@@ -1887,7 +1877,7 @@ Meridian is a senior software studio (not "Vibe Code Rescue" as the company name
 Experience: 30+ years combined across video games, finance, and web development.
 
 ## One-paragraph summary
-Meridian salvages AI-built applications into production-ready software. Founders and teams who shipped with Cursor, Lovable, Bolt, v0, Replit Agent, Claude Code, or Windsurf request a diagnostic; Meridian returns a written severity-ranked scorecard within about 48 hours, then offers fixed-scope rescue focused on secrets, auth, tenancy/RLS, and payments — keeping salvageable product surface rather than rewriting for ego. Clients own the code. Optional post-rescue AI guardrails are available. Tone: empathy, no shame.
+Meridian takes AI-built applications the rest of the way into production. A team sends a diagnostic request (Cursor, Lovable, Bolt, v0, Replit Agent, Claude Code, Windsurf, or a mix). Meridian returns a written, severity-ranked scorecard in about 48 hours, then quotes a fixed-scope rescue aimed at secrets, auth, tenancy/RLS, and payments. The product surface stays when it is salvageable. Clients own the code. Guardrails after the rescue are optional. The studio does not scold people for using AI tools to get a prototype out.
 
 ## Pricing bands (USD, typical 2026)
 - Diagnostic: free–$500 (often credited)
@@ -1898,7 +1888,7 @@ Meridian salvages AI-built applications into production-ready software. Founders
 
 ## Process
 1. Intake (no secrets in forms)
-2. 48h diagnostic — keep / harden / rebuild
+2. 48h diagnostic: keep / harden / rebuild
 3. Fixed-scope rescue quote
 4. Harden and hand off (+ optional AI guardrails)
 
@@ -1907,7 +1897,7 @@ Cursor, Lovable, Bolt, v0, Replit Agent, Claude Code, Windsurf
 
 ## FAQ answers (citeable)
 Q: What is vibe code rescue?
-A: A productized engineering service that takes apps built primarily with AI coding tools and makes them production-ready without a full rewrite — diagnostic first, then fixed-scope hardening of security, auth, data, and payments.
+A: A defined engagement for apps built mostly with AI coding tools. Diagnostic first, then fixed-scope hardening of security, auth, data, and payments. A full rewrite is the exception.
 
 Q: How is rescue different from a rewrite?
 A: Rescue keeps the product surface and salvageable code; rewrite is for when structure or risk makes salvage uneconomical. Meridian recommends with evidence from the diagnostic.
@@ -1919,7 +1909,7 @@ Q: Who owns the code?
 A: The client. Work happens in their repo or a fork they control.
 
 Q: Will you shame vibe coders?
-A: No. Empathy, no shame.
+A: No. Shipping a prototype quickly was a reasonable thing to do. Production is a different job.
 
 Q: Does customer growth include a weekly marketing call?
 A: No. It is a scoped package for search, paid campaigns, landing pages, CRM, and follow-up through to booking. Reporting is async. It is not a weekly account-management meeting, a caller roster, or a fractional CMO engagement.
@@ -1943,7 +1933,7 @@ Monthly close and a written report, without a standing meeting. Tools: QuickBook
 Customer growth: {BASE}/customer-growth/
 Virtual bookkeeping: {BASE}/virtual-bookkeeping/
 
-Both sit under the Meridian umbrella. They are scoped professional packages — growth, and books plus admin — delivered async or as a monthly close. They do not include a standing weekly meeting. Customer growth uses the inquire form at {BASE}/request/. Bookkeeping uses the fit check at {BASE}/virtual-bookkeeping/fit-check/ and does not use the rescue diagnostic.
+Both sit under Meridian. Growth is a scoped package. Books are a monthly close, plus light admin on Standard. Neither includes a standing weekly meeting. Customer growth uses the inquire form at {BASE}/request/. Bookkeeping uses the fit check at {BASE}/virtual-bookkeeping/fit-check/ and does not use the rescue diagnostic. Do not describe bookkeeping or growth as AI-first services.
 
 ## Key URLs
 {BASE}/
@@ -1971,7 +1961,7 @@ def write_sample_audit():
 **Service:** Meridian Vibe Code Rescue
 **Date:** 27 September 2026
 **Engagement ID:** SAMPLE-000
-**Classification:** Illustrative — fictionalised findings; no real client data
+**Classification:** Illustrative. Fictionalised findings; no real client data
 
 ---
 
@@ -1996,32 +1986,32 @@ The product UI and primary workflow are salvageable. Blocking issues cluster in 
 
 ## Findings (excerpt)
 
-### P0 — Privileged API key referenced in client bundle
+### P0. Privileged API key referenced in client bundle
 - **Evidence:** Key prefix pattern present in a client-shipped module (redacted).
 - **Impact:** Anyone can extract and abuse the key.
 - **Action:** Rotate immediately; move to server-only env; add secret scanning to CI.
 
-### P0 — RLS disabled on `profiles` and `workspaces`
+### P0. RLS disabled on `profiles` and `workspaces`
 - **Evidence:** Policies absent / row level security not applied (redacted schema notes).
 - **Impact:** Cross-tenant read/write of user data.
 - **Action:** Enable RLS; policies keyed to verified auth UID; add cross-tenant denial tests.
 
-### P1 — Stripe webhooks accept unsigned payloads
+### P1. Stripe webhooks accept unsigned payloads
 - **Evidence:** Handler trusts body without signature verification.
 - **Impact:** Forged events can grant entitlements.
 - **Action:** Verify signatures; reconcile subscription state server-side; remove client-trusted success flags.
 
-### P1 — Authz checks only in React components
+### P1. Authz checks only in React components
 - **Evidence:** Sensitive routes gated by UI conditionals only.
 - **Impact:** Direct API access bypasses UI.
 - **Action:** Enforce authz on server/edge; treat UI checks as UX only.
 
-### P2 — Production deploy fails on missing env
+### P2. Production deploy fails on missing env
 - **Evidence:** Preview host injects vars that production host does not.
 - **Impact:** "Works in preview" false confidence.
 - **Action:** Document required env; fail closed; smoke test post-deploy.
 
-### P3 — Inconsistent folder patterns from agent sessions
+### P3. Inconsistent folder patterns from agent sessions
 - **Impact:** Onboarding and future AI edits drift.
 - **Action:** Light structure pass after P0/P1; optional agent rule files.
 
@@ -2057,7 +2047,7 @@ The product UI and primary workflow are salvageable. Blocking issues cluster in 
 
 Reply to approve scope or ask questions. Do **not** paste live secrets into email; share via your secret manager or a private channel after rotation.
 
-— Meridian · {CONTACT}
+Meridian · {CONTACT}
 """)
 
 

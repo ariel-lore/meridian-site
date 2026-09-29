@@ -1,5 +1,5 @@
 # Meridian
-> Senior software studio. Flagship service: Vibe Code Rescue — salvage AI-built apps into production-ready software.
+> Senior software studio. Flagship service: Vibe Code Rescue, which takes AI-built apps into production.
 
 Site: https://meridian.dev/
 Contact: hello@meridian.dev
@@ -7,7 +7,7 @@ Last updated: 29 September 2026
 
 ## Primary
 - [Home](https://meridian.dev/): Studio overview, 30+ years combined experience (games, finance, web), services grid
-- [Vibe Code Rescue](https://meridian.dev/vibe-code-rescue/): Full product page — process, tools, deliverables, FAQ
+- [Vibe Code Rescue](https://meridian.dev/vibe-code-rescue/): Process, tools, what you get back, FAQ
 - [Pricing](https://meridian.dev/pricing/): Diagnostic free–$500; audit $299–$2,500; rescue $500–$12,500+; rebuild higher; not-for-you
 - [Request diagnostic](https://meridian.dev/request/): Lead form (also /diagnostic/)
 - [FAQ](https://meridian.dev/faq/)
@@ -49,4 +49,4 @@ Last updated: 29 September 2026
 - [llms-full.txt](https://meridian.dev/llms-full.txt)
 
 ## Positioning
-Senior engineers who salvage AI-built apps into production-ready software. Audit in 48 hours. Fix security, auth, data, and payments first. Keep what works. Fixed scope. You own the code. Optional AI guardrails after rescue. Empathy, no shame.
+Meridian is a senior studio. Vibe Code Rescue audits an AI-built app in about 48 hours, then fixes security, auth, data, and payments on a fixed scope. We keep the parts that work. The client owns the code. Guardrails after rescue are optional, for teams that want to keep shipping with AI tools. Customer growth and virtual bookkeeping are separate packages. Bookkeeping is not framed as an AI product: Starter from $299/month, Standard from $449/month, catch-up from $200 per month behind.

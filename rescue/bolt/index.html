@@ -3,25 +3,25 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bolt rescue — Vibe Code Rescue | Meridian</title>
-<meta name="description" content="Bolt prototypes ship fast and often stall on auth, env separation, and production deploy. We salvage Bolt apps without a full rewrite.">
+<title>Bolt rescue | Meridian</title>
+<meta name="description" content="Bolt prototypes stall on auth, env separation, and production deploy. We salvage them without a full rewrite.">
 <link rel="canonical" href="https://meridian.dev/rescue/bolt/">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Meridian">
-<meta property="og:title" content="Bolt rescue — Vibe Code Rescue | Meridian">
-<meta property="og:description" content="Bolt prototypes ship fast and often stall on auth, env separation, and production deploy. We salvage Bolt apps without a full rewrite.">
+<meta property="og:title" content="Bolt rescue | Meridian">
+<meta property="og:description" content="Bolt prototypes stall on auth, env separation, and production deploy. We salvage them without a full rewrite.">
 <meta property="og:url" content="https://meridian.dev/rescue/bolt/">
 <meta property="og:locale" content="en_CA">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Bolt rescue — Vibe Code Rescue | Meridian">
-<meta name="twitter:description" content="Bolt prototypes ship fast and often stall on auth, env separation, and production deploy. We salvage Bolt apps without a full rewrite.">
+<meta name="twitter:title" content="Bolt rescue | Meridian">
+<meta name="twitter:description" content="Bolt prototypes stall on auth, env separation, and production deploy. We salvage them without a full rewrite.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../../css/styles.fddf3ee8.css">
+<link rel="stylesheet" href="../../css/styles.5054ab78.css">
 <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://meridian.dev/"},{"@type":"ListItem","position":2,"name":"Bolt rescue","item":"https://meridian.dev/rescue/bolt/"}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"Bolt vibe code rescue","serviceType":"Bolt vibe code rescue","provider":{"@type":"Organization","name":"Meridian","url":"https://meridian.dev/"},"url":"https://meridian.dev/rescue/bolt/","description":"Bolt prototypes ship fast and often stall on auth, env separation, and production deploy. We salvage Bolt apps without a full rewrite.","areaServed":["CA","US"]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can you fix a Bolt-built app without rewriting it?","acceptedAnswer":{"@type":"Answer","text":"Usually yes for a large portion of the product. We diagnose first, then propose fixed-scope salvage focused on security, auth, data, and payments."}},{"@type":"Question","name":"How much does Bolt rescue cost?","acceptedAnswer":{"@type":"Answer","text":"Same ladder as our general pricing: diagnostic free–$500, audit $299–$2,500, focused rescue $500–$12,500+. See /pricing/."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://meridian.dev/"},{"@type":"ListItem","position":2,"name":"Bolt rescue","item":"https://meridian.dev/rescue/bolt/"}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"Bolt vibe code rescue","serviceType":"Bolt vibe code rescue","provider":{"@type":"Organization","name":"Meridian","url":"https://meridian.dev/"},"url":"https://meridian.dev/rescue/bolt/","description":"Bolt gets a prototype up quickly. The stall is usually auth that only works inside the builder, env vars mixed between preview and production, or a deploy that dies on Vercel. We keep the product and fix the part that will not leave the sandbox.","areaServed":["CA","US"]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can you fix a Bolt-built app without rewriting it?","acceptedAnswer":{"@type":"Answer","text":"Often, yes, for a large part of the product. We will not promise that before we have seen it. The diagnostic says what to keep. The quote covers security, auth, data, and payments first."}},{"@type":"Question","name":"How much does Bolt rescue cost?","acceptedAnswer":{"@type":"Answer","text":"Same ladder as the rest of the rescue work: diagnostic free–$500, audit $299–$2,500, focused rescue $500–$12,500+. The numbers are on /pricing/."}}]}</script>
 </head>
 <body>
 
@@ -47,15 +47,15 @@
 <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Home</a><span aria-hidden="true">/</span><a href="../../vibe-code-rescue/">Vibe Code Rescue</a><span aria-hidden="true">/</span><span aria-current="page">Bolt</span></nav>
 <p class="hero-kicker">Rescue by tool</p>
 <h1>Bolt rescue</h1>
-<p class="answer-first"><strong>Quick answer:</strong> Bolt prototypes ship fast and often stall on auth, env separation, and production deploy. We salvage Bolt apps without a full rewrite.</p>
+<p class="answer-first">Bolt gets a prototype up quickly. The stall is usually auth that only works inside the builder, env vars mixed between preview and production, or a deploy that dies on Vercel. We keep the product and fix the part that will not leave the sandbox.</p>
 <p class="meta-line">Last updated: 29 September 2026</p>
 <div class="btn-row">
 <a class="btn btn-primary" href="../../request/">Request diagnostic</a>
 <a class="btn btn-secondary" href="../../pricing/">Pricing</a>
 </div></div></section>
 <section class="section"><div class="narrow prose">
-<h2>Common Bolt failure signatures</h2>
-<ul><li>Environment variables confused between preview and prod</li><li>Auth patterns that only work in the builder sandbox</li><li>Dependency and build failures on Vercel/Netlify</li><li>Payment and webhook handlers left as TODOs</li><li>AI churn that rewrites the same files unsuccessfully</li></ul>
+<h2>What we keep seeing in Bolt projects</h2>
+<ul><li>Preview env and production env tangled together</li><li>Auth that assumes the Bolt sandbox</li><li>Builds that fail once they are on Vercel or Netlify</li><li>Payment and webhook handlers left as TODOs</li><li>The agent rewriting the same files without the bug moving</li></ul>
 <h2>Related problems</h2>
 <div class="chip-row">
 <a class="chip" href="../../problems/secrets-exposed/">Secrets exposed</a>
@@ -64,16 +64,16 @@
 <a class="chip" href="../../problems/wont-deploy/">Won't deploy</a>
 <a class="chip" href="../../problems/ai-fix-loop/">AI fix loop</a>
 </div>
-<h2>How Meridian helps</h2>
-<p>We run the same <a href="../../vibe-code-rescue/">Vibe Code Rescue</a> process: 48h diagnostic, severity ranking, fixed-scope salvage. Tool-specific experience means we recognise the patterns faster.</p>
+<h2>From here</h2>
+<p>Same path as <a href="../../vibe-code-rescue/">Vibe Code Rescue</a>: about 48 hours to look, a severity ranking, then a fixed scope if you want the work done. Knowing the tool mostly means less of that time goes to surprises.</p>
 <h2>FAQ</h2>
-<div class="faq-list"><details class="faq-item"><summary>Can you fix a Bolt-built app without rewriting it?</summary><div class="faq-answer"><p>Usually yes for a large portion of the product. We diagnose first, then propose fixed-scope salvage focused on security, auth, data, and payments.</p></div></details>
-<details class="faq-item"><summary>How much does Bolt rescue cost?</summary><div class="faq-answer"><p>Same ladder as our general pricing: diagnostic free–$500, audit $299–$2,500, focused rescue $500–$12,500+. See /pricing/.</p></div></details></div>
+<div class="faq-list"><details class="faq-item"><summary>Can you fix a Bolt-built app without rewriting it?</summary><div class="faq-answer"><p>Often, yes, for a large part of the product. We will not promise that before we have seen it. The diagnostic says what to keep. The quote covers security, auth, data, and payments first.</p></div></details>
+<details class="faq-item"><summary>How much does Bolt rescue cost?</summary><div class="faq-answer"><p>Same ladder as the rest of the rescue work: diagnostic free–$500, audit $299–$2,500, focused rescue $500–$12,500+. The numbers are on /pricing/.</p></div></details></div>
 </div></section>
 <section class="cta-band">
   <div class="container">
-    <h2>Rescue your Bolt app</h2>
-    <p>48-hour diagnostic. Empathy, no shame. You own the code.</p>
+    <h2>Send the Bolt repo</h2>
+    <p>48-hour diagnostic. The code stays yours.</p>
     <div class="btn-row" style="justify-content:center">
       <a class="btn btn-primary btn-lg" href="../../request/">Request diagnostic</a>
       <a class="btn btn-secondary btn-lg" href="../../pricing/">See pricing</a>
@@ -86,7 +86,7 @@
   <div class="container footer-grid">
     <div>
       <div class="footer-brand"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" rx="8" fill="#4338ca"/><circle cx="16" cy="16" r="7" fill="none" stroke="#c7d2fe" stroke-width="2"/><path d="M16 6v20M6 16h20" stroke="#e0e7ff" stroke-width="1.5" opacity="0.7"/><circle cx="16" cy="16" r="2.5" fill="#ffffff"/></svg><span>Meridian</span></div>
-      <p>Senior software studio. We salvage AI-built apps into production-ready software.</p>
+      <p>Senior studio. We take AI-built apps into production, and we run monthly books and a scoped growth package.</p>
       <p><a href="mailto:hello@meridian.dev">hello@meridian.dev</a></p>
     </div>
     <div>

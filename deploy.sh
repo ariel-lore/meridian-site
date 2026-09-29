@@ -61,4 +61,4 @@ for key in $(aws s3api list-objects-v2 --bucket "$BUCKET" --prefix "js/" --regio
   [[ -f "js/$base" ]] || aws s3 rm "$S3/$key" --region "$REGION"
 done
 
-echo "Deployed to $S3 (region $REGION). Sync only — no extra AWS cost notes."
+echo "Deployed to $S3 (region $REGION). Sync only. No extra AWS cost notes."

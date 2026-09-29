@@ -3,23 +3,23 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Rescue vs rewrite — decision guide | Meridian</title>
+<title>Rescue or rewrite | Meridian</title>
 <meta name="description" content="When to salvage an AI-built app versus rewrite: security risk, architecture debt, team ability to maintain, and economics. Meridian diagnoses before recommending.">
 <link rel="canonical" href="https://meridian.dev/guides/rescue-vs-rewrite/">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Meridian">
-<meta property="og:title" content="Rescue vs rewrite — decision guide | Meridian">
+<meta property="og:title" content="Rescue or rewrite | Meridian">
 <meta property="og:description" content="When to salvage an AI-built app versus rewrite: security risk, architecture debt, team ability to maintain, and economics. Meridian diagnoses before recommending.">
 <meta property="og:url" content="https://meridian.dev/guides/rescue-vs-rewrite/">
 <meta property="og:locale" content="en_CA">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Rescue vs rewrite — decision guide | Meridian">
+<meta name="twitter:title" content="Rescue or rewrite | Meridian">
 <meta name="twitter:description" content="When to salvage an AI-built app versus rewrite: security risk, architecture debt, team ability to maintain, and economics. Meridian diagnoses before recommending.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../../css/styles.fddf3ee8.css">
+<link rel="stylesheet" href="../../css/styles.5054ab78.css">
 <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://meridian.dev/"},{"@type":"ListItem","position":2,"name":"Rescue vs rewrite","item":"https://meridian.dev/guides/rescue-vs-rewrite/"}]}</script>
 </head>
@@ -46,18 +46,18 @@
 <section class="page-hero"><div class="container">
 <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Home</a><span aria-hidden="true">/</span><a href="../../guides/what-is-vibe-code-rescue/">Guides</a><span aria-hidden="true">/</span><span aria-current="page">Rescue vs rewrite</span></nav>
 <h1>Rescue vs rewrite</h1>
-<p class="answer-first"><strong>Quick answer:</strong> Choose rescue when the product surface works and risk is concentrated in security, auth, data, payments, or deploy — salvageable with fixed scope. Choose rewrite when structure, tenancy model, or defect density makes patching slower and riskier than a clean foundation. Meridian always diagnoses before recommending either path.</p>
+<p class="answer-first">Rescue when the product surface works and the risk sits in security, auth, data, payments, or deploy. That can be a fixed scope. Rewrite when the structure, the tenancy model, or the number of defects means every patch makes the next one harder. We do not pick a side before we have read the code.</p>
 <p class="meta-line">Last updated: 29 September 2026</p>
 </div></section>
 <section class="section"><div class="narrow prose">
-<h2>Lean rescue when</h2>
+<h2>Rescue is the better bet when</h2>
 <ul>
 <li>Users already validate the workflow or UI</li>
 <li>Core domain logic is understandable</li>
 <li>Failures cluster in secrets, auth, RLS, Stripe, deploy</li>
 <li>A senior engineer can map a 1–3 week fixed scope</li>
 </ul>
-<h2>Lean rewrite when</h2>
+<h2>A rewrite is the better bet when</h2>
 <ul>
 <li>Nobody can explain data flow or tenancy</li>
 <li>Security issues are structural, not local</li>
@@ -65,7 +65,7 @@
 <li>Diligence or regulation demands a clean provenance story</li>
 </ul>
 <h2>How we decide</h2>
-<p>The <a href="../../vibe-code-rescue/">48-hour diagnostic</a> produces a keep / harden / rebuild recommendation with severity-ranked evidence — not a sales script. Sample tone: <a href="../../artifacts/sample-audit.md">sample-audit.md</a>.</p>
+<p>The <a href="../../vibe-code-rescue/">48-hour diagnostic</a> is a keep / harden / rebuild recommendation with the evidence ranked. It is not a script for a sales call. The tone of a write-up is in <a href="../../artifacts/sample-audit.md">sample-audit.md</a>.</p>
 <div class="btn-row">
 <a class="btn btn-primary" href="../../request/">Request diagnostic</a>
 <a class="btn btn-secondary" href="../../pricing/">See pricing</a>
@@ -76,7 +76,7 @@
   <div class="container footer-grid">
     <div>
       <div class="footer-brand"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" rx="8" fill="#4338ca"/><circle cx="16" cy="16" r="7" fill="none" stroke="#c7d2fe" stroke-width="2"/><path d="M16 6v20M6 16h20" stroke="#e0e7ff" stroke-width="1.5" opacity="0.7"/><circle cx="16" cy="16" r="2.5" fill="#ffffff"/></svg><span>Meridian</span></div>
-      <p>Senior software studio. We salvage AI-built apps into production-ready software.</p>
+      <p>Senior studio. We take AI-built apps into production, and we run monthly books and a scoped growth package.</p>
       <p><a href="mailto:hello@meridian.dev">hello@meridian.dev</a></p>
     </div>
     <div>
