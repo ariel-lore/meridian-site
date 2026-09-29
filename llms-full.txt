@@ -44,16 +44,16 @@ Q: Will you shame vibe coders?
 A: No. Empathy, no shame.
 
 Q: Does customer growth include a weekly marketing call?
-A: No. It is a productized AI lead system (ads or SEO setup, landing pages, CRM, automated email or SMS nurture and booking). No weekly account manager, no VA follow-up calls, and no fractional CMO retainer that needs the owner in the plan.
+A: No. It is a scoped package for search, paid campaigns, landing pages, CRM, and follow-up through to booking. Reporting is async. It is not a weekly account-management meeting, a caller roster, or a fractional CMO engagement.
 
-Q: Does virtual bookkeeping include weekly human check-ins?
-A: No. It is software and AI workflows plus a monthly close package: receipt and invoice capture, categorisation, reconciliation alerts, monthly reports, and AI admin (inbox triage, scheduling, document processing). Not a bookkeeper or VA in your meetings, and not a replacement for a CPA.
+Q: Does virtual bookkeeping include a weekly books call?
+A: No. It is a monthly close package: receipt and invoice capture, categorisation, reconciliation, a written report, plus inbox triage, scheduling, and document handling. Questions are async. It is not a bookkeeper in your meetings, and it does not replace a CPA.
 
-## Productized sibling services
+## Sibling service packages
 Customer growth: https://meridian.dev/customer-growth/
 Virtual bookkeeping: https://meridian.dev/virtual-bookkeeping/
 
-Both sit under the Meridian umbrella, next to Vibe Code Rescue. Both are AI-first and productized. They do not include weekly human follow-up that requires Meridian staff to be present. Clients use the same inquire form at https://meridian.dev/request/.
+Both sit under the Meridian umbrella, next to Vibe Code Rescue. They are scoped professional packages — growth, and books plus admin — delivered async or as a monthly close. They do not include a standing weekly meeting. Clients use the same inquire form at https://meridian.dev/request/.
 
 ## Key URLs
 https://meridian.dev/

@@ -13,8 +13,8 @@
 | `/product-engineering/` | Stub — coming soon / inquire |
 | `/security-hardening/` | Stub — coming soon / inquire |
 | `/fractional-cto/` | Stub — coming soon / inquire |
-| `/customer-growth/` | Productized AI lead systems — root path, not under `/services/` |
-| `/virtual-bookkeeping/` | Productized AI books and admin — root path, not under `/services/` |
+| `/customer-growth/` | Scoped customer-growth package — root path, not under `/services/` |
+| `/virtual-bookkeeping/` | Monthly bookkeeping and admin package — root path, not under `/services/` |
 | `/pricing/` | Transparent ladder + not-for-you |
 | `/request/` | Lead capture form |
 | `/diagnostic/` | Alias of request form |

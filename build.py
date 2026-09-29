@@ -252,28 +252,28 @@ VCR_FAQS = [
 
 GROWTH_FAQS = [
  ("Do I get a weekly marketing call?",
-  "No. Customer growth is a productized system. There is no weekly account-management meeting, and it does not require Meridian staff to be present for the system to run."),
- ("Is this a fractional CMO or a VA?",
-  "No. A fractional CMO needs the owner in the plan. A VA follow-up service needs a person making calls. Customer growth installs an automated lead system — ads or SEO setup, landing pages, CRM capture, and email or SMS nurture and booking — then leaves you a dashboard."),
- ("Will a person call my leads every week?",
-  "No. Follow-up is automated email and SMS, plus booking. We do not staff a VA to chase leads on a weekly call schedule."),
- ("What do I have to do after setup?",
-  "Connect the accounts the system needs, approve the offer and voice once, and read the dashboard. You are not the project manager, and you do not host a weekly Meridian meeting."),
+  "No. Customer growth is a scoped package: search, campaigns, landing pages, CRM, and follow-up through to booking. Reporting and questions are async. There is no weekly account-management meeting."),
+ ("Is this a fractional CMO or a call-centre follow-up service?",
+  "No. A fractional CMO works the plan with you week to week. This package covers the campaign, the pages, the CRM, and the follow-up sequence through to booking. You are not asked to run it, and we do not put a caller on a weekly roster."),
+ ("How do leads get followed up?",
+  "Follow-up is part of the package: email or SMS sequences and booking, inside the scope you approved. Questions about a lead are handled in writing, not on a standing call."),
+ ("What do I need to provide?",
+  "Access to the site, ad accounts, and CRM, plus one approval of the offer and the voice. After that, questions and changes stay on the package cadence."),
  ("How do I start?",
-  "Use the inquire form and describe the business and the offer. We reply with whether the productized system fits. There is no standing retainer to begin."),
+  "Use the inquire form and describe the business and the offer. We reply with whether a growth package fits."),
 ]
 
 BOOKS_FAQS = [
  ("Do you join a weekly bookkeeping call?",
-  "No. Delivery is software and AI workflows plus a monthly close package. Meridian staff are not scheduled into your week."),
- ("Is this a virtual assistant?",
-  "No. White-glove VA work that depends on a person being present is out of scope. Admin here means inbox triage, scheduling, and document processing that the system runs."),
+  "No. The package is a monthly close: capture, categorisation, reconciliation, and a written report, plus the admin tasks in scope. Questions are async. We are not on a standing weekly call."),
+ ("Is this a virtual assistant who sits in my day?",
+  "No. Admin in this package is inbox triage, scheduling, and document handling, delivered with the monthly books work. It is not white-glove assistant work that depends on someone sitting with you."),
  ("What does the monthly close include?",
-  "Receipt and invoice capture, categorisation, reconciliation alerts, and a monthly report you can read without a meeting. Exceptions are flagged for a human look. That look is not a weekly check-in."),
+  "Receipt and invoice capture, categorisation, reconciliation items, and a monthly report. If something needs your decision, we flag it in writing. That is not a weekly check-in."),
  ("Will this replace my accountant?",
-  "No. You get cleaner books and less admin. Tax filing, audit opinions, and licensed advice stay with your CPA."),
+  "No. You get cleaner books and less day-to-day admin. Tax filing, audit opinions, and licensed advice stay with your CPA."),
  ("How do I start?",
-  "Use the inquire form and describe how you invoice and where the documents land today. We reply with whether a monthly close package fits."),
+  "Use the inquire form and describe how you invoice and where documents land today. We reply with whether a monthly close package fits."),
 ]
 
 TOOLS = [
@@ -390,11 +390,11 @@ def page_home():
 <section class="section">
 <div class="container">
 <h2 class="section-title">Services</h2>
-<p class="lede">Flagship rescue, plus productized systems for customers, books, and admin — built to run without weekly studio presence.</p>
+<p class="lede">Flagship rescue, plus scoped packages for customer growth and for books and admin.</p>
 <div class="grid-2" style="margin-top:1.5rem">
 <div class="card"><span class="pill pill-ok">Flagship</span><h3>Vibe Code Rescue</h3><p>Salvage AI-built apps (Cursor, Lovable, Bolt, v0, Replit Agent, Claude Code, Windsurf) into production-ready software. 48h diagnostic. Fixed scope.</p><a class="card-link" href="{p}vibe-code-rescue/">View service →</a></div>
-<div class="card"><span class="pill pill-ok">Productized</span><h3>Customer growth</h3><p>Get more customers without hiring a marketing team. AI lead systems: ads and SEO, landing pages, CRM, and automated nurture. No weekly account manager.</p><a class="card-link" href="{p}customer-growth/">View service →</a></div>
-<div class="card"><span class="pill pill-ok">Productized</span><h3>Virtual bookkeeping</h3><p>Books and admin that run themselves. Automated capture, categorisation, reconciliation alerts, and a monthly close — plus inbox and document workflows.</p><a class="card-link" href="{p}virtual-bookkeeping/">View service →</a></div>
+<div class="card"><span class="pill pill-ok">Package</span><h3>Customer growth</h3><p>Search, campaigns, landing pages, CRM, and follow-up through to booking. A scoped package with a clear cadence, not a weekly marketing meeting.</p><a class="card-link" href="{p}customer-growth/">View service →</a></div>
+<div class="card"><span class="pill pill-ok">Package</span><h3>Virtual bookkeeping</h3><p>Professional books and admin on a monthly close: capture, categorisation, reconciliation, and a written report, plus inbox, scheduling, and documents.</p><a class="card-link" href="{p}virtual-bookkeeping/">View service →</a></div>
 <div class="card"><span class="pill pill-muted">Inquire</span><h3>Product engineering</h3><p>Feature delivery, architecture, and product partnership beyond a one-time rescue.</p><a class="card-link" href="{p}product-engineering/">Learn more →</a></div>
 <div class="card"><span class="pill pill-muted">Inquire</span><h3>Security hardening</h3><p>Threat-focused hardening for apps that already have users or diligence on the calendar.</p><a class="card-link" href="{p}security-hardening/">Learn more →</a></div>
 <div class="card"><span class="pill pill-muted">Inquire</span><h3>Fractional CTO</h3><p>Ongoing technical leadership after rescue — roadmap, hiring, vendor calls, AI guardrails.</p><a class="card-link" href="{p}fractional-cto/">Learn more →</a></div>
@@ -494,7 +494,7 @@ def page_vcr():
 </ul>
 <div class="callout"><strong>Sample artifact:</strong> See a redacted example of how we write findings — <a href="{p}artifacts/sample-audit.md">sample-audit.md</a>.</div>
 <h2>Other productized services</h2>
-<p>Meridian is the studio. Two sibling offerings run as software, not as a weekly retainer: <a href="{p}customer-growth/">Customer growth</a> (AI lead systems) and <a href="{p}virtual-bookkeeping/">Virtual bookkeeping</a> (AI books and admin). Neither needs Meridian staff in a standing meeting.</p>
+<p>Meridian is the studio. Two sibling packages sit beside rescue: <a href="{p}customer-growth/">Customer growth</a> (search, campaigns, landing pages, and follow-up) and <a href="{p}virtual-bookkeeping/">Virtual bookkeeping</a> (monthly books and admin). Both are scoped work, not a standing weekly meeting.</p>
 <h2>FAQ</h2>
 {faq_html(VCR_FAQS)}
 </div></section>
@@ -524,7 +524,7 @@ def page_stub(slug, name, blurb, body_text):
 <section class="section"><div class="narrow prose">
 <p>{body_text}</p>
 <p>Meanwhile, our flagship offering is ready: <a href="{p}vibe-code-rescue/">Vibe Code Rescue</a>.</p>
-{"" if slug != "fractional-cto" else f'<p>If you want customers, books, or admin that run without a weekly retainer, see <a href="{p}customer-growth/">Customer growth</a> and <a href="{p}virtual-bookkeeping/">Virtual bookkeeping</a>.</p>'}
+{"" if slug != "fractional-cto" else f'<p>If you want a packaged growth or books engagement rather than a weekly leadership retainer, see <a href="{p}customer-growth/">Customer growth</a> and <a href="{p}virtual-bookkeeping/">Virtual bookkeeping</a>.</p>'}
 <div class="btn-row">
 <a class="btn btn-primary" href="{p}request/?interest={slug}">Inquire</a>
 <a class="btn btn-secondary" href="mailto:{CONTACT}?subject={name}%20inquiry">Email {CONTACT}</a>
@@ -539,88 +539,88 @@ OFFERINGS = [
  {
   "slug": "customer-growth",
   "name": "Customer growth",
-  "title": "Customer growth — AI lead systems | Meridian",
-  "desc": "Get more customers without hiring a marketing team. AI-assisted lead systems: ads and SEO, landing pages, CRM capture, and automated email or SMS nurture. Productized. No weekly account manager.",
-  "kicker": "Meridian service · Productized",
-  "quick": "Get more customers without hiring a marketing team. Customer growth is a productized, AI-assisted lead system: search content and paid ads setup, landing pages, CRM capture, and automated email or SMS nurture and booking. It runs from software and a dashboard. It is not a weekly account manager, a VA calling your leads, or a fractional CMO who needs you in the plan every week.",
+  "title": "Customer growth — campaigns, pages, and follow-up | Meridian",
+  "desc": "A scoped customer-growth package: search, paid campaigns, landing pages, CRM capture, and email or SMS follow-up through to booking. Clear process and a reporting cadence. Not a weekly marketing meeting.",
+  "kicker": "Meridian service · Package",
+  "quick": "Customer growth is a scoped package for search, paid campaigns, landing pages, CRM capture, and email or SMS follow-up through to booking. You approve the offer once. Reporting and questions stay on that cadence. It is not a weekly marketing meeting, a caller chasing leads, or a fractional CMO engagement.",
   "what_h": "What it is",
   "what": [
-   "AI-assisted lead generation: search content and a one-time paid ads setup, not a media buyer in your calendar",
-   "Landing pages that capture the inquiry against a clear offer",
-   "CRM capture so leads land in one place you can see",
-   "Automated email and SMS nurture, and booking, after the lead arrives",
+   "Search content and paid campaign setup for a defined offer",
+   "Landing pages that turn visits into inquiries",
+   "CRM capture so every lead has a home",
+   "Email and SMS follow-up sequences, and booking, inside the agreed scope",
   ],
   "not": [
-   "Weekly VA follow-up calls",
-   "A fractional CMO engagement that requires the owner to run the plan",
-   "A bespoke retainer that needs Meridian staff present every week",
+   "A weekly marketing call or a roster of follow-up calls",
+   "A fractional CMO engagement that needs you to run the plan",
+   "An open-ended retainer with someone in your calendar every week",
   ],
   "steps": [
-   ("Fit inquiry", "Tell us the offer, where you sell, and where a lead should land. No weekly kickoff series."),
-   ("System setup", "We configure the productized stack once: capture, landing page, CRM, and nurture. You approve the offer and the voice once."),
-   ("Automation runs", "Sequences, booking, and reporting continue without a standing meeting and without Meridian staff on a call."),
-   ("Self-serve dashboard", "You see leads, bookings, and what the system sent. Exceptions surface in the product, not as a weekly status call."),
+   ("Scope the offer", "Tell us what you sell, where you sell it, and where a new customer should land."),
+   ("Build the package", "Campaigns, landing page, CRM, and follow-up sequences. You approve the offer and the voice once."),
+   ("Deliver the scope", "Leads, follow-up, and booking stay inside the package. Changes and questions are async."),
+   ("Report on cadence", "You receive a clear read of leads and bookings. There is no standing weekly status meeting."),
   ],
   "who": [
-   "Owners who want more customers and do not want to hire a marketing team",
+   "Owners who want a steady path from attention to a booked conversation",
    "Businesses with a clear offer and a way to take a booking or a sale",
-   "Operators who will connect a domain, ad account, and CRM once, then let the system run",
+   "Teams who want a defined package and a written cadence, not an open marketing calendar",
   ],
   "not_who": [
    "Brands that want a strategist in the room every week",
-   "Offers that change daily and need a person to rewrite the plan",
-   "Anyone who needs Meridian staff on standing calls for the work to happen",
+   "Offers that change daily and need a new plan each time",
+   "Engagements that depend on a standing call for the work to move",
   ],
-  "delivery": "Productized and largely automated. You get a self-serve dashboard where the connected tools allow it. Human time is exception handling inside the system, not account management. The service does not depend on someone from the studio being present each week.",
+  "delivery": "A fixed-scope growth package. Setup, follow-up sequences, and a reporting cadence are in the scope. We do not book a weekly account-management meeting.",
   "faqs": GROWTH_FAQS,
   "sibling_slug": "virtual-bookkeeping",
   "sibling_name": "Virtual bookkeeping",
-  "sibling_blurb": "AI books and admin",
-  "cta_title": "See if customer growth fits",
-  "cta_sub": "Tell us the offer and where leads should land. We reply with a productized next step — no weekly account management.",
+  "sibling_blurb": "monthly books and admin",
+  "cta_title": "See if a growth package fits",
+  "cta_sub": "Tell us the offer and where a new customer should land. We reply with a scoped next step.",
  },
  {
   "slug": "virtual-bookkeeping",
   "name": "Virtual bookkeeping",
-  "title": "Virtual bookkeeping — AI books and admin | Meridian",
-  "desc": "Books and admin that run themselves. Automated receipt and invoice capture, categorisation, reconciliation alerts, and monthly reports, plus AI inbox triage, scheduling, and document processing.",
-  "kicker": "Meridian service · Productized",
-  "quick": "Books and admin that run themselves. Virtual bookkeeping is AI-powered bookkeeping and administration: receipt and invoice capture, categorisation, reconciliation alerts, and a monthly close report, plus inbox triage, scheduling, and document processing. Delivery is software and workflows. It is not a full-time bookkeeper or a VA sitting in your meetings.",
+  "title": "Virtual bookkeeping — monthly books and admin | Meridian",
+  "desc": "A professional books and admin package: receipt and invoice capture, categorisation, reconciliation, and a monthly close report, plus inbox triage, scheduling, and document handling.",
+  "kicker": "Meridian service · Package",
+  "quick": "Virtual bookkeeping is a professional books and admin package: receipt and invoice capture, categorisation, reconciliation, and a monthly close report, plus inbox triage, scheduling, and document handling. You review the monthly package. It is not a bookkeeper in your meetings, and it is not open-ended assistant work.",
   "what_h": "What it is",
   "what": [
-   "Automated bookkeeping: receipt and invoice capture, categorisation, and reconciliation alerts",
-   "A monthly close package with a report you can read without a meeting",
-   "AI admin: inbox triage, scheduling, and document processing",
-   "Exception handling when the system flags something a rule cannot close",
+   "Bookkeeping: receipt and invoice capture, categorisation, and reconciliation",
+   "A monthly close package with a written report",
+   "Admin support: inbox triage, scheduling, and document handling",
+   "A written note when a transaction needs your decision",
   ],
   "not": [
-   "Weekly human check-ins that require Meridian staff on a call",
-   "White-glove, presence-based virtual assistant work",
-   "A bookkeeper who attends your meetings or lives in your calendar",
+   "A weekly books meeting",
+   "White-glove assistant work that depends on someone sitting with you",
+   "A bookkeeper who joins your internal meetings",
   ],
   "steps": [
-   ("Connect the books", "Bank feed, receipt inbox, and the documents you already use. One-time setup, not a standing meeting."),
-   ("Capture and categorise", "Receipts, invoices, and routine transactions run through the workflow. You see exceptions, not every line."),
-   ("Monthly close", "A clean report when the month closes, plus reconciliation alerts when something needs a human look."),
-   ("Admin workflows", "Inbox triage, scheduling, and document processing run as software. We do not sit in your calendar."),
+   ("Open the books", "We connect the bank feed, receipt inbox, and the documents you already use."),
+   ("Keep the books current", "Receipts, invoices, and routine transactions are categorised through the month. You hear about exceptions, not every line."),
+   ("Close the month", "A written report when the month closes, with reconciliation items called out."),
+   ("Admin on the same package", "Inbox triage, scheduling, and document handling, delivered async. We do not join your calendar as a standing attendee."),
   ],
   "who": [
-   "Owners who want clean numbers without hiring a bookkeeper",
-   "Small businesses buried in inbox and document chores",
-   "Operators who will connect accounts once and review a monthly close, not a weekly status call",
+   "Owners who want clean numbers and a monthly report they can read",
+   "Small businesses with a steady flow of receipts, invoices, and paperwork",
+   "Operators who want a defined monthly package rather than an open assistant calendar",
   ],
   "not_who": [
-   "Firms that want a person in every finance meeting",
-   "Work that is really executive assistance with a human on call",
+   "Firms that want someone in every finance meeting",
+   "Work that is really a full-time executive assistant",
    "Engagements that need licensed tax advice or an audit opinion — clean books are not a CPA replacement",
   ],
-  "delivery": "Software and AI workflows, sold as a monthly close package. Human time is limited to exceptions the system flags. There is no weekly check-in and no requirement that Meridian staff be present for the books to stay current.",
+  "delivery": "A monthly close package. Books, the written report, and the admin tasks in scope are delivered async. There is no standing weekly call.",
   "faqs": BOOKS_FAQS,
   "sibling_slug": "customer-growth",
   "sibling_name": "Customer growth",
-  "sibling_blurb": "AI lead systems",
-  "cta_title": "See if virtual bookkeeping fits",
-  "cta_sub": "Tell us how you invoice and where documents land today. We reply with whether a monthly close package fits — no weekly books call.",
+  "sibling_blurb": "scoped campaigns, pages, and follow-up",
+  "cta_title": "See if a monthly close fits",
+  "cta_sub": "Tell us how you invoice and where documents land today. We reply with whether a books and admin package fits.",
  },
 ]
 
@@ -669,7 +669,7 @@ def page_offering(o):
 <ul>{not_who_lis}</ul>
 <div class="callout"><strong>Delivery model:</strong> {o["delivery"]}</div>
 <h2>Same studio, different job</h2>
-<p>These pages sit under Meridian, next to <a href="{p}vibe-code-rescue/">Vibe Code Rescue</a>. The sibling system is <a href="{p}{o["sibling_slug"]}/">{o["sibling_name"]}</a> — {o["sibling_blurb"]}. The inquire form is the same one used for a rescue diagnostic. If the tool list does not apply, choose Mixed / other and describe the business.</p>
+<p>These pages sit under Meridian, next to <a href="{p}vibe-code-rescue/">Vibe Code Rescue</a>. The sibling service is <a href="{p}{o["sibling_slug"]}/">{o["sibling_name"]}</a> — {o["sibling_blurb"]}. The inquire form is the same one used for a rescue diagnostic. If the tool list does not apply, choose Mixed / other and describe the business.</p>
 <h2>FAQ</h2>
 {faq_html(faqs)}
 </div></section>
@@ -929,7 +929,7 @@ def page_faq():
 <section class="page-hero"><div class="container">
 {crumbs}
 <h1>Frequently asked questions</h1>
-<p class="answer-first"><strong>Quick answer:</strong> Meridian Vibe Code Rescue salvages AI-built apps with a 48-hour diagnostic, security-first fixed-scope work, and clear ownership. Empathy, no shame. Pricing bands are public on the pricing page. Customer growth and virtual bookkeeping are separate productized systems: they run without weekly studio presence.</p>
+<p class="answer-first"><strong>Quick answer:</strong> Meridian Vibe Code Rescue salvages AI-built apps with a 48-hour diagnostic, security-first fixed-scope work, and clear ownership. Empathy, no shame. Pricing bands are public on the pricing page. Customer growth and virtual bookkeeping are separate packages: scoped growth work, and a monthly books and admin close.</p>
 <p class="meta-line">Last updated: {LAST}</p>
 </div></section>
 <section class="section"><div class="narrow">
@@ -968,10 +968,10 @@ def page_about():
 <li>Optional guardrails so AI remains a tool, not a liability</li>
 </ul>
 <h2>Services under the studio</h2>
-<p><a href="{p}vibe-code-rescue/">Vibe Code Rescue</a> is the flagship: salvage AI-built apps into production-ready software. Two sibling offerings are productized and built to run without weekly studio presence:</p>
+<p><a href="{p}vibe-code-rescue/">Vibe Code Rescue</a> is the flagship: salvage AI-built apps into production-ready software. Two sibling packages sit beside it:</p>
 <ul>
-<li><a href="{p}customer-growth/">Customer growth</a> — AI-assisted lead systems: ads and SEO, landing pages, CRM, and automated nurture. Not a marketing team, and not a weekly account manager.</li>
-<li><a href="{p}virtual-bookkeeping/">Virtual bookkeeping</a> — AI books and admin: capture, categorisation, reconciliation alerts, monthly close, plus inbox and document workflows. Not a bookkeeper in your meetings.</li>
+<li><a href="{p}customer-growth/">Customer growth</a> — search, campaigns, landing pages, CRM, and follow-up through to booking. A defined package, not a weekly marketing meeting.</li>
+<li><a href="{p}virtual-bookkeeping/">Virtual bookkeeping</a> — monthly books and admin: capture, categorisation, reconciliation, a written close, plus inbox, scheduling, and documents.</li>
 </ul>
 <p>Product engineering, security hardening, and fractional CTO remain inquire-only while those packages are scoped.</p>
 <h2>Contact</h2>
@@ -1142,9 +1142,9 @@ Last updated: {LAST}
 - [Won't deploy]({BASE}/problems/wont-deploy/)
 - [AI fix loop]({BASE}/problems/ai-fix-loop/)
 
-## Productized services
-- [Customer growth]({BASE}/customer-growth/): AI lead systems for small business — ads/SEO, landing, CRM, automated nurture and booking. No weekly account manager.
-- [Virtual bookkeeping]({BASE}/virtual-bookkeeping/): AI books and admin — capture, categorisation, reconciliation alerts, monthly close, inbox and document workflows. No bookkeeper in your meetings.
+## Service packages
+- [Customer growth]({BASE}/customer-growth/): Scoped package for search, paid campaigns, landing pages, CRM, and follow-up through to booking. Not a weekly marketing meeting.
+- [Virtual bookkeeping]({BASE}/virtual-bookkeeping/): Monthly books and admin package — capture, categorisation, reconciliation, a written close, inbox triage, scheduling, and documents. Not a bookkeeper in your meetings.
 
 ## Other services (inquire)
 - [Product engineering]({BASE}/product-engineering/)
@@ -1203,16 +1203,16 @@ Q: Will you shame vibe coders?
 A: No. Empathy, no shame.
 
 Q: Does customer growth include a weekly marketing call?
-A: No. It is a productized AI lead system (ads or SEO setup, landing pages, CRM, automated email or SMS nurture and booking). No weekly account manager, no VA follow-up calls, and no fractional CMO retainer that needs the owner in the plan.
+A: No. It is a scoped package for search, paid campaigns, landing pages, CRM, and follow-up through to booking. Reporting is async. It is not a weekly account-management meeting, a caller roster, or a fractional CMO engagement.
 
-Q: Does virtual bookkeeping include weekly human check-ins?
-A: No. It is software and AI workflows plus a monthly close package: receipt and invoice capture, categorisation, reconciliation alerts, monthly reports, and AI admin (inbox triage, scheduling, document processing). Not a bookkeeper or VA in your meetings, and not a replacement for a CPA.
+Q: Does virtual bookkeeping include a weekly books call?
+A: No. It is a monthly close package: receipt and invoice capture, categorisation, reconciliation, a written report, plus inbox triage, scheduling, and document handling. Questions are async. It is not a bookkeeper in your meetings, and it does not replace a CPA.
 
-## Productized sibling services
+## Sibling service packages
 Customer growth: {BASE}/customer-growth/
 Virtual bookkeeping: {BASE}/virtual-bookkeeping/
 
-Both sit under the Meridian umbrella, next to Vibe Code Rescue. Both are AI-first and productized. They do not include weekly human follow-up that requires Meridian staff to be present. Clients use the same inquire form at {BASE}/request/.
+Both sit under the Meridian umbrella, next to Vibe Code Rescue. They are scoped professional packages — growth, and books plus admin — delivered async or as a monthly close. They do not include a standing weekly meeting. Clients use the same inquire form at {BASE}/request/.
 
 ## Key URLs
 {BASE}/

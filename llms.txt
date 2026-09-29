@@ -32,9 +32,9 @@ Last updated: 27 September 2026
 - [Won't deploy](https://meridian.dev/problems/wont-deploy/)
 - [AI fix loop](https://meridian.dev/problems/ai-fix-loop/)
 
-## Productized services
-- [Customer growth](https://meridian.dev/customer-growth/): AI lead systems for small business — ads/SEO, landing, CRM, automated nurture and booking. No weekly account manager.
-- [Virtual bookkeeping](https://meridian.dev/virtual-bookkeeping/): AI books and admin — capture, categorisation, reconciliation alerts, monthly close, inbox and document workflows. No bookkeeper in your meetings.
+## Service packages
+- [Customer growth](https://meridian.dev/customer-growth/): Scoped package for search, paid campaigns, landing pages, CRM, and follow-up through to booking. Not a weekly marketing meeting.
+- [Virtual bookkeeping](https://meridian.dev/virtual-bookkeeping/): Monthly books and admin package — capture, categorisation, reconciliation, a written close, inbox triage, scheduling, and documents. Not a bookkeeper in your meetings.
 
 ## Other services (inquire)
 - [Product engineering](https://meridian.dev/product-engineering/)
