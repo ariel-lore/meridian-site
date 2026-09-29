@@ -159,58 +159,76 @@
     var form = document.getElementById("bookkeeping-fit-form");
     if (!form) return;
 
-    var behindMap = {
-      current: "Current",
-      "1-3": "1-3 months",
-      "3-plus": "3+ months",
+    var packageMap = {
+      starter: "Starter",
+      standard: "Standard",
+      "catch-up": "Catch-up",
+      "not-sure": "Not sure",
     };
     var softwareMap = {
       qbo: "QuickBooks Online",
       xero: "Xero",
-      spreadsheets: "Spreadsheets",
+      wave: "Wave",
+      spreadsheets: "Spreadsheet / none",
       other: "Other",
     };
 
     var inquiry = document.getElementById("bk-inquiry");
     var source = document.getElementById("bk-source");
-    var behind = document.getElementById("bk-behind");
     var software = document.getElementById("bk-software");
-    var deadline = document.getElementById("bk-deadline");
-    var otherWrap = document.getElementById("bk-deadline-other-wrap");
-    var otherInput = document.getElementById("bk-deadline-detail");
+    var softwareOtherWrap = document.getElementById("bk-software-other-wrap");
+    var softwareOther = document.getElementById("bk-software-other");
+    var packageSelect = document.getElementById("bk-package");
+    var elseBox = document.getElementById("bk-need-else");
+    var elseWrap = document.getElementById("bk-else-wrap");
+    var elseInput = document.getElementById("bk-else");
     var catchupNote = document.getElementById("catchup-note");
+    var catchupNeed = form.querySelector('input[name="needs"][value="Catch-up / backlog"]');
+
+    ["source", "medium", "campaign", "content"].forEach(function (key) {
+      var input = document.getElementById("bk-utm-" + key);
+      var value = query.get("utm_" + key) || "";
+      if (input && value.length <= 120) input.value = value;
+    });
+    var landing = document.getElementById("bk-landing");
+    if (landing) landing.value = window.location.pathname + window.location.search;
+
+    var sourceParam = query.get("source") || "";
+    if (source && /^[a-z0-9-]{1,40}$/i.test(sourceParam)) source.value = sourceParam;
+    if (software && softwareMap[query.get("software")]) software.value = softwareMap[query.get("software")];
+    if (packageSelect && packageMap[query.get("package")]) {
+      packageSelect.value = packageMap[query.get("package")];
+    }
 
     if (query.get("intent") === "catch-up") {
       if (inquiry) inquiry.value = "Catch-up quote";
       if (source && !query.get("source")) source.value = "catch-up";
+      if (packageSelect) packageSelect.value = "Catch-up";
+      if (catchupNeed) catchupNeed.checked = true;
       if (catchupNote) catchupNote.hidden = false;
     }
 
-    var sourceParam = query.get("source") || "";
-    if (source && /^[a-z0-9-]{1,40}$/i.test(sourceParam)) source.value = sourceParam;
-
-    if (behind && behindMap[query.get("behind")]) behind.value = behindMap[query.get("behind")];
-    if (software && softwareMap[query.get("software")]) software.value = softwareMap[query.get("software")];
-
-    function syncDeadline() {
-      var isOther = deadline && deadline.value === "Other";
-      if (otherWrap) otherWrap.hidden = !isOther;
-      if (otherInput) {
-        if (isOther) otherInput.setAttribute("required", "required");
-        else {
-          otherInput.removeAttribute("required");
-          otherInput.value = "";
-          clearField(otherInput);
-        }
+    function syncSoftwareOther() {
+      var isOther = software && software.value === "Other";
+      if (softwareOtherWrap) softwareOtherWrap.hidden = !isOther;
+      if (!isOther && softwareOther) softwareOther.value = "";
+    }
+    function syncElse() {
+      var on = elseBox && elseBox.checked;
+      if (elseWrap) elseWrap.hidden = !on;
+      if (!on && elseInput) {
+        elseInput.value = "";
+        clearField(elseInput);
       }
     }
-
-    if (deadline) deadline.addEventListener("change", syncDeadline);
-    syncDeadline();
+    if (software) software.addEventListener("change", syncSoftwareOther);
+    if (elseBox) elseBox.addEventListener("change", syncElse);
+    syncSoftwareOther();
+    syncElse();
 
     form.addEventListener("submit", function (e) {
       e.preventDefault();
-      var errors = validateBookkeepingForm(form, otherInput);
+      var errors = validateBookkeepingForm(form);
       var errorBox = document.getElementById("books-form-errors");
       if (errors.length) {
         if (errorBox) {
@@ -234,7 +252,9 @@
 
       var email = (form.querySelector("#bk-email") || {}).value || "";
       var reply = document.getElementById("bk-replyto");
+      var submitted = document.getElementById("bk-submitted");
       if (reply) reply.value = email.trim();
+      if (submitted) submitted.value = new Date().toISOString();
       var data = new FormData(form);
       var endpoint = form.getAttribute("data-formspree") || "";
       var submitBtn = form.querySelector('[type="submit"]');
@@ -246,11 +266,12 @@
       var eventPayload = {
         inquiry: data.get("inquiry") || "",
         source: data.get("source") || "",
+        package: data.get("package") || "",
         software: data.get("software") || "",
         behind: data.get("behind") || "",
-        need: data.get("need") || "",
-        transactions: data.get("transactions") || "",
-        deadline: data.get("deadline") || "",
+        needs: data.getAll("needs").join("|"),
+        budget: data.get("budget") || "",
+        timing: data.get("timing") || "",
         delivery: configured ? "formspree" : "mailto",
       };
 
@@ -306,18 +327,27 @@
       var lines = [
         ["Name", "name"],
         ["Email", "email"],
-        ["Business / industry", "business"],
-        ["Approx monthly transactions", "transactions"],
-        ["Current software", "software"],
+        ["Company", "company"],
+        ["Role", "role"],
+        ["Stage", "stage"],
+        ["Team size", "team_size"],
+        ["Software", "software"],
+        ["Other software", "software_other"],
         ["How far behind", "behind"],
-        ["Need", "need"],
-        ["Deadline", "deadline"],
-        ["Deadline detail", "deadline_detail"],
+        ["Needs", data.getAll("needs").join(", ")],
+        ["Needs other", "needs_other"],
+        ["CPA", "cpa"],
+        ["Package", "package"],
+        ["Done in 90 days", "done_90"],
+        ["Timing", "timing"],
+        ["Budget", "budget"],
+        ["Heard about", "hear_about"],
         ["Inquiry", "inquiry"],
         ["Source", "source"],
         ["Anything else", "notes"],
       ].map(function (pair) {
-        return pair[0] + ": " + (data.get(pair[1]) || "");
+        var value = pair[0] === "Needs" ? pair[1] : data.get(pair[1]) || "";
+        return pair[0] + ": " + value;
       });
       window.location.href =
         "mailto:hello@meridian.dev?subject=" +
@@ -344,7 +374,7 @@
     return message;
   }
 
-  function validateBookkeepingForm(form, otherInput) {
+  function validateBookkeepingForm(form) {
     var messages = [];
     var firstInvalid = null;
 
@@ -360,28 +390,38 @@
       if (!firstInvalid) firstInvalid = input;
     }
 
-    var name = valueOf(form, "bk-name");
-    var email = valueOf(form, "bk-email");
-    var business = valueOf(form, "bk-business");
-    var transactions = valueOf(form, "bk-transactions");
-    var software = valueOf(form, "bk-software");
-    var behind = valueOf(form, "bk-behind");
-    var need = valueOf(form, "bk-need");
-    var deadline = valueOf(form, "bk-deadline");
-    var detail = otherInput ? otherInput.value.trim() : "";
+    check("bk-name", "Enter your name (at least 2 characters).", valueOf(form, "bk-name").length >= 2);
+    check("bk-email", "Enter a valid work email.", /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(valueOf(form, "bk-email")));
+    check("bk-company", "Enter the company name.", valueOf(form, "bk-company").length >= 2);
+    check("bk-role", "Choose your role.", valueOf(form, "bk-role").length > 0);
+    check("bk-stage", "Choose the company stage.", valueOf(form, "bk-stage").length > 0);
+    check("bk-team", "Choose the team size.", valueOf(form, "bk-team").length > 0);
+    check("bk-software", "Choose the accounting software.", valueOf(form, "bk-software").length > 0);
+    check("bk-behind", "Say how far behind the books are.", valueOf(form, "bk-behind").length > 0);
+    check("bk-cpa", "Say whether you have a CPA.", valueOf(form, "bk-cpa").length > 0);
+    check("bk-package", "Choose a package, or Not sure.", valueOf(form, "bk-package").length > 0);
+    check("bk-done", "Describe what done looks like in at least 20 characters.", valueOf(form, "bk-done").length >= 20);
+    check("bk-timing", "Choose when you want to start.", valueOf(form, "bk-timing").length > 0);
+    check("bk-budget", "Choose a budget band, or Not sure yet.", valueOf(form, "bk-budget").length > 0);
 
-    check("bk-name", "Enter your name.", name.length > 0);
-    check("bk-email", "Enter a valid email address.", /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email));
-    check("bk-business", "Enter the business or industry.", business.length > 0);
-    check("bk-transactions", "Choose a transaction band.", transactions.length > 0);
-    check("bk-software", "Choose the current software.", software.length > 0);
-    check("bk-behind", "Say how far behind the books are.", behind.length > 0);
-    check("bk-need", "Choose books only, or books and admin.", need.length > 0);
-    check("bk-deadline", "Choose a deadline, or None.", deadline.length > 0);
-    if (deadline === "Other") {
-      check("bk-deadline-detail", "Tell us the deadline in a few words.", detail.length > 1);
-    } else if (otherInput) {
-      clearField(otherInput);
+    var needs = form.querySelectorAll('input[name="needs"]:checked');
+    var needsError = document.getElementById("bk-needs-error");
+    var needsGroup = document.getElementById("bk-needs-group");
+    if (needs.length) {
+      if (needsError) needsError.textContent = "";
+      if (needsGroup) needsGroup.classList.remove("invalid");
+    } else {
+      if (needsError) needsError.textContent = "Choose at least one need.";
+      if (needsGroup) needsGroup.classList.add("invalid");
+      messages.push("Choose at least one need.");
+      if (!firstInvalid) firstInvalid = form.querySelector('input[name="needs"]');
+    }
+
+    var elseOn = document.getElementById("bk-need-else") && document.getElementById("bk-need-else").checked;
+    if (elseOn) {
+      check("bk-else", "Tell us briefly what the something else is.", valueOf(form, "bk-else").length >= 8);
+    } else {
+      clearField(form.querySelector("#bk-else"));
     }
 
     if (firstInvalid && typeof firstInvalid.focus === "function") firstInvalid.focus();

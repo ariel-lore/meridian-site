@@ -64,13 +64,15 @@ https://formspree.io/f/YOUR_BOOKKEEPING_FORM_ID
 
 `YOUR_BOOKKEEPING_FORM_ID` is still a placeholder. Email is not delivered until it is replaced with a Formspree form whose inbox is `hello@meridian.dev`. Until then, submit opens a mailto draft to `hello@meridian.dev` and shows the thank-you message. The draft is not sent until the visitor sends it from their mail app.
 
+Published prices on the bookkeeping pages: Starter from $299/month (close only), Standard from $449/month (close plus light admin, capped at 3 hours a month), catch-up from $200 per month behind. A Standard launch promo of $399/month is noted on the page; $449 is the published price. Any auto-reply should use those figures.
+
 Do not point bookkeeping traffic at `/request/` or `/diagnostic/`. Those pages redirect `?interest=virtual-bookkeeping` (and catch-up) to the fit check.
 
 ## Analytics
 
 No analytics snippet is installed. `js/main.js` emits events only when `window.dataLayer`, `window.gtag`, or `window.plausible` already exists:
 
-- `bookkeeping_fit_check_submit` — inquiry, source, software, behind, need, transactions, deadline, delivery (`formspree`, `mailto`, or `mailto_fallback`). No name, email, or free text.
+- `bookkeeping_fit_check_submit` — inquiry, source, package, software, behind, needs, budget, timing, delivery (`formspree`, `mailto`, or `mailto_fallback`). No name, email, or free text.
 - `bookkeeping_cta_click` — label and href, from `data-track` on bookkeeping calls to action.
 
 To collect them, add the provider snippet in `head()` (or before `js/main.js`) and confirm the provider name matches one of those three.

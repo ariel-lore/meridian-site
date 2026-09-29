@@ -399,6 +399,17 @@ tr:hover td { background: var(--slate-50); }
 .page-hero .lede { max-width: 46rem; color: var(--slate-600); }
 
 .price-card .btn { margin-top: auto; align-self: flex-start; }
+.price-note { font-size: 0.875rem; color: var(--slate-500); margin: 0.35rem 0 0.75rem; }
+.form-section-title { margin: 1.75rem 0 0.85rem; font-size: 1.05rem; }
+fieldset.form-group { border: 0; padding: 0; margin: 0 0 1.15rem; min-width: 0; }
+fieldset.form-group legend {
+  font-weight: 600; font-size: 0.925rem; color: var(--slate-800); padding: 0; margin-bottom: 0.35rem;
+}
+.check-list { display: flex; flex-direction: column; gap: 0.45rem; }
+.check-list label {
+  display: flex; gap: 0.55rem; align-items: flex-start; font-weight: 500; margin: 0;
+}
+.check-list input { width: auto; margin-top: 0.28rem; }
 .btn:disabled { opacity: 0.65; cursor: not-allowed; }
 
 .field-error {
