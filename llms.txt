@@ -7,7 +7,7 @@ Last updated: 27 September 2026
 
 ## Primary
 - [Home](https://meridian.dev/): Studio overview, 30+ years combined experience (games, finance, web), services grid
-- [Vibe Code Rescue](https://meridian.dev/services/vibe-code-rescue/): Full product page — process, tools, deliverables, FAQ
+- [Vibe Code Rescue](https://meridian.dev/vibe-code-rescue/): Full product page — process, tools, deliverables, FAQ
 - [Pricing](https://meridian.dev/pricing/): Diagnostic free–$500; audit $299–$2,500; rescue $500–$12,500+; rebuild higher; not-for-you
 - [Request diagnostic](https://meridian.dev/request/): Lead form (also /diagnostic/)
 - [FAQ](https://meridian.dev/faq/)
@@ -33,9 +33,9 @@ Last updated: 27 September 2026
 - [AI fix loop](https://meridian.dev/problems/ai-fix-loop/)
 
 ## Other services (inquire)
-- [Product engineering](https://meridian.dev/services/product-engineering/)
-- [Security hardening](https://meridian.dev/services/security-hardening/)
-- [Fractional CTO](https://meridian.dev/services/fractional-cto/)
+- [Product engineering](https://meridian.dev/product-engineering/)
+- [Security hardening](https://meridian.dev/security-hardening/)
+- [Fractional CTO](https://meridian.dev/fractional-cto/)
 
 ## Full document
 - [llms-full.txt](https://meridian.dev/llms-full.txt)
