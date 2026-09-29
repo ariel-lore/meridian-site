@@ -65,6 +65,57 @@
     }
   }
 
+  var FORM_ENDPOINT = "https://zw6ddzuiurwjyywaeedub55xne0kfovs.lambda-url.us-west-2.on.aws/";
+
+  function formEndpoint(form) {
+    return (form && form.getAttribute("data-endpoint")) || FORM_ENDPOINT;
+  }
+
+  function formToObject(form) {
+    var data = new FormData(form);
+    var obj = {};
+    data.forEach(function (value, key) {
+      if (Object.prototype.hasOwnProperty.call(obj, key)) {
+        if (!Array.isArray(obj[key])) obj[key] = [obj[key]];
+        obj[key].push(value);
+      } else {
+        obj[key] = value;
+      }
+    });
+    Object.keys(obj).forEach(function (key) {
+      if (Array.isArray(obj[key])) obj[key] = obj[key].join(", ");
+    });
+    return obj;
+  }
+
+  function postIntake(endpoint, payload) {
+    return fetch(endpoint, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(payload),
+    }).then(function (res) {
+      return res.text().then(function (text) {
+        var body = {};
+        if (text) {
+          try {
+            body = JSON.parse(text);
+          } catch (err) {
+            body = {};
+          }
+        }
+        if (!res.ok || body.ok === false) {
+          var error = new Error((body && body.error) || "The form could not be sent.");
+          error.status = res.status || 0;
+          throw error;
+        }
+        return body;
+      });
+    });
+  }
+
   function initRequestForm(interestValue) {
     var form = document.getElementById("request-form");
     if (!form) return;
@@ -74,16 +125,15 @@
     if (interestValue) {
       var tools = document.getElementById("tools");
       if (tools) tools.required = false;
-      var subject = form.querySelector('[name="_subject"]');
-      if (subject) subject.value = "Meridian inquiry: " + interestValue;
     }
 
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       var success = document.getElementById("form-success");
+      var delivery = document.getElementById("request-form-delivery");
+      var errorBox = document.getElementById("request-form-errors");
       var submitBtn = form.querySelector('[type="submit"]');
-      var data = new FormData(form);
-      var endpoint = form.getAttribute("data-formspree") || "";
+      var warning = form.parentElement ? form.parentElement.querySelector(".form-warning") : null;
 
       var ack = form.querySelector("#secrets-ack");
       if (ack && !ack.checked) {
@@ -91,44 +141,80 @@
         return;
       }
 
-      function showSuccess() {
+      var problem = (form.querySelector("#problem") || {}).value || "";
+      var interest = (form.querySelector("#interest") || {}).value || "";
+      var messageInput = document.getElementById("request-message");
+      var notesInput = document.getElementById("request-notes");
+      var planInput = document.getElementById("request-plan");
+      var planInterest = document.getElementById("request-plan-interest");
+      if (messageInput) messageInput.value = problem.trim();
+      if (notesInput) notesInput.value = problem.trim();
+      if (planInput) planInput.value = interest;
+      if (planInterest) planInterest.value = interest;
+
+      var payload = formToObject(form);
+      payload.form = "diagnostic";
+      payload.message = problem.trim();
+      payload.notes = problem.trim();
+      payload.plan = interest;
+      payload.plan_interest = interest;
+      if (!payload.company_website) payload.company_website = "";
+
+      function showSuccess(viaMailto) {
+        if (delivery) {
+          if (viaMailto) {
+            delivery.hidden = false;
+            delivery.textContent =
+              "The form could not connect. Your email app should open a draft to hello@meridian.dev. Send that draft to complete the request.";
+          } else {
+            delivery.hidden = true;
+            delivery.textContent = "";
+          }
+        }
+        if (errorBox) {
+          errorBox.textContent = "";
+          errorBox.classList.remove("show");
+        }
         if (success) {
           success.classList.add("show");
           success.scrollIntoView({ behavior: "smooth", block: "nearest" });
         }
-        form.reset();
+        form.hidden = true;
+        if (warning) warning.hidden = true;
         if (submitBtn) submitBtn.disabled = false;
       }
 
-      if (endpoint && endpoint.indexOf("YOUR_FORM_ID") === -1) {
-        if (submitBtn) submitBtn.disabled = true;
-        fetch(endpoint, {
-          method: "POST",
-          body: data,
-          headers: { Accept: "application/json" },
-        })
-          .then(function (res) {
-            if (res.ok) showSuccess();
-            else throw new Error("Form error");
-          })
-          .catch(function () {
-            mailtoFallback(data);
-            showSuccess();
-          });
-      } else {
-        mailtoFallback(data);
-        showSuccess();
+      function showError(message) {
+        if (submitBtn) submitBtn.disabled = false;
+        if (!errorBox) return;
+        errorBox.textContent = message;
+        errorBox.classList.add("show");
+        errorBox.scrollIntoView({ behavior: "smooth", block: "nearest" });
       }
+
+      if (submitBtn) submitBtn.disabled = true;
+      postIntake(formEndpoint(form), payload)
+        .then(function () {
+          showSuccess(false);
+        })
+        .catch(function (err) {
+          if (err && err.status) {
+            showError(err.message || "The form could not be sent. Email hello@meridian.dev instead.");
+            return;
+          }
+          mailtoFallback(payload);
+          showSuccess(true);
+        });
     });
 
     function mailtoFallback(data) {
-      var name = data.get("name") || "";
-      var email = data.get("email") || "";
-      var company = data.get("company") || "";
-      var tools = data.get("tools") || "";
-      var problem = data.get("problem") || "";
-      var repo = data.get("repo") || "";
-      var interestField = data.get("interest") || "";
+      var name = data.name || "";
+      var email = data.email || "";
+      var company = data.company || "";
+      var tools = data.tools || "";
+      var problem = data.problem || data.message || "";
+      var repo = data.repo || "";
+      var interestField = data.interest || "";
       var body =
         "Name: " +
         name +
@@ -250,29 +336,37 @@
         errorBox.classList.remove("show");
       }
 
-      var email = (form.querySelector("#bk-email") || {}).value || "";
-      var reply = document.getElementById("bk-replyto");
       var submitted = document.getElementById("bk-submitted");
-      if (reply) reply.value = email.trim();
       if (submitted) submitted.value = new Date().toISOString();
-      var data = new FormData(form);
-      var endpoint = form.getAttribute("data-formspree") || "";
-      var submitBtn = form.querySelector('[type="submit"]');
-      var configured =
-        endpoint &&
-        endpoint.indexOf("YOUR_BOOKKEEPING_FORM_ID") === -1 &&
-        endpoint.indexOf("YOUR_FORM_ID") === -1;
+      var packageValue = valueOf(form, "bk-package");
+      var done = valueOf(form, "bk-done");
+      var notes = valueOf(form, "bk-notes");
+      var planInput = document.getElementById("bk-plan");
+      var planInterest = document.getElementById("bk-plan-interest");
+      var messageInput = document.getElementById("bk-message");
+      var message = [done, notes].filter(function (part) { return part; }).join("\n\n");
+      if (planInput) planInput.value = packageValue;
+      if (planInterest) planInterest.value = packageValue;
+      if (messageInput) messageInput.value = message;
 
+      var data = formToObject(form);
+      data.form = "fit-check";
+      data.plan = packageValue;
+      data.plan_interest = packageValue;
+      data.message = message;
+      if (!data.company_website) data.company_website = "";
+
+      var submitBtn = form.querySelector('[type="submit"]');
       var eventPayload = {
-        inquiry: data.get("inquiry") || "",
-        source: data.get("source") || "",
-        package: data.get("package") || "",
-        software: data.get("software") || "",
-        behind: data.get("behind") || "",
-        needs: data.getAll("needs").join("|"),
-        budget: data.get("budget") || "",
-        timing: data.get("timing") || "",
-        delivery: configured ? "formspree" : "mailto",
+        inquiry: data.inquiry || "",
+        source: data.source || "",
+        package: data.package || "",
+        software: data.software || "",
+        behind: data.behind || "",
+        needs: data.needs || "",
+        budget: data.budget || "",
+        timing: data.timing || "",
+        delivery: "lambda",
       };
 
       function showSuccess(viaMailto) {
@@ -283,7 +377,7 @@
           if (viaMailto) {
             delivery.hidden = false;
             delivery.textContent =
-              "A Formspree form id is not configured yet (YOUR_BOOKKEEPING_FORM_ID), so this page cannot deliver email on its own. Your email app should open a draft to hello@meridian.dev. Send that draft to complete the request.";
+              "The form could not connect. Your email app should open a draft to hello@meridian.dev. Send that draft to complete the request.";
           } else {
             delivery.hidden = true;
             delivery.textContent = "";
@@ -298,29 +392,30 @@
         if (submitBtn) submitBtn.disabled = false;
       }
 
-      if (configured) {
-        if (submitBtn) submitBtn.disabled = true;
-        fetch(endpoint, {
-          method: "POST",
-          body: data,
-          headers: { Accept: "application/json" },
-        })
-          .then(function (res) {
-            if (!res.ok) throw new Error("Form error");
-            track("bookkeeping_fit_check_submit", eventPayload);
-            showSuccess(false);
-          })
-          .catch(function () {
-            eventPayload.delivery = "mailto_fallback";
-            track("bookkeeping_fit_check_submit", eventPayload);
-            booksMailto(data);
-            showSuccess(true);
-          });
-      } else {
-        track("bookkeeping_fit_check_submit", eventPayload);
-        booksMailto(data);
-        showSuccess(true);
+      function showError(message) {
+        if (submitBtn) submitBtn.disabled = false;
+        if (!errorBox) return;
+        errorBox.textContent = message;
+        errorBox.classList.add("show");
+        errorBox.scrollIntoView({ behavior: "smooth", block: "nearest" });
       }
+
+      if (submitBtn) submitBtn.disabled = true;
+      postIntake(formEndpoint(form), data)
+        .then(function () {
+          track("bookkeeping_fit_check_submit", eventPayload);
+          showSuccess(false);
+        })
+        .catch(function (err) {
+          if (err && err.status) {
+            showError(err.message || "The form could not be sent. Email hello@meridian.dev instead.");
+            return;
+          }
+          eventPayload.delivery = "mailto_fallback";
+          track("bookkeeping_fit_check_submit", eventPayload);
+          booksMailto(data);
+          showSuccess(true);
+        });
     });
 
     function booksMailto(data) {
@@ -334,9 +429,10 @@
         ["Software", "software"],
         ["Other software", "software_other"],
         ["How far behind", "behind"],
-        ["Needs", data.getAll("needs").join(", ")],
+        ["Needs", "needs"],
         ["Needs other", "needs_other"],
         ["CPA", "cpa"],
+        ["Plan", "plan"],
         ["Package", "package"],
         ["Done in 90 days", "done_90"],
         ["Timing", "timing"],
@@ -346,8 +442,7 @@
         ["Source", "source"],
         ["Anything else", "notes"],
       ].map(function (pair) {
-        var value = pair[0] === "Needs" ? pair[1] : data.get(pair[1]) || "";
-        return pair[0] + ": " + value;
+        return pair[0] + ": " + (data[pair[1]] || "");
       });
       window.location.href =
         "mailto:hello@meridian.dev?subject=" +

@@ -8,10 +8,12 @@ SITE = Path(__file__).resolve().parent
 BASE = "https://meridian.dev"
 LAST = "29 September 2026"
 CONTACT = "hello@meridian.dev"
-# Bookkeeping fit check only. Not the rescue diagnostic form.
-# Replace YOUR_BOOKKEEPING_FORM_ID with a Formspree id that delivers to hello@meridian.dev.
-# Until then, js/main.js opens a mailto draft and still shows the thank-you state.
-BOOKS_FORM = "https://formspree.io/f/YOUR_BOOKKEEPING_FORM_ID"
+# Live intake for the bookkeeping fit check and the rescue diagnostic.
+# js/main.js POSTs JSON here. mailto is only used when that fetch fails on the network.
+# Keep this URL in sync with FORM_ENDPOINT in js/main.js.
+FORM_ENDPOINT = "https://zw6ddzuiurwjyywaeedub55xne0kfovs.lambda-url.us-west-2.on.aws/"
+# Hero proof is Variant A only (studio/process). Do not render Variant B/C,
+# or [N], [industry], or [CPA name], until real approved data exists.
 # Standard light admin. Stated on the page so the retainer is not an open assistant tab.
 ADMIN_CAP = "3 hours a month"
 FIT_PATH = "virtual-bookkeeping/fit-check/"
@@ -748,11 +750,211 @@ FIT_FAQS = [
 ]
 
 
-def books_cta(title, sub, primary_label, primary_href, primary_track, secondary_label, secondary_href, secondary_track):
+# Variant A proof lines. Do not swap in outcome counts or CPA quotes.
+TRUST_PRIMARY = "Reply in 1 business day · No weekly meeting upsell · Not a CPA."
+TRUST_SECONDARY = "Not sure? Choose Not sure. We’ll recommend Starter vs Standard."
+TRUST_THIRD = "Fit check first. Quote before catch-up work. Boundaries in writing."
+PROOF_MAIN = "Meridian studio · Async written monthly close · Clear scope, hard admin cap"
+PROOF_FOUNDERS = "Built for technical founders · Async written close · No weekly meeting treadmill"
+SAMPLE_CAP = "Hard cap: 3 hours a month on Standard. Work past the cap is out of scope and quoted separately before it starts. Starter does not include admin."
+SAMPLE_BOUNDARY = "Light admin is not CPA or tax advice, not weekly meetings, and not full executive-assistant cover."
+SAMPLE_HOURS = [
+    (
+        "Hour 1: Finance inbox triage",
+        [
+            "Sort finance and ops mail that affects books, vendors, and billing",
+            "Flag what needs your decision; draft short replies where useful",
+            "Leave personal and non-finance noise alone",
+        ],
+    ),
+    (
+        "Hour 2: Scheduling (finance-adjacent)",
+        [
+            "Hold and confirm the meetings that unblock money or compliance (CPA, bank, vendor, board packet timing)",
+            "Keep calendars clear of “another books stand-up” unless you ask for one",
+        ],
+    ),
+    (
+        "Hour 3: Documents filing",
+        [
+            "Name, file, and route contracts, statements, invoices, and vendor docs",
+            "Keep a path your future self (and your CPA) can find",
+        ],
+    ),
+]
+
+
+def trust_strip_html(full=False):
+    primary = f'<p class="trust-strip">{TRUST_PRIMARY}</p>'
+    if not full:
+        return primary
+    return (
+        primary
+        + f'<p class="trust-strip-secondary">{TRUST_SECONDARY}</p>'
+        + f'<p class="trust-strip-secondary trust-strip-micro">{TRUST_THIRD}</p>'
+    )
+
+
+def proof_line_html(text):
+    return f'<p class="proof-line">{text}</p>'
+
+
+def package_helper_html(href, track):
+    """Secondary helper. Visible words stay exact; Not sure links at the fit check."""
+    return (
+        '<p class="trust-strip-secondary">Not sure? Choose '
+        f'<a href="{href}" data-track="bookkeeping_cta_click" data-track-label="{track}">Not sure</a>. '
+        "We’ll recommend Starter vs Standard.</p>"
+    )
+
+
+def light_admin_sample_html(variant="full"):
+    """Standard admin sample month. variant 'short' is the compact founders block."""
+    if variant == "short":
+        groups = []
+        for title, bullets in SAMPLE_HOURS:
+            lis = "".join(f"<li>{item}</li>" for item in bullets)
+            groups.append(f"<h3>{title}</h3><ul>{lis}</ul>")
+        body = "".join(groups)
+        return f"""<div class="sample-month-block" id="sample-month">
+<h2>What 3 hours of light admin looks like</h2>
+<p>Standard only. Finance-adjacent work that keeps the close and the paperwork moving. Not a full EA. Not personal errands.</p>
+<p class="meta-line">Illustrative split.</p>
+{body}
+<p><strong>{SAMPLE_CAP}</strong></p>
+<p class="boundary-line">{SAMPLE_BOUNDARY}</p>
+</div>
+"""
+    cards = []
+    for title, bullets in SAMPLE_HOURS:
+        lis = "".join(f"<li>{item}</li>" for item in bullets)
+        cards.append(f'<article class="card hour-card"><h3>{title}</h3><ul>{lis}</ul></article>')
+    return f"""<div class="sample-month-block" id="sample-month">
+<h2>What 3 hours of light admin looks like</h2>
+<p class="lede">Standard only. Finance-adjacent work that keeps the close and the paperwork moving. Not a full EA. Not personal errands.</p>
+<p class="meta-line">Illustrative split.</p>
+<div class="stack-3">
+{"".join(cards)}
+</div>
+<div class="callout"><strong>{SAMPLE_CAP}</strong></div>
+<p class="boundary-line">{SAMPLE_BOUNDARY}</p>
+</div>
+"""
+
+
+def _compare_card(label, rows, peers_html, highlight=False):
+    dts = []
+    for term, detail in rows:
+        dts.append(f"<dt>{term}</dt><dd>{detail}</dd>")
+    klass = "card compare-card card-highlight" if highlight else "card compare-card"
+    return f"""<article class="{klass}">
+<h3>{label}</h3>
+<dl>
+{"".join(dts)}
+</dl>
+<p class="compare-peers">{peers_html}</p>
+</article>
+"""
+
+
+def operating_style_html(fit, mail, track_prefix):
+    weekly = _compare_card(
+        "Weekly team",
+        [
+            ("Who it suits", "Founders who want live stand-ups, a bookkeeping pod on the calendar, and someone to talk through every exception in a meeting."),
+            ("Cadence", "Weekly (sometimes biweekly) calls plus ongoing Slack or portal chatter."),
+            ("Meetings", "Expected. Status often lives in the call, not only in writing."),
+            ("Admin", "Varies by package. Often bookkeeping-heavy; admin may be limited or sold separately."),
+            ("Price signal", "Typically mid-to-higher monthly retainers; packages and add-ons vary by vendor."),
+            ("What you get", "Human team, meeting rhythm, books kept current if the process holds. More calendar load."),
+        ],
+        "<strong>Examples of this category:</strong> firms and services in the weekly virtual bookkeeping team mould (e.g. Xendoo-style, BK360-style offerings).",
+    )
+    ai_os = _compare_card(
+        "AI finance OS",
+        [
+            ("Who it suits", "Teams that want a software-first finance stack, dashboards, and automation, and are ready to adopt a platform as the system of record for ops."),
+            ("Cadence", "Continuous product workflows; human support tiers vary."),
+            ("Meetings", "Usually fewer by default; support is product- and ticket-led."),
+            ("Admin", "Platform workflows and rules; “done for you” depth depends on plan."),
+            ("Price signal", "Often platform SaaS pricing plus higher tiers for human coverage."),
+            ("What you get", "Software leverage, visibility, and automation. You still need process discipline and clear ownership of exceptions."),
+        ],
+        "<strong>Examples of this category:</strong> Pilot-, Zeni-, and Median-style AI / finance OS approaches (category peers; not a claim that Meridian replaces their full stack).",
+    )
+    meridian = _compare_card(
+        "Meridian async written close",
+        [
+            ("Who it suits", "Technical founders, SaaS, and product operators who want the month closed in writing, with optional light admin, and who do not want a weekly meeting habit."),
+            ("Cadence", "Monthly close. Written report. Exception lists when something needs a decision."),
+            ("Meetings", "Not the default. Calls only when a decision actually needs one."),
+            ("Admin", "On <strong>Standard</strong> only: finance inbox triage, finance-adjacent scheduling, docs filing. Hard cap <strong>3 hours/mo</strong>. Starter is books only."),
+            ("Price signal", "Starter from <strong>$299/mo</strong> (books only). Standard from <strong>$449/mo</strong> (books + light admin). Catch-up from <strong>$200 per month behind</strong>."),
+            ("What you get", "Capture, categorisation, reconciliation, written monthly report. Clear boundaries. Not a CPA. Not a full EA. Not weekly stand-ups."),
+        ],
+        "Closest peers (honest, not copycat): Merritt (price/focus shape), Median (ICP honesty). Meridian’s wedge is the <strong>async written close</strong> plus <strong>capped light admin</strong>.",
+        highlight=True,
+    )
+    return f"""<section class="section section-alt operating-style-comparison" id="operating-style-comparison">
+<div class="container">
+<h2 class="section-title">Pick your operating style</h2>
+<p class="lede">Bookkeeping products usually fall into a few patterns. Here is how Meridian’s async written close sits next to a weekly team and an AI finance OS. Clear fit beats clever positioning.</p>
+<div class="stack-3" style="margin-top:1.5rem">
+{weekly}
+{ai_os}
+{meridian}
+</div>
+<p class="compare-footer">Not sure which style you need? Start a fit check. We will say if Meridian is the wrong tool and point you toward a better fit when we can.</p>
+{trust_strip_html()}
+<div class="btn-row">
+<a class="btn btn-primary" href="{fit}" data-track="bookkeeping_cta_click" data-track-label="{track_prefix}-compare-fit-check">Start a fit check</a>
+<a class="btn btn-secondary" href="{mail}" data-track="bookkeeping_cta_click" data-track-label="{track_prefix}-compare-email">hello@meridian.dev</a>
+</div>
+</div>
+</section>
+"""
+
+
+def catchup_pricing_html(fit, mail, monthly):
+    return f"""<section class="section section-alt" id="catch-up-pricing">
+<div class="container">
+<h2 class="section-title">Catch-up pricing, said plainly</h2>
+<p class="lede">Catch-up is from $200 per month behind. That is the public starting point, not a flat fee for every set of books. We quote after the fit check. Simple, clean books can be lower. Complex books are higher. Then you can move onto <a href="{monthly}#pricing">Starter</a> or <a href="{monthly}#pricing">Standard</a> if you want an ongoing close.</p>
+<p class="meta-line">Illustrative examples only. Final quote after the fit check.</p>
+<div class="stack-3" style="margin-top:1.25rem">
+<article class="card">
+<span class="pill pill-muted">Illustrative</span>
+<h3>Simple, 3 months behind → then Starter</h3>
+<p><strong>Situation:</strong> One entity. QBO or Xero already in place. Receipts mostly in one place. Few transfers to untangle.</p>
+<p><strong>Illustrative catch-up range:</strong> about $600–$900 (3 × from $200/mo behind, adjusted for simplicity).</p>
+<p><strong>Then ongoing:</strong> <a href="{monthly}#pricing">Starter</a> from $299/mo (async monthly close only, no admin).</p>
+</article>
+<article class="card">
+<span class="pill pill-muted">Illustrative</span>
+<h3>Messy, 6 months behind → then Standard</h3>
+<p><strong>Situation:</strong> Mixed Stripe/PayPal exports, email receipts, categorisation drift, and a CPA asking for numbers. You also want light admin after you are current.</p>
+<p><strong>Illustrative catch-up range:</strong> about $1,500–$2,400+ (6 months × complexity above the floor).</p>
+<p><strong>Then ongoing:</strong> <a href="{monthly}#pricing">Standard</a> from $449/mo (close + light admin, 3 hr/mo hard cap). A Standard promo of $399/mo is available on request; $449 is the published price.</p>
+</article>
+<article class="card">
+<span class="pill pill-muted">Illustrative</span>
+<h3>“Quote before work” contrast</h3>
+<p><strong>How Meridian works:</strong> fit check → scoped quote → work starts. You see the number before we dig into the backlog.</p>
+<p><strong>How some other offers work:</strong> free or cheap catch-up tied to a long annual commitment, or a large fixed onboard fee before you know fit. Those can be fine for some teams. We prefer a clear project quote and an optional monthly retainer you choose after the baseline is clean.</p>
+</article>
+</div>
+<p class="compare-footer">Books behind? <a href="{fit}" data-track="bookkeeping_cta_click" data-track-label="catchup-pricing-fit-check">Start a fit check</a>. Reply in 1 business day. <a href="{mail}" data-track="bookkeeping_cta_click" data-track-label="catchup-pricing-email">{CONTACT}</a></p>
+</div>
+</section>
+"""
+
+
+def books_cta(title, sub, primary_label, primary_href, primary_track, secondary_label, secondary_href, secondary_track, trust=False):
+    strip = "\n    " + trust_strip_html() if trust else ""
     return f"""<section class="cta-band">
   <div class="container">
     <h2>{title}</h2>
-    <p>{sub}</p>
+    <p>{sub}</p>{strip}
     <div class="btn-row" style="justify-content:center">
       <a class="btn btn-primary btn-lg" href="{primary_href}" data-track="bookkeeping_cta_click" data-track-label="{primary_track}">{primary_label}</a>
       <a class="btn btn-secondary btn-lg" href="{secondary_href}" data-track="bookkeeping_cta_click" data-track-label="{secondary_track}">{secondary_label}</a>
@@ -772,12 +974,13 @@ def books_fit_form():
 <div class="form-card" id="books-form-card">
 <!--
   Bookkeeping fit check only. Do not post this to /request/ or the rescue diagnostic.
-  Endpoint is BOOKS_FORM in build.py. YOUR_BOOKKEEPING_FORM_ID does not deliver email.
-  Until a real Formspree id is set, js/main.js opens a mailto draft to hello@meridian.dev.
+  Endpoint is FORM_ENDPOINT. js/main.js POSTs JSON and stays on the page.
 -->
-<form id="bookkeeping-fit-form" action="{BOOKS_FORM}" method="POST" data-formspree="{BOOKS_FORM}" novalidate>
-<input type="hidden" name="_subject" value="Meridian bookkeeping fit check">
-<input type="hidden" name="_replyto" id="bk-replyto" value="">
+<form id="bookkeeping-fit-form" action="{FORM_ENDPOINT}" method="POST" data-endpoint="{FORM_ENDPOINT}" novalidate>
+<input type="hidden" name="form" value="fit-check">
+<input type="hidden" name="plan" id="bk-plan" value="">
+<input type="hidden" name="plan_interest" id="bk-plan-interest" value="">
+<input type="hidden" name="message" id="bk-message" value="">
 <input type="hidden" name="inquiry" id="bk-inquiry" value="Bookkeeping fit check">
 <input type="hidden" name="source" id="bk-source" value="fit-check">
 <input type="hidden" name="form_version" value="vb-fit-check-v1">
@@ -787,6 +990,10 @@ def books_fit_form():
 <input type="hidden" name="utm_medium" id="bk-utm-medium" value="">
 <input type="hidden" name="utm_campaign" id="bk-utm-campaign" value="">
 <input type="hidden" name="utm_content" id="bk-utm-content" value="">
+<div class="sr-only" aria-hidden="true">
+<label for="bk-company-website">Company website</label>
+<input id="bk-company-website" type="text" name="company_website" tabindex="-1" autocomplete="off" value="">
+</div>
 <div id="books-form-errors" class="form-errors" role="alert"></div>
 <h2 class="form-section-title">About you</h2>
 <div class="form-group">
@@ -901,7 +1108,8 @@ def books_fit_form():
 <h2 class="form-section-title">Fit signals</h2>
 <div class="form-group">
 <label for="bk-package">Package interest</label>
-<select id="bk-package" name="package" required aria-describedby="bk-package-error">
+<p class="hint trust-strip-secondary" id="bk-package-hint">Not sure? Choose Not sure. We’ll recommend Starter vs Standard.</p>
+<select id="bk-package" name="package" required aria-describedby="bk-package-hint bk-package-error">
 <option value="">Select…</option>
 <option value="Starter">Starter, from $299/mo</option>
 <option value="Standard">Standard, from $449/mo</option>
@@ -955,7 +1163,7 @@ def books_fit_form():
 </div>
 <button class="btn btn-primary btn-lg" type="submit">Check fit. We'll reply within 1 business day</button>
 <p class="form-endpoint-note">We'll only use this to assess fit and reply. No spam, no tax advice, no weekly meeting upsell.</p>
-<p class="form-endpoint-note">Addressed to <a href="mailto:{CONTACT}">{CONTACT}</a>. A real Formspree id is still required for email delivery: replace <code>YOUR_BOOKKEEPING_FORM_ID</code> in <code>BOOKS_FORM</code> inside <code>build.py</code>. Until then, submit opens a draft in your email app. The draft is not sent until you send it.</p>
+<p class="form-endpoint-note">We reply from <a href="mailto:{CONTACT}">{CONTACT}</a> within one business day. If the form cannot connect, your email app opens a draft to the same address.</p>
 </form>
 </div>
 """
@@ -996,10 +1204,12 @@ def page_bookkeeping():
 <li>Not a CPA · not weekly meetings</li>
 </ul>
 <p class="meta-line">Last updated: {LAST}</p>
+{trust_strip_html()}
 <div class="btn-row">
 <a class="btn btn-primary btn-lg" href="{fit}" data-track="bookkeeping_cta_click" data-track-label="hero-fit-check">Start a fit check</a>
 <a class="btn btn-secondary btn-lg" href="#included" data-track="bookkeeping_cta_click" data-track-label="hero-included">See what's included</a>
 </div>
+{proof_line_html(PROOF_MAIN)}
 </div></section>
 <section class="section"><div class="narrow prose">
 <h2>Where the paperwork actually is</h2>
@@ -1025,6 +1235,7 @@ def page_bookkeeping():
 <p><strong>Hard cap:</strong> {ADMIN_CAP}. Hours past the cap are out of scope and quoted separately. Starter does not include admin.</p>
 </div>
 </div>
+{light_admin_sample_html("full")}
 </div></section>
 <section class="section"><div class="narrow prose">
 <h2>A few boundaries</h2>
@@ -1038,9 +1249,11 @@ def page_bookkeeping():
 <li><strong>Handoff to your CPA.</strong> When tax season hits, the books are organised and documented.</li>
 </ol>
 </div></section>
-<section class="section section-alt" id="pricing"><div class="container">
+{operating_style_html(fit, mail, "lp")}
+<section class="section" id="pricing"><div class="container">
 <h2 class="section-title">Pricing</h2>
 <p class="lede">Standard is the main offer. Starter is the close without admin. Catch-up is a project, quoted after the fit check.</p>
+{trust_strip_html()}
 <div class="grid-3" style="margin-top:1.5rem">
 <div class="price-card"><span class="pill">Close only</span><h3>Starter</h3>
 <div class="amount">$299 <span>/ month</span></div>
@@ -1071,12 +1284,13 @@ def page_bookkeeping():
 <li>Complex books quote higher</li>
 <li>Then Starter or Standard if you want it</li>
 </ul>
-<a class="btn btn-secondary" href="{catch}" data-track="bookkeeping_cta_click" data-track-label="pricing-catch-up">See catch-up</a>
+<a class="btn btn-secondary" href="{catch}#catch-up-pricing" data-track="bookkeeping_cta_click" data-track-label="pricing-catch-up">See catch-up</a>
 </div>
 </div>
+{package_helper_html(fit + "?package=not-sure", "pricing-not-sure")}
 <p class="meta-line" style="margin-top:1.25rem">No long contract is required to start a fit check. We quote before work begins. Tax stays with your CPA.</p>
 </div></section>
-<section class="section"><div class="narrow prose">
+<section class="section section-alt"><div class="narrow prose">
 <h2>Built for people who ship product</h2>
 <ul>
 <li>Technical founders and co-founders</li>
@@ -1084,7 +1298,9 @@ def page_bookkeeping():
 <li>Small teams that outgrew a spreadsheet and do not want a full-time bookkeeper on payroll yet</li>
 </ul>
 <p>Less of a fit: on-site staff, a weekly Zoom books meeting, or CPA and tax as the primary service. <a href="{p}virtual-bookkeeping/for-founders/">For founders</a> · <a href="{p}virtual-bookkeeping/for-ecommerce/">For ecommerce</a></p>
-<div class="callout"><strong>Books behind?</strong> Start with a catch-up project. We clear the backlog month by month, from $200 per month behind, quoted after the fit check, then hand you a clean baseline. <a href="{catch}">See catch-up</a>.</div>
+<div class="callout"><strong>Books behind?</strong> Start with a catch-up project. We clear the backlog month by month, from $200 per month behind, quoted after the fit check, then hand you a clean baseline. <a href="{catch}#catch-up-pricing">See catch-up</a>.</div>
+</div></section>
+<section class="section"><div class="narrow prose">
 <h2>FAQ</h2>
 {faq_html(BOOKS_FAQS)}
 </div></section>
@@ -1093,6 +1309,7 @@ def page_bookkeeping():
     "Tell us where the books stand and what done looks like. We'll reply within one business day.",
     "Start a fit check", fit, "bottom-fit-check",
     "Email hello@meridian.dev", mail, "bottom-email",
+    trust=True,
 )}
 </main>
 {footer(path, "books")}
@@ -1150,12 +1367,9 @@ def page_catchup_bookkeeping():
 <li><strong>Written catch-up summary.</strong> What closed, the exceptions, and a recommended ongoing rhythm.</li>
 </ul>
 <p>Not included: tax filing, tax advice, or an audit. We prepare books your CPA can use.</p>
-<h2>Priced by how far behind you are</h2>
-<ul>
-<li><strong>Catch-up:</strong> from $200 per month behind. Quoted after the fit check. Simple, clean books can be lower. Complex books are higher.</li>
-<li><strong>Then, if you want ongoing:</strong> <a href="{monthly}">Starter from $299/mo</a> (close only) or Standard from $449/mo (close plus light admin, capped at {ADMIN_CAP}).</li>
-</ul>
-<p>Example, illustrative only: six months behind starts from $1,200, then an optional monthly retainer. The final number waits until we see volume, entities, and software.</p>
+</div></section>
+{catchup_pricing_html(fit, mail, monthly)}
+<section class="section"><div class="narrow prose">
 <h2>How catch-up works</h2>
 <ol class="steps">
 <li><strong>Fit check.</strong> Software, approximate months behind, access constraints. Catch-up is noted on the form.</li>
@@ -1220,22 +1434,28 @@ def page_bookkeeping_founders():
 <p class="lede">A monthly close in writing: receipt and invoice capture, categorisation, reconciliation, and a report you can send to your CPA. Standard adds light admin so the inbox and the documents do not eat the week. Standard from $449/mo. Starter from $299/mo if you only want the close.</p>
 <p class="niche-line">Built for technical founders and busy operators who want clean numbers without a weekly finance meeting.</p>
 <p class="meta-line">Last updated: {LAST}</p>
+{trust_strip_html()}
 <div class="btn-row">
 <a class="btn btn-primary btn-lg" href="{fit}" data-track="bookkeeping_cta_click" data-track-label="founders-fit-check">Start a fit check</a>
 <a class="btn btn-secondary btn-lg" href="{monthly}#how" data-track="bookkeeping_cta_click" data-track-label="founders-rhythm">See the monthly rhythm</a>
 </div>
+{proof_line_html(PROOF_FOUNDERS)}
 </div></section>
 <section class="section"><div class="narrow prose">
 <h2>The actual problem</h2>
 <p>You can read a P&amp;L. You should not have to assemble one from Stripe exports, Gmail attachments, and a bank CSV every month.</p>
 <p>A weekly finance meeting does not close the books. You need categories that stay put, accounts reconciled by a date you can predict, and a short report. On Standard, someone also triages the inbox and the documents that stall a decision. That is the retainer. Not a second co-founder. Not a CPA. Not a standing Zoom.</p>
+</div></section>
+{operating_style_html(fit, mail, "founders")}
+<section class="section"><div class="narrow prose">
 <h2>How the work sits</h2>
 <p>Books live in QuickBooks Online or Xero, with bank feeds and Stripe or PayPal exports when a category needs them. You get an exception list. If a decision actually needs a call, we ask for one. Your CPA still files. We do not replace that advice.</p>
 <p>Admin is Standard only: inbox triage, scheduling, and document handling, capped at {ADMIN_CAP}. Starter does not include it.</p>
 <h2>What is included</h2>
 <p><strong>Monthly close.</strong> Capture, categorise, reconcile, written monthly report. That is Starter, from $299/mo, and the base of Standard.</p>
 <p><strong>Light admin.</strong> Inbox triage, scheduling, document handling. Standard only, from $449/mo, capped at {ADMIN_CAP}.</p>
-<p><strong>If you are behind.</strong> <a href="{catch}">Catch-up</a> from $200 per month behind, quoted after the fit check, then optional ongoing monthly.</p>
+{light_admin_sample_html("short")}
+<p><strong>If you are behind.</strong> <a href="{catch}#catch-up-pricing">Catch-up</a> from $200 per month behind, quoted after the fit check, then optional ongoing monthly.</p>
 <p>Full detail is on the <a href="{monthly}">monthly bookkeeping page</a>.</p>
 <h2>Pricing anchors</h2>
 <ul>
@@ -1243,6 +1463,7 @@ def page_bookkeeping_founders():
 <li><strong>Standard:</strong> from $449/mo. Close plus light admin, {ADMIN_CAP} cap. This is the published price. Launch promo $399/mo on request.</li>
 <li><strong>Catch-up:</strong> from $200 per month behind. Quoted after the fit check.</li>
 </ul>
+{package_helper_html(p + FIT_PATH + "?source=founders&amp;package=not-sure", "founders-not-sure")}
 <p>Scope is confirmed after the fit check. Async is the product. We will not switch you onto a weekly meeting after you sign.</p>
 <h2>Who this page is for</h2>
 <ul>
@@ -1260,6 +1481,7 @@ def page_bookkeeping_founders():
     "Tell us your tools, how far behind you are, and what done looks like in 90 days.",
     "Start a fit check", fit, "founders-bottom-fit-check",
     "Email hello@meridian.dev", mail, "founders-bottom-email",
+    trust=True,
 )}
 </main>
 {footer(path, "books")}
@@ -1366,6 +1588,7 @@ def page_bookkeeping_fit_check():
 <p class="hero-kicker">Virtual bookkeeping · Fit check</p>
 <h1>Start a fit check</h1>
 <p class="lede">Tell us the company, the software, how far behind the books are, and which package you want. We reply within one business day. Standard is from $449/mo. Starter is from $299/mo. Catch-up is from $200 per month behind, quoted after this form.</p>
+{trust_strip_html(full=True)}
 <p class="meta-line">Last updated: {LAST} · This is not a software diagnostic.</p>
 </div></section>
 <section class="section"><div class="container" style="max-width:640px">
@@ -1483,13 +1706,23 @@ def page_request(slug="request"):
 </div></section>
 <section class="section"><div class="container" style="max-width:640px">
 <div id="form-success" class="form-success" role="status">
-<strong>Got it.</strong> If your mail client opened, send that message to finish. If Formspree is connected, we already have it. We will reply from {CONTACT}.
+<strong>Got it.</strong> We have your diagnostic request and will reply from {CONTACT}.
+<p id="request-form-delivery" class="form-delivery-note" hidden></p>
 </div>
 <div class="form-card">
 <div class="form-warning"><strong>Do not paste secrets.</strong> No API keys, <code>.env</code> contents, private keys, access tokens, or passwords. Describe the problem; share the repo privately after we reply (NDA available).</div>
-<form id="request-form" data-formspree="https://formspree.io/f/YOUR_FORM_ID" novalidate>
-<input type="hidden" name="_subject" value="Meridian diagnostic request">
+<form id="request-form" action="{FORM_ENDPOINT}" method="POST" data-endpoint="{FORM_ENDPOINT}" novalidate>
+<input type="hidden" name="form" id="request-form-name" value="diagnostic">
+<input type="hidden" name="plan" id="request-plan" value="">
+<input type="hidden" name="plan_interest" id="request-plan-interest" value="">
+<input type="hidden" name="message" id="request-message" value="">
+<input type="hidden" name="notes" id="request-notes" value="">
 <input type="hidden" name="interest" id="interest" value="">
+<div class="sr-only" aria-hidden="true">
+<label for="request-company-website">Company website</label>
+<input id="request-company-website" type="text" name="company_website" tabindex="-1" autocomplete="off" value="">
+</div>
+<div id="request-form-errors" class="form-errors" role="alert"></div>
 <div class="form-group"><label for="name">Name</label><input id="name" name="name" type="text" required autocomplete="name"></div>
 <div class="form-group"><label for="email">Email</label><input id="email" name="email" type="email" required autocomplete="email"></div>
 <div class="form-group"><label for="company">Company <span class="hint">(optional)</span></label><input id="company" name="company" type="text" autocomplete="organization"></div>
@@ -1509,7 +1742,7 @@ def page_request(slug="request"):
 </div>
 <button class="btn btn-primary btn-lg" type="submit">Send diagnostic request</button>
 </form>
-<p class="meta-line" style="margin-top:1.25rem">Prefer email? <a href="mailto:{CONTACT}?subject=Vibe%20Code%20Rescue%20diagnostic">{CONTACT}</a>. Replace <code>YOUR_FORM_ID</code> in the form Formspree endpoint when you deploy.</p>
+<p class="meta-line" style="margin-top:1.25rem">Prefer email? <a href="mailto:{CONTACT}?subject=Vibe%20Code%20Rescue%20diagnostic">{CONTACT}</a>. If the form cannot connect, your email app opens a draft to the same address.</p>
 </div></div></section>
 </main>
 {footer(path)}
@@ -1849,11 +2082,11 @@ Last updated: {LAST}
 
 ## Service packages
 - [Customer growth]({BASE}/customer-growth/): Scoped package for search, paid campaigns, landing pages, CRM, and follow-up through to booking. Not a weekly marketing meeting.
-- [Virtual bookkeeping]({BASE}/virtual-bookkeeping/): Async monthly close. Starter from $299/month (close only). Standard from $449/month (close plus light admin, capped at 3 hours a month; launch promo $399 on request). QuickBooks Online and Xero. Complements a CPA. Not a weekly meeting.
-- [Catch-up bookkeeping]({BASE}/catch-up-bookkeeping/): Project to get books current, from $200 per month behind, quoted after the fit check. Simple books can be lower; complex books higher. Then optional monthly close.
-- [Bookkeeping for founders]({BASE}/virtual-bookkeeping/for-founders/): Technical founders, SaaS, and product operators.
+- [Virtual bookkeeping]({BASE}/virtual-bookkeeping/): Async monthly close. Starter from $299/month (close only). Standard from $449/month (close plus light admin, capped at 3 hours a month; launch promo $399 on request). QuickBooks Online and Xero. Complements a CPA. Not a weekly meeting. Hero proof is studio and process only: Meridian studio, async written monthly close, clear scope, hard admin cap. Comparison is three operating styles: weekly team, AI finance OS, and Meridian async written close.
+- [Catch-up bookkeeping]({BASE}/catch-up-bookkeeping/): Project to get books current, from $200 per month behind, quoted after the fit check. Simple books can be lower; complex books higher. Then optional monthly close. Worked examples on the page are labelled illustrative. They are not a flat quote.
+- [Bookkeeping for founders]({BASE}/virtual-bookkeeping/for-founders/): Technical founders, SaaS, and product operators. Built for technical founders. Async written close. No weekly meeting treadmill.
 - [Bookkeeping for ecommerce]({BASE}/virtual-bookkeeping/for-ecommerce/): Payouts, fees, and sales-channel deposits. Sales tax stays with the CPA.
-- [Bookkeeping fit check]({BASE}/virtual-bookkeeping/fit-check/): Intake for bookkeeping. Not the software diagnostic at /request/.
+- [Bookkeeping fit check]({BASE}/virtual-bookkeeping/fit-check/): Intake for bookkeeping. Not the software diagnostic at /request/. Reply in 1 business day. No weekly meeting upsell. Not a CPA. Choose Not sure and the reply will recommend Starter vs Standard.
 
 ## Other services (inquire)
 - [Product engineering]({BASE}/product-engineering/)
@@ -1915,10 +2148,16 @@ Q: Does customer growth include a weekly marketing call?
 A: No. It is a scoped package for search, paid campaigns, landing pages, CRM, and follow-up through to booking. Reporting is async. It is not a weekly account-management meeting, a caller roster, or a fractional CMO engagement.
 
 Q: Does virtual bookkeeping include a weekly books call?
-A: No. It is a monthly close package: receipt and invoice capture, categorisation, reconciliation, a written report, plus inbox triage, scheduling, and document handling. Questions are async. It is not a bookkeeper in your meetings, and it does not replace a CPA.
+A: No. It is a monthly close: receipt and invoice capture, categorisation, reconciliation, and a written report. Questions are async. Light admin (inbox triage, scheduling, and document handling) is on Standard only, capped at 3 hours a month. Starter is books only. Meridian is not a CPA and does not file taxes.
 
 Q: How much does virtual bookkeeping cost?
 A: Starter from $299 per month for the async monthly close only. Standard from $449 per month, which adds light admin capped at 3 hours a month. Launch promo $399 per month is available on request for Standard; $449 is the published price. Catch-up is quoted from $200 per month behind. Tax stays with the client's CPA.
+
+Q: How does Meridian bookkeeping compare with a weekly team or an AI finance OS?
+A: A weekly team suits founders who want live stand-ups. An AI finance OS is a software-first stack. Meridian is an async written monthly close, with light admin on Standard only, hard-capped at 3 hours a month. Category peers are named as categories, not as a claim that Meridian replaces another product's full stack.
+
+Q: Are the catch-up dollar examples a quote?
+A: No. Examples on the catch-up page are labelled illustrative. Catch-up starts from $200 per month behind and is quoted after the fit check.
 
 ## Virtual bookkeeping
 Monthly close and a written report, without a standing meeting. Tools: QuickBooks Online and Xero. Bank feeds and an agreed portal or shared drive for documents. Exceptions flagged in writing.
@@ -1928,6 +2167,9 @@ Monthly close and a written report, without a standing meeting. Tools: QuickBook
 - For ecommerce: {BASE}/virtual-bookkeeping/for-ecommerce/
 - Fit check (not the rescue diagnostic): {BASE}/virtual-bookkeeping/fit-check/
 - Pricing: Starter from $299/month (close only); Standard from $449/month (close plus light admin, 3-hour cap); catch-up from $200 per month behind
+- Proof line (Variant A only): Meridian studio, async written monthly close, clear scope, hard admin cap. No client counts, star ratings, or CPA quotes.
+- Fit check: reply in 1 business day. No weekly meeting upsell. Not a CPA.
+- Catch-up examples on the catch-up page are illustrative. Final quote after the fit check.
 
 ## Sibling service packages
 Customer growth: {BASE}/customer-growth/

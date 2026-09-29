@@ -35,7 +35,7 @@ echo "Uploading llms/robots/sitemap/md/svg…"
 aws s3 sync . "$S3" --region "$REGION" \
   --exclude "*" \
   --include "*.txt" --include "*.xml" --include "*.md" --include "*.svg" \
-  --exclude "README.md" --exclude "BUILD_NOTES.md" --exclude "node_modules/*" \
+  --exclude "README.md" --exclude "BUILD_NOTES.md" --exclude "docs/*" --exclude "node_modules/*" \
   --cache-control "public, max-age=3600" \
   --metadata-directive REPLACE
 
