@@ -53,13 +53,23 @@
 </div></section>
 <section class="section"><div class="container" style="max-width:640px">
 <div id="form-success" class="form-success" role="status">
-<strong>Got it.</strong> If your mail client opened, send that message to finish. If Formspree is connected, we already have it. We will reply from hello@meridian.dev.
+<strong>Got it.</strong> We have your diagnostic request and will reply from hello@meridian.dev.
+<p id="request-form-delivery" class="form-delivery-note" hidden></p>
 </div>
 <div class="form-card">
 <div class="form-warning"><strong>Do not paste secrets.</strong> No API keys, <code>.env</code> contents, private keys, access tokens, or passwords. Describe the problem; share the repo privately after we reply (NDA available).</div>
-<form id="request-form" data-formspree="https://formspree.io/f/YOUR_FORM_ID" novalidate>
-<input type="hidden" name="_subject" value="Meridian diagnostic request">
+<form id="request-form" action="https://zw6ddzuiurwjyywaeedub55xne0kfovs.lambda-url.us-west-2.on.aws/" method="POST" data-endpoint="https://zw6ddzuiurwjyywaeedub55xne0kfovs.lambda-url.us-west-2.on.aws/" novalidate>
+<input type="hidden" name="form" id="request-form-name" value="diagnostic">
+<input type="hidden" name="plan" id="request-plan" value="">
+<input type="hidden" name="plan_interest" id="request-plan-interest" value="">
+<input type="hidden" name="message" id="request-message" value="">
+<input type="hidden" name="notes" id="request-notes" value="">
 <input type="hidden" name="interest" id="interest" value="">
+<div class="sr-only" aria-hidden="true">
+<label for="request-company-website">Company website</label>
+<input id="request-company-website" type="text" name="company_website" tabindex="-1" autocomplete="off" value="">
+</div>
+<div id="request-form-errors" class="form-errors" role="alert"></div>
 <div class="form-group"><label for="name">Name</label><input id="name" name="name" type="text" required autocomplete="name"></div>
 <div class="form-group"><label for="email">Email</label><input id="email" name="email" type="email" required autocomplete="email"></div>
 <div class="form-group"><label for="company">Company <span class="hint">(optional)</span></label><input id="company" name="company" type="text" autocomplete="organization"></div>
@@ -79,7 +89,7 @@
 </div>
 <button class="btn btn-primary btn-lg" type="submit">Send diagnostic request</button>
 </form>
-<p class="meta-line" style="margin-top:1.25rem">Prefer email? <a href="mailto:hello@meridian.dev?subject=Vibe%20Code%20Rescue%20diagnostic">hello@meridian.dev</a>. Replace <code>YOUR_FORM_ID</code> in the form Formspree endpoint when you deploy.</p>
+<p class="meta-line" style="margin-top:1.25rem">Prefer email? <a href="mailto:hello@meridian.dev?subject=Vibe%20Code%20Rescue%20diagnostic">hello@meridian.dev</a>. If the form cannot connect, your email app opens a draft to the same address.</p>
 </div></div></section>
 </main>
 <footer class="site-footer">
@@ -132,6 +142,6 @@
     <span>Last updated: 29 September 2026</span>
   </div>
 </footer>
-<script src="../js/main.9491b285.js" defer></script>
+<script src="../js/main.3cc37a33.js" defer></script>
 </body></html>
 

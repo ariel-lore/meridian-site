@@ -8,10 +8,10 @@ SITE = Path(__file__).resolve().parent
 BASE = "https://meridian.dev"
 LAST = "29 September 2026"
 CONTACT = "hello@meridian.dev"
-# Bookkeeping fit check only. Not the rescue diagnostic form.
-# Replace YOUR_BOOKKEEPING_FORM_ID with a Formspree id that delivers to hello@meridian.dev.
-# Until then, js/main.js opens a mailto draft and still shows the thank-you state.
-BOOKS_FORM = "https://formspree.io/f/YOUR_BOOKKEEPING_FORM_ID"
+# Live intake for the bookkeeping fit check and the rescue diagnostic.
+# js/main.js POSTs JSON here. mailto is only used when that fetch fails on the network.
+# Keep this URL in sync with FORM_ENDPOINT in js/main.js.
+FORM_ENDPOINT = "https://zw6ddzuiurwjyywaeedub55xne0kfovs.lambda-url.us-west-2.on.aws/"
 # Hero proof is Variant A only (studio/process). Do not render Variant B/C,
 # or [N], [industry], or [CPA name], until real approved data exists.
 # Standard light admin. Stated on the page so the retainer is not an open assistant tab.
@@ -974,12 +974,13 @@ def books_fit_form():
 <div class="form-card" id="books-form-card">
 <!--
   Bookkeeping fit check only. Do not post this to /request/ or the rescue diagnostic.
-  Endpoint is BOOKS_FORM in build.py. YOUR_BOOKKEEPING_FORM_ID does not deliver email.
-  Until a real Formspree id is set, js/main.js opens a mailto draft to hello@meridian.dev.
+  Endpoint is FORM_ENDPOINT. js/main.js POSTs JSON and stays on the page.
 -->
-<form id="bookkeeping-fit-form" action="{BOOKS_FORM}" method="POST" data-formspree="{BOOKS_FORM}" novalidate>
-<input type="hidden" name="_subject" value="Meridian bookkeeping fit check">
-<input type="hidden" name="_replyto" id="bk-replyto" value="">
+<form id="bookkeeping-fit-form" action="{FORM_ENDPOINT}" method="POST" data-endpoint="{FORM_ENDPOINT}" novalidate>
+<input type="hidden" name="form" value="fit-check">
+<input type="hidden" name="plan" id="bk-plan" value="">
+<input type="hidden" name="plan_interest" id="bk-plan-interest" value="">
+<input type="hidden" name="message" id="bk-message" value="">
 <input type="hidden" name="inquiry" id="bk-inquiry" value="Bookkeeping fit check">
 <input type="hidden" name="source" id="bk-source" value="fit-check">
 <input type="hidden" name="form_version" value="vb-fit-check-v1">
@@ -990,8 +991,8 @@ def books_fit_form():
 <input type="hidden" name="utm_campaign" id="bk-utm-campaign" value="">
 <input type="hidden" name="utm_content" id="bk-utm-content" value="">
 <div class="sr-only" aria-hidden="true">
-<label for="bk-gotcha">Leave this field empty</label>
-<input id="bk-gotcha" type="text" name="_gotcha" tabindex="-1" autocomplete="off" value="">
+<label for="bk-company-website">Company website</label>
+<input id="bk-company-website" type="text" name="company_website" tabindex="-1" autocomplete="off" value="">
 </div>
 <div id="books-form-errors" class="form-errors" role="alert"></div>
 <h2 class="form-section-title">About you</h2>
@@ -1162,7 +1163,7 @@ def books_fit_form():
 </div>
 <button class="btn btn-primary btn-lg" type="submit">Check fit. We'll reply within 1 business day</button>
 <p class="form-endpoint-note">We'll only use this to assess fit and reply. No spam, no tax advice, no weekly meeting upsell.</p>
-<p class="form-endpoint-note">Addressed to <a href="mailto:{CONTACT}">{CONTACT}</a>. A real Formspree id is still required for email delivery: replace <code>YOUR_BOOKKEEPING_FORM_ID</code> in <code>BOOKS_FORM</code> inside <code>build.py</code>. Until then, submit opens a draft in your email app. The draft is not sent until you send it.</p>
+<p class="form-endpoint-note">We reply from <a href="mailto:{CONTACT}">{CONTACT}</a> within one business day. If the form cannot connect, your email app opens a draft to the same address.</p>
 </form>
 </div>
 """
@@ -1591,7 +1592,6 @@ def page_bookkeeping_fit_check():
 <p class="meta-line">Last updated: {LAST} · This is not a software diagnostic.</p>
 </div></section>
 <section class="section"><div class="container" style="max-width:640px">
-<div class="callout"><strong>Coming online.</strong> This form is wired for Formspree. Until a live id replaces <code>YOUR_BOOKKEEPING_FORM_ID</code>, submit opens a draft to <a href="mailto:{CONTACT}">{CONTACT}</a>. Send that draft, or email that address directly.</div>
 <div id="catchup-note" class="callout" hidden>
 <strong>Catch-up quote.</strong> This is the same fit check. We have noted that you want a project quote to get the books current, from $200 per month behind. Simple books can be lower; complex books higher. Say how far behind you are below.
 </div>
@@ -1706,13 +1706,23 @@ def page_request(slug="request"):
 </div></section>
 <section class="section"><div class="container" style="max-width:640px">
 <div id="form-success" class="form-success" role="status">
-<strong>Got it.</strong> If your mail client opened, send that message to finish. If Formspree is connected, we already have it. We will reply from {CONTACT}.
+<strong>Got it.</strong> We have your diagnostic request and will reply from {CONTACT}.
+<p id="request-form-delivery" class="form-delivery-note" hidden></p>
 </div>
 <div class="form-card">
 <div class="form-warning"><strong>Do not paste secrets.</strong> No API keys, <code>.env</code> contents, private keys, access tokens, or passwords. Describe the problem; share the repo privately after we reply (NDA available).</div>
-<form id="request-form" data-formspree="https://formspree.io/f/YOUR_FORM_ID" novalidate>
-<input type="hidden" name="_subject" value="Meridian diagnostic request">
+<form id="request-form" action="{FORM_ENDPOINT}" method="POST" data-endpoint="{FORM_ENDPOINT}" novalidate>
+<input type="hidden" name="form" id="request-form-name" value="diagnostic">
+<input type="hidden" name="plan" id="request-plan" value="">
+<input type="hidden" name="plan_interest" id="request-plan-interest" value="">
+<input type="hidden" name="message" id="request-message" value="">
+<input type="hidden" name="notes" id="request-notes" value="">
 <input type="hidden" name="interest" id="interest" value="">
+<div class="sr-only" aria-hidden="true">
+<label for="request-company-website">Company website</label>
+<input id="request-company-website" type="text" name="company_website" tabindex="-1" autocomplete="off" value="">
+</div>
+<div id="request-form-errors" class="form-errors" role="alert"></div>
 <div class="form-group"><label for="name">Name</label><input id="name" name="name" type="text" required autocomplete="name"></div>
 <div class="form-group"><label for="email">Email</label><input id="email" name="email" type="email" required autocomplete="email"></div>
 <div class="form-group"><label for="company">Company <span class="hint">(optional)</span></label><input id="company" name="company" type="text" autocomplete="organization"></div>
@@ -1732,7 +1742,7 @@ def page_request(slug="request"):
 </div>
 <button class="btn btn-primary btn-lg" type="submit">Send diagnostic request</button>
 </form>
-<p class="meta-line" style="margin-top:1.25rem">Prefer email? <a href="mailto:{CONTACT}?subject=Vibe%20Code%20Rescue%20diagnostic">{CONTACT}</a>. Replace <code>YOUR_FORM_ID</code> in the form Formspree endpoint when you deploy.</p>
+<p class="meta-line" style="margin-top:1.25rem">Prefer email? <a href="mailto:{CONTACT}?subject=Vibe%20Code%20Rescue%20diagnostic">{CONTACT}</a>. If the form cannot connect, your email app opens a draft to the same address.</p>
 </div></div></section>
 </main>
 {footer(path)}
