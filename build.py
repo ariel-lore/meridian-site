@@ -102,7 +102,7 @@ def header(path):
     <a class="brand" href="{p}">{BRAND}<span>Meridian</span></a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">Menu</button>
     <nav class="nav" id="site-nav">
-      <a href="{p}services/vibe-code-rescue/">Vibe Code Rescue</a>
+      <a href="{p}vibe-code-rescue/">Vibe Code Rescue</a>
       <a href="{p}pricing/">Pricing</a>
       <a href="{p}guides/what-is-vibe-code-rescue/">Guides</a>
       <a href="{p}faq/">FAQ</a>
@@ -125,10 +125,10 @@ def footer(path):
     <div>
       <h4>Services</h4>
       <ul>
-        <li><a href="{p}services/vibe-code-rescue/">Vibe Code Rescue</a></li>
-        <li><a href="{p}services/product-engineering/">Product engineering</a></li>
-        <li><a href="{p}services/security-hardening/">Security hardening</a></li>
-        <li><a href="{p}services/fractional-cto/">Fractional CTO</a></li>
+        <li><a href="{p}vibe-code-rescue/">Vibe Code Rescue</a></li>
+        <li><a href="{p}product-engineering/">Product engineering</a></li>
+        <li><a href="{p}security-hardening/">Security hardening</a></li>
+        <li><a href="{p}fractional-cto/">Fractional CTO</a></li>
       </ul>
     </div>
     <div>
@@ -312,7 +312,7 @@ def page_home():
     p = depth(path)
     title = "Meridian — Senior software studio | Vibe Code Rescue"
     desc = "Meridian is a senior software studio with 30+ years combined experience in games, finance, and web. Home of Vibe Code Rescue — salvage AI-built apps into production-ready software."
-    extra = ORG + service_schema("Vibe Code Rescue", "/services/vibe-code-rescue/",
+    extra = ORG + service_schema("Vibe Code Rescue", "/vibe-code-rescue/",
         "Senior engineers who salvage AI-built apps into production-ready software. Audit in 48 hours.",
         "Diagnostic free–$500; rescue $500–$12,500+")
     body = f"""
@@ -322,11 +322,11 @@ def page_home():
 <div class="container">
 <p class="hero-kicker">Meridian · Senior software studio</p>
 <h1>Production software from AI-built prototypes — and the studio behind it</h1>
-<p class="answer-first"><strong>Quick answer:</strong> Meridian is a senior software studio with 30+ years combined experience across video games, finance, and web development. Our flagship service, <a href="{p}services/vibe-code-rescue/">Vibe Code Rescue</a>, audits AI-built apps in 48 hours, fixes security, auth, data, and payments first, keeps what works, and ships fixed-scope salvage — you own the code.</p>
+<p class="answer-first"><strong>Quick answer:</strong> Meridian is a senior software studio with 30+ years combined experience across video games, finance, and web development. Our flagship service, <a href="{p}vibe-code-rescue/">Vibe Code Rescue</a>, audits AI-built apps in 48 hours, fixes security, auth, data, and payments first, keeps what works, and ships fixed-scope salvage — you own the code.</p>
 <p class="meta-line">Last updated: {LAST}</p>
 <div class="btn-row">
 <a class="btn btn-primary btn-lg" href="{p}request/">Request a 48h diagnostic</a>
-<a class="btn btn-secondary btn-lg" href="{p}services/vibe-code-rescue/">Explore Vibe Code Rescue</a>
+<a class="btn btn-secondary btn-lg" href="{p}vibe-code-rescue/">Explore Vibe Code Rescue</a>
 </div>
 <div class="stat-row">
 <div class="stat"><div class="num">30+</div><div class="label">Years combined experience</div></div>
@@ -361,10 +361,10 @@ def page_home():
 <div class="container">
 <h2 class="section-title">Services</h2>
 <div class="grid-2" style="margin-top:1.5rem">
-<div class="card"><span class="pill pill-ok">Flagship</span><h3>Vibe Code Rescue</h3><p>Salvage AI-built apps (Cursor, Lovable, Bolt, v0, Replit Agent, Claude Code, Windsurf) into production-ready software. 48h diagnostic. Fixed scope.</p><a class="card-link" href="{p}services/vibe-code-rescue/">View service →</a></div>
-<div class="card"><span class="pill pill-muted">Inquire</span><h3>Product engineering</h3><p>Feature delivery, architecture, and product partnership beyond a one-time rescue.</p><a class="card-link" href="{p}services/product-engineering/">Learn more →</a></div>
-<div class="card"><span class="pill pill-muted">Inquire</span><h3>Security hardening</h3><p>Threat-focused hardening for apps that already have users or diligence on the calendar.</p><a class="card-link" href="{p}services/security-hardening/">Learn more →</a></div>
-<div class="card"><span class="pill pill-muted">Inquire</span><h3>Fractional CTO</h3><p>Ongoing technical leadership after rescue — roadmap, hiring, vendor calls, AI guardrails.</p><a class="card-link" href="{p}services/fractional-cto/">Learn more →</a></div>
+<div class="card"><span class="pill pill-ok">Flagship</span><h3>Vibe Code Rescue</h3><p>Salvage AI-built apps (Cursor, Lovable, Bolt, v0, Replit Agent, Claude Code, Windsurf) into production-ready software. 48h diagnostic. Fixed scope.</p><a class="card-link" href="{p}vibe-code-rescue/">View service →</a></div>
+<div class="card"><span class="pill pill-muted">Inquire</span><h3>Product engineering</h3><p>Feature delivery, architecture, and product partnership beyond a one-time rescue.</p><a class="card-link" href="{p}product-engineering/">Learn more →</a></div>
+<div class="card"><span class="pill pill-muted">Inquire</span><h3>Security hardening</h3><p>Threat-focused hardening for apps that already have users or diligence on the calendar.</p><a class="card-link" href="{p}security-hardening/">Learn more →</a></div>
+<div class="card"><span class="pill pill-muted">Inquire</span><h3>Fractional CTO</h3><p>Ongoing technical leadership after rescue — roadmap, hiring, vendor calls, AI guardrails.</p><a class="card-link" href="{p}fractional-cto/">Learn more →</a></div>
 </div>
 </div>
 </section>
@@ -397,14 +397,14 @@ def page_home():
     write("index.html", head(path, title, desc, "/", extra) + body)
 
 def page_vcr():
-    path = "services/vibe-code-rescue/"
+    path = "vibe-code-rescue/"
     p = depth(path)
     title = "Vibe Code Rescue — Salvage AI-built apps | Meridian"
     desc = "Senior engineers who salvage AI-built apps into production-ready software. Audit in 48 hours. Fix security, auth, data, and payments first. Keep what works. Fixed scope. You own the code."
-    extra = (crumbs_json([("Home","/"),("Vibe Code Rescue","/services/vibe-code-rescue/")])
-        + service_schema("Vibe Code Rescue","/services/vibe-code-rescue/",desc,"Diagnostic free–$500; audit $299–$2,500; rescue $500–$12,500+")
+    extra = (crumbs_json([("Home","/"),("Vibe Code Rescue","/vibe-code-rescue/")])
+        + service_schema("Vibe Code Rescue","/vibe-code-rescue/",desc,"Diagnostic free–$500; audit $299–$2,500; rescue $500–$12,500+")
         + faq_schema(VCR_FAQS) + ORG)
-    crumbs = crumbs_html([("Home",p),("Services",f"{p}services/vibe-code-rescue/"),("Vibe Code Rescue",None)])
+    crumbs = crumbs_html([("Home",p),("Vibe Code Rescue",None)])
     body = f"""
 {header(path)}
 <main>
@@ -470,11 +470,11 @@ def page_vcr():
     write(path + "index.html", head(path, title, desc, "/" + path, extra) + body)
 
 def page_stub(slug, name, blurb, body_text):
-    path = f"services/{slug}/"
+    path = f"{slug}/"
     p = depth(path)
     title = f"{name} — Meridian"
-    extra = crumbs_json([("Home","/"),(name,f"/services/{slug}/")]) + service_schema(name, f"/services/{slug}/", blurb)
-    crumbs = crumbs_html([("Home",p),("Services",f"{p}services/vibe-code-rescue/"),(name,None)])
+    extra = crumbs_json([("Home","/"),(name,f"/{slug}/")]) + service_schema(name, f"/{slug}/", blurb)
+    crumbs = crumbs_html([("Home",p),(name,None)])
     body = f"""
 {header(path)}
 <main>
@@ -488,7 +488,7 @@ def page_stub(slug, name, blurb, body_text):
 </div></section>
 <section class="section"><div class="narrow prose">
 <p>{body_text}</p>
-<p>Meanwhile, our flagship offering is ready: <a href="{p}services/vibe-code-rescue/">Vibe Code Rescue</a>.</p>
+<p>Meanwhile, our flagship offering is ready: <a href="{p}vibe-code-rescue/">Vibe Code Rescue</a>.</p>
 <div class="btn-row">
 <a class="btn btn-primary" href="{p}request/?interest={slug}">Inquire</a>
 <a class="btn btn-secondary" href="mailto:{CONTACT}?subject={name}%20inquiry">Email {CONTACT}</a>
@@ -534,7 +534,7 @@ def page_pricing():
 <div class="price-card featured"><span class="pill pill-ok">Most common</span><h3>Focused rescue</h3><div class="amount">$500–$12,500+ <span>USD</span></div>
 <p>Fixed-scope salvage: secrets, auth, RLS/tenancy, payments, deploy blockers, and agreed hardening.</p>
 <ul><li>Quote after diagnostic</li><li>Boundaries in writing</li><li>You own the repo</li></ul>
-<a class="btn btn-primary" href="{p}services/vibe-code-rescue/">How rescue works</a></div>
+<a class="btn btn-primary" href="{p}vibe-code-rescue/">How rescue works</a></div>
 <div class="price-card"><span class="pill pill-muted">When needed</span><h3>Rebuild / production sprint</h3><div class="amount">Higher <span>scoped</span></div>
 <p>When salvage is uneconomical or diligence demands a clean foundation. Quoted only after honest diagnostic.</p>
 <ul><li>Strangler or clean rebuild options</li><li>Still fixed-scope where possible</li><li>See <a href="{p}guides/rescue-vs-rewrite/">rescue vs rewrite</a></li></ul>
@@ -554,7 +554,7 @@ def page_pricing():
 <div class="narrow" style="margin-top:2.5rem">
 <h2>FAQ</h2>
 {faq_html(faqs)}
-<p>More answers on the <a href="{p}faq/">full FAQ</a> and <a href="{p}services/vibe-code-rescue/">service page</a>.</p>
+<p>More answers on the <a href="{p}faq/">full FAQ</a> and <a href="{p}vibe-code-rescue/">service page</a>.</p>
 </div>
 </div></section>
 {cta(path, "Start with the diagnostic", "No obligation beyond the agreed diagnostic fee (often free). Fixed quotes before rescue work.")}
@@ -632,7 +632,7 @@ def page_tool(slug, name, answer, bullets):
     extra = (crumbs_json([("Home","/"),(f"{name} rescue",f"/rescue/{slug}/")])
              + service_schema(f"{name} vibe code rescue", f"/rescue/{slug}/", answer)
              + faq_schema(faqs))
-    crumbs = crumbs_html([("Home",p),("Vibe Code Rescue",f"{p}services/vibe-code-rescue/"),(name,None)])
+    crumbs = crumbs_html([("Home",p),("Vibe Code Rescue",f"{p}vibe-code-rescue/"),(name,None)])
     lis = "".join(f"<li>{b}</li>" for b in bullets)
     body = f"""
 {header(path)}
@@ -659,7 +659,7 @@ def page_tool(slug, name, answer, bullets):
 <a class="chip" href="{p}problems/ai-fix-loop/">AI fix loop</a>
 </div>
 <h2>How Meridian helps</h2>
-<p>We run the same <a href="{p}services/vibe-code-rescue/">Vibe Code Rescue</a> process: 48h diagnostic, severity ranking, fixed-scope salvage. Tool-specific experience means we recognise the patterns faster.</p>
+<p>We run the same <a href="{p}vibe-code-rescue/">Vibe Code Rescue</a> process: 48h diagnostic, severity ranking, fixed-scope salvage. Tool-specific experience means we recognise the patterns faster.</p>
 <h2>FAQ</h2>
 {faq_html(faqs)}
 </div></section>
@@ -690,7 +690,7 @@ def page_problem(slug, name, answer, bullets, closer):
 <p class="meta-line">Last updated: {LAST}</p>
 <div class="btn-row">
 <a class="btn btn-primary" href="{p}request/">Request diagnostic</a>
-<a class="btn btn-secondary" href="{p}services/vibe-code-rescue/">Vibe Code Rescue</a>
+<a class="btn btn-secondary" href="{p}vibe-code-rescue/">Vibe Code Rescue</a>
 </div></div></section>
 <section class="section"><div class="narrow prose">
 <h2>What to do</h2>
@@ -743,7 +743,7 @@ def page_faq():
 </div></section>
 <section class="section"><div class="narrow">
 {faq_html(SITE_FAQS)}
-<p>Deep dive: <a href="{p}services/vibe-code-rescue/">service page</a> · <a href="{p}guides/what-is-vibe-code-rescue/">What is vibe code rescue?</a> · <a href="{p}request/">Request diagnostic</a></p>
+<p>Deep dive: <a href="{p}vibe-code-rescue/">service page</a> · <a href="{p}guides/what-is-vibe-code-rescue/">What is vibe code rescue?</a> · <a href="{p}request/">Request diagnostic</a></p>
 </div></section>
 </main>
 {footer(path)}
@@ -807,7 +807,7 @@ def page_guide_what():
 <h2>Why the category exists</h2>
 <p>Vibe coding made prototypes cheap. Production still fails in predictable ways: exposed secrets, fake auth, disabled RLS, Stripe stubs, and deploys that only work in preview. Rescue shops productised the cleanup.</p>
 <h2>What Meridian rescue includes</h2>
-<p>See the full <a href="{p}services/vibe-code-rescue/">Vibe Code Rescue</a> page for process, tools, deliverables, and FAQ. Pricing bands are on <a href="{p}pricing/">/pricing/</a>.</p>
+<p>See the full <a href="{p}vibe-code-rescue/">Vibe Code Rescue</a> page for process, tools, deliverables, and FAQ. Pricing bands are on <a href="{p}pricing/">/pricing/</a>.</p>
 <h2>Rescue vs rewrite</h2>
 <p>Not every app should be salvaged. Use our <a href="{p}guides/rescue-vs-rewrite/">rescue vs rewrite guide</a> for the decision frame we use in diagnostics.</p>
 <h2>FAQ</h2>
@@ -851,7 +851,7 @@ def page_guide_vs():
 <li>Diligence or regulation demands a clean provenance story</li>
 </ul>
 <h2>How we decide</h2>
-<p>The <a href="{p}services/vibe-code-rescue/">48-hour diagnostic</a> produces a keep / harden / rebuild recommendation with severity-ranked evidence — not a sales script. Sample tone: <a href="{p}artifacts/sample-audit.md">sample-audit.md</a>.</p>
+<p>The <a href="{p}vibe-code-rescue/">48-hour diagnostic</a> produces a keep / harden / rebuild recommendation with severity-ranked evidence — not a sales script. Sample tone: <a href="{p}artifacts/sample-audit.md">sample-audit.md</a>.</p>
 <div class="btn-row">
 <a class="btn btn-primary" href="{p}request/">Request diagnostic</a>
 <a class="btn btn-secondary" href="{p}pricing/">See pricing</a>
@@ -919,7 +919,7 @@ Last updated: {LAST}
 
 ## Primary
 - [Home]({BASE}/): Studio overview, 30+ years combined experience (games, finance, web), services grid
-- [Vibe Code Rescue]({BASE}/services/vibe-code-rescue/): Full product page — process, tools, deliverables, FAQ
+- [Vibe Code Rescue]({BASE}/vibe-code-rescue/): Full product page — process, tools, deliverables, FAQ
 - [Pricing]({BASE}/pricing/): Diagnostic free–$500; audit $299–$2,500; rescue $500–$12,500+; rebuild higher; not-for-you
 - [Request diagnostic]({BASE}/request/): Lead form (also /diagnostic/)
 - [FAQ]({BASE}/faq/)
@@ -945,9 +945,9 @@ Last updated: {LAST}
 - [AI fix loop]({BASE}/problems/ai-fix-loop/)
 
 ## Other services (inquire)
-- [Product engineering]({BASE}/services/product-engineering/)
-- [Security hardening]({BASE}/services/security-hardening/)
-- [Fractional CTO]({BASE}/services/fractional-cto/)
+- [Product engineering]({BASE}/product-engineering/)
+- [Security hardening]({BASE}/security-hardening/)
+- [Fractional CTO]({BASE}/fractional-cto/)
 
 ## Full document
 - [llms-full.txt]({BASE}/llms-full.txt)
@@ -961,7 +961,7 @@ Contact: {CONTACT}
 Canonical site: {BASE}/
 
 ## Entity
-Meridian is a senior software studio (not "Vibe Code Rescue" as the company name). Vibe Code Rescue is the flagship service brand under Meridian, at {BASE}/services/vibe-code-rescue/.
+Meridian is a senior software studio (not "Vibe Code Rescue" as the company name). Vibe Code Rescue is the flagship service brand under Meridian, at {BASE}/vibe-code-rescue/.
 
 Experience: 30+ years combined across video games, finance, and web development.
 
@@ -1002,7 +1002,7 @@ A: No. Empathy, no shame.
 
 ## Key URLs
 {BASE}/
-{BASE}/services/vibe-code-rescue/
+{BASE}/vibe-code-rescue/
 {BASE}/pricing/
 {BASE}/request/
 {BASE}/faq/
@@ -1110,6 +1110,14 @@ Reply to approve scope or ask questions. Do **not** paste live secrets into emai
 """)
 
 
+def remove_legacy_services_dir():
+    """Drop the retired services directory. Offerings now live at the site root."""
+    legacy = SITE / "services"
+    if legacy.is_dir():
+        shutil.rmtree(legacy)
+        print("removed legacy services/")
+
+
 def main():
     prepare_hashed_assets()
     page_home()
@@ -1132,10 +1140,10 @@ def main():
     write_sample_audit()
     urls = [
         "/",
-        "/services/vibe-code-rescue/",
-        "/services/product-engineering/",
-        "/services/security-hardening/",
-        "/services/fractional-cto/",
+        "/vibe-code-rescue/",
+        "/product-engineering/",
+        "/security-hardening/",
+        "/fractional-cto/",
         "/pricing/",
         "/request/",
         "/diagnostic/",
@@ -1152,6 +1160,7 @@ def main():
     for slug, *_ in PROBLEMS:
         urls.append(f"/problems/{slug}/")
     write_sitemap(urls)
+    remove_legacy_services_dir()
     print("DONE", len(urls), "urls")
 
 if __name__ == "__main__":

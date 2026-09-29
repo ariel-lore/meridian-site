@@ -39,6 +39,10 @@ aws s3 sync . "$S3" --region "$REGION" \
   --cache-control "public, max-age=3600" \
   --metadata-directive REPLACE
 
+# Offerings moved from /services/<slug>/ to /<slug>/. Drop the old prefix.
+echo "Removing legacy /services/ objects…"
+aws s3 rm "$S3/services/" --region "$REGION" --recursive
+
 # Do not publish unhashed source assets
 aws s3 rm "$S3/css/styles.css" --region "$REGION" 2>/dev/null || true
 aws s3 rm "$S3/js/main.js" --region "$REGION" 2>/dev/null || true

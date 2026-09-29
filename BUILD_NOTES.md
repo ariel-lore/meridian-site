@@ -9,10 +9,10 @@
 | URI | Purpose |
 |-----|---------|
 | `/` | Meridian home — promise, experience, services grid, CTA |
-| `/services/vibe-code-rescue/` | Full product page + FAQPage schema + sample audit link |
-| `/services/product-engineering/` | Stub — coming soon / inquire |
-| `/services/security-hardening/` | Stub — coming soon / inquire |
-| `/services/fractional-cto/` | Stub — coming soon / inquire |
+| `/vibe-code-rescue/` | Full product page + FAQPage schema + sample audit link |
+| `/product-engineering/` | Stub — coming soon / inquire |
+| `/security-hardening/` | Stub — coming soon / inquire |
+| `/fractional-cto/` | Stub — coming soon / inquire |
 | `/pricing/` | Transparent ladder + not-for-you |
 | `/request/` | Lead capture form |
 | `/diagnostic/` | Alias of request form |

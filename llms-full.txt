@@ -4,7 +4,7 @@ Contact: hello@meridian.dev
 Canonical site: https://meridian.dev/
 
 ## Entity
-Meridian is a senior software studio (not "Vibe Code Rescue" as the company name). Vibe Code Rescue is the flagship service brand under Meridian, at https://meridian.dev/services/vibe-code-rescue/.
+Meridian is a senior software studio (not "Vibe Code Rescue" as the company name). Vibe Code Rescue is the flagship service brand under Meridian, at https://meridian.dev/vibe-code-rescue/.
 
 Experience: 30+ years combined across video games, finance, and web development.
 
@@ -45,7 +45,7 @@ A: No. Empathy, no shame.
 
 ## Key URLs
 https://meridian.dev/
-https://meridian.dev/services/vibe-code-rescue/
+https://meridian.dev/vibe-code-rescue/
 https://meridian.dev/pricing/
 https://meridian.dev/request/
 https://meridian.dev/faq/
