@@ -1,6 +1,6 @@
 # Meridian — static marketing site
 
-Production-ready static site for **Meridian** (senior software studio) and flagship service **Vibe Code Rescue**.
+Production-ready static site for **Meridian** (senior software studio), flagship service **Vibe Code Rescue**, and productized sibling offerings at `/customer-growth/` and `/virtual-bookkeeping/`.
 
 - Real HTML files (not SPA-only) for crawlers and `llms.txt`
 - Mobile-first, indigo/slate palette, Inter + system fonts
