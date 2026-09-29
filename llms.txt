@@ -1,0 +1,44 @@
+# Meridian
+> Senior software studio. Flagship service: Vibe Code Rescue — salvage AI-built apps into production-ready software.
+
+Site: https://meridian.dev/
+Contact: hello@meridian.dev
+Last updated: 27 September 2026
+
+## Primary
+- [Home](https://meridian.dev/): Studio overview, 30+ years combined experience (games, finance, web), services grid
+- [Vibe Code Rescue](https://meridian.dev/services/vibe-code-rescue/): Full product page — process, tools, deliverables, FAQ
+- [Pricing](https://meridian.dev/pricing/): Diagnostic free–$500; audit $299–$2,500; rescue $500–$12,500+; rebuild higher; not-for-you
+- [Request diagnostic](https://meridian.dev/request/): Lead form (also /diagnostic/)
+- [FAQ](https://meridian.dev/faq/)
+- [About](https://meridian.dev/about/)
+- [What is vibe code rescue?](https://meridian.dev/guides/what-is-vibe-code-rescue/)
+- [Rescue vs rewrite](https://meridian.dev/guides/rescue-vs-rewrite/)
+- [Sample audit artifact](https://meridian.dev/artifacts/sample-audit.md)
+
+## Rescue by tool
+- [Lovable](https://meridian.dev/rescue/lovable/)
+- [Bolt](https://meridian.dev/rescue/bolt/)
+- [Cursor](https://meridian.dev/rescue/cursor/)
+- [v0](https://meridian.dev/rescue/v0/)
+- [Replit Agent](https://meridian.dev/rescue/replit/)
+- [Claude Code](https://meridian.dev/rescue/claude-code/)
+- [Windsurf](https://meridian.dev/rescue/windsurf/)
+
+## Problems
+- [Secrets exposed](https://meridian.dev/problems/secrets-exposed/)
+- [RLS / tenancy](https://meridian.dev/problems/rls-tenancy/)
+- [Stripe / payments](https://meridian.dev/problems/stripe-payments/)
+- [Won't deploy](https://meridian.dev/problems/wont-deploy/)
+- [AI fix loop](https://meridian.dev/problems/ai-fix-loop/)
+
+## Other services (inquire)
+- [Product engineering](https://meridian.dev/services/product-engineering/)
+- [Security hardening](https://meridian.dev/services/security-hardening/)
+- [Fractional CTO](https://meridian.dev/services/fractional-cto/)
+
+## Full document
+- [llms-full.txt](https://meridian.dev/llms-full.txt)
+
+## Positioning
+Senior engineers who salvage AI-built apps into production-ready software. Audit in 48 hours. Fix security, auth, data, and payments first. Keep what works. Fixed scope. You own the code. Optional AI guardrails after rescue. Empathy, no shame.

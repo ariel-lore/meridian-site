@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Request a 48-hour diagnostic | Meridian</title>
+<meta name="description" content="Request a Meridian Vibe Code Rescue diagnostic. Name, email, tools used, problem brief. Do not paste secrets. Written scorecard in ~48 hours.">
+<link rel="canonical" href="https://meridian.dev/diagnostic/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Meridian">
+<meta property="og:title" content="Request a 48-hour diagnostic | Meridian">
+<meta property="og:description" content="Request a Meridian Vibe Code Rescue diagnostic. Name, email, tools used, problem brief. Do not paste secrets. Written scorecard in ~48 hours.">
+<meta property="og:url" content="https://meridian.dev/diagnostic/">
+<meta property="og:locale" content="en_CA">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Request a 48-hour diagnostic | Meridian">
+<meta name="twitter:description" content="Request a Meridian Vibe Code Rescue diagnostic. Name, email, tools used, problem brief. Do not paste secrets. Written scorecard in ~48 hours.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/styles.ab749138.css">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://meridian.dev/"},{"@type":"ListItem","position":2,"name":"Request diagnostic","item":"https://meridian.dev/diagnostic/"}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":["Organization","ProfessionalService"],"name":"Meridian","url":"https://meridian.dev/","email":"hello@meridian.dev","description":"Senior software studio with 30+ years combined experience across video games, finance, and web. Home of Vibe Code Rescue.","areaServed":["CA","US","GB","EU"],"knowsAbout":["Vibe Code Rescue","AI-generated code","Software security","Product engineering","Fractional CTO"]}</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="../"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" rx="8" fill="#4338ca"/><circle cx="16" cy="16" r="7" fill="none" stroke="#c7d2fe" stroke-width="2"/><path d="M16 6v20M6 16h20" stroke="#e0e7ff" stroke-width="1.5" opacity="0.7"/><circle cx="16" cy="16" r="2.5" fill="#ffffff"/></svg><span>Meridian</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">Menu</button>
+    <nav class="nav" id="site-nav">
+      <a href="../services/vibe-code-rescue/">Vibe Code Rescue</a>
+      <a href="../pricing/">Pricing</a>
+      <a href="../guides/what-is-vibe-code-rescue/">Guides</a>
+      <a href="../faq/">FAQ</a>
+      <a href="../about/">About</a>
+      <a class="nav-cta" href="../request/">Request diagnostic</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="page-hero"><div class="container">
+<nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../">Home</a><span aria-hidden="true">/</span><span aria-current="page">Request diagnostic</span></nav>
+<h1>Request a 48-hour diagnostic</h1>
+<p class="answer-first"><strong>Quick answer:</strong> Tell us what you built, which AI tools you used, and what is broken or scary. We reply with next steps and aim for a written diagnostic within 48 hours of access. Do not paste API keys, tokens, or passwords into this form.</p>
+<p class="meta-line">Last updated: 27 September 2026</p>
+<p class="meta-line">This page is also available at <a href="../request/">/request/</a>.</p>
+</div></section>
+<section class="section"><div class="container" style="max-width:640px">
+<div id="form-success" class="form-success" role="status">
+<strong>Request captured.</strong> If your mail client opened, send the message to complete. Or we received it via Formspree. We will reply from hello@meridian.dev.
+</div>
+<div class="form-card">
+<div class="form-warning"><strong>Do not paste secrets.</strong> No API keys, <code>.env</code> contents, private keys, access tokens, or passwords. Describe the problem; share the repo privately after we reply (NDA available).</div>
+<form id="request-form" data-formspree="https://formspree.io/f/YOUR_FORM_ID" novalidate>
+<input type="hidden" name="_subject" value="Meridian diagnostic request">
+<div class="form-group"><label for="name">Name</label><input id="name" name="name" type="text" required autocomplete="name"></div>
+<div class="form-group"><label for="email">Email</label><input id="email" name="email" type="email" required autocomplete="email"></div>
+<div class="form-group"><label for="company">Company <span class="hint">(optional)</span></label><input id="company" name="company" type="text" autocomplete="organization"></div>
+<div class="form-group"><label for="tools">Tools used</label>
+<select id="tools" name="tools" required>
+<option value="">Select primary tool…</option>
+<option>Cursor</option><option>Lovable</option><option>Bolt</option><option>v0</option>
+<option>Replit Agent</option><option>Claude Code</option><option>Windsurf</option><option>Mixed / other</option>
+</select></div>
+<div class="form-group"><label for="problem">What is broken or blocking launch?</label>
+<textarea id="problem" name="problem" required placeholder="e.g. Stripe checkout fails in production; Supabase RLS off; deploy errors on Vercel; AI keeps breaking auth…"></textarea></div>
+<div class="form-group"><label for="repo">Repo URL <span class="hint">(optional — public or invite later)</span></label>
+<input id="repo" name="repo" type="url" placeholder="https://github.com/…"></div>
+<div class="form-group checkbox-row">
+<input id="secrets-ack" name="secrets_ack" type="checkbox" value="yes" required>
+<label for="secrets-ack">I confirm I have not pasted secrets, credentials, or private keys into this form.</label>
+</div>
+<button class="btn btn-primary btn-lg" type="submit">Send diagnostic request</button>
+</form>
+<p class="meta-line" style="margin-top:1.25rem">Prefer email? <a href="mailto:hello@meridian.dev?subject=Vibe%20Code%20Rescue%20diagnostic">hello@meridian.dev</a>. Replace <code>YOUR_FORM_ID</code> in the form Formspree endpoint when you deploy.</p>
+</div></div></section>
+</main>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <div class="footer-brand"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" rx="8" fill="#4338ca"/><circle cx="16" cy="16" r="7" fill="none" stroke="#c7d2fe" stroke-width="2"/><path d="M16 6v20M6 16h20" stroke="#e0e7ff" stroke-width="1.5" opacity="0.7"/><circle cx="16" cy="16" r="2.5" fill="#ffffff"/></svg><span>Meridian</span></div>
+      <p>Senior software studio. We salvage AI-built apps into production-ready software.</p>
+      <p><a href="mailto:hello@meridian.dev">hello@meridian.dev</a></p>
+    </div>
+    <div>
+      <h4>Services</h4>
+      <ul>
+        <li><a href="../services/vibe-code-rescue/">Vibe Code Rescue</a></li>
+        <li><a href="../services/product-engineering/">Product engineering</a></li>
+        <li><a href="../services/security-hardening/">Security hardening</a></li>
+        <li><a href="../services/fractional-cto/">Fractional CTO</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Rescue by tool</h4>
+      <ul>
+        <li><a href="../rescue/lovable/">Lovable</a></li>
+        <li><a href="../rescue/bolt/">Bolt</a></li>
+        <li><a href="../rescue/cursor/">Cursor</a></li>
+        <li><a href="../rescue/v0/">v0</a></li>
+        <li><a href="../rescue/replit/">Replit Agent</a></li>
+        <li><a href="../rescue/claude-code/">Claude Code</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="../pricing/">Pricing</a></li>
+        <li><a href="../problems/secrets-exposed/">Common problems</a></li>
+        <li><a href="../guides/rescue-vs-rewrite/">Rescue vs rewrite</a></li>
+        <li><a href="../faq/">FAQ</a></li>
+        <li><a href="../request/">Request diagnostic</a></li>
+        <li><a href="../llms.txt">llms.txt</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>&copy; 2026 Meridian. All rights reserved.</span>
+    <span>Last updated: 27 September 2026</span>
+  </div>
+</footer>
+<script src="../js/main.d5bfc0d9.js" defer></script>
+</body></html>
+

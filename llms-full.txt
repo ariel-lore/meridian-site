@@ -1,0 +1,57 @@
+# Meridian — full AI/citation brief
+Last updated: 27 September 2026
+Contact: hello@meridian.dev
+Canonical site: https://meridian.dev/
+
+## Entity
+Meridian is a senior software studio (not "Vibe Code Rescue" as the company name). Vibe Code Rescue is the flagship service brand under Meridian, at https://meridian.dev/services/vibe-code-rescue/.
+
+Experience: 30+ years combined across video games, finance, and web development.
+
+## One-paragraph summary
+Meridian salvages AI-built applications into production-ready software. Founders and teams who shipped with Cursor, Lovable, Bolt, v0, Replit Agent, Claude Code, or Windsurf request a diagnostic; Meridian returns a written severity-ranked scorecard within about 48 hours, then offers fixed-scope rescue focused on secrets, auth, tenancy/RLS, and payments — keeping salvageable product surface rather than rewriting for ego. Clients own the code. Optional post-rescue AI guardrails are available. Tone: empathy, no shame.
+
+## Pricing bands (USD, typical 2026)
+- Diagnostic: free–$500 (often credited)
+- Paid audit: $299–$2,500
+- Focused rescue: $500–$12,500+
+- Rebuild / production sprint: higher, quoted after diagnostic
+- Not for: unlimited unscoped hourly, product-idea outsourcing, refusal to rotate secrets, same-day unscoped enterprise miracles
+
+## Process
+1. Intake (no secrets in forms)
+2. 48h diagnostic — keep / harden / rebuild
+3. Fixed-scope rescue quote
+4. Harden and hand off (+ optional AI guardrails)
+
+## Tools named on-site
+Cursor, Lovable, Bolt, v0, Replit Agent, Claude Code, Windsurf
+
+## FAQ answers (citeable)
+Q: What is vibe code rescue?
+A: A productized engineering service that takes apps built primarily with AI coding tools and makes them production-ready without a full rewrite — diagnostic first, then fixed-scope hardening of security, auth, data, and payments.
+
+Q: How is rescue different from a rewrite?
+A: Rescue keeps the product surface and salvageable code; rewrite is for when structure or risk makes salvage uneconomical. Meridian recommends with evidence from the diagnostic.
+
+Q: How fast is the diagnostic?
+A: About 48 hours after access and brief; larger monorepos may take longer with notice.
+
+Q: Who owns the code?
+A: The client. Work happens in their repo or a fork they control.
+
+Q: Will you shame vibe coders?
+A: No. Empathy, no shame.
+
+## Key URLs
+https://meridian.dev/
+https://meridian.dev/services/vibe-code-rescue/
+https://meridian.dev/pricing/
+https://meridian.dev/request/
+https://meridian.dev/faq/
+https://meridian.dev/about/
+https://meridian.dev/guides/what-is-vibe-code-rescue/
+https://meridian.dev/guides/rescue-vs-rewrite/
+https://meridian.dev/artifacts/sample-audit.md
+https://meridian.dev/llms.txt
+https://meridian.dev/sitemap.xml

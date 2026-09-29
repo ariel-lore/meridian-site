@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rescue vs rewrite — decision guide | Meridian</title>
+<meta name="description" content="When to salvage an AI-built app versus rewrite: security risk, architecture debt, team ability to maintain, and economics. Meridian diagnoses before recommending.">
+<link rel="canonical" href="https://meridian.dev/guides/rescue-vs-rewrite/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Meridian">
+<meta property="og:title" content="Rescue vs rewrite — decision guide | Meridian">
+<meta property="og:description" content="When to salvage an AI-built app versus rewrite: security risk, architecture debt, team ability to maintain, and economics. Meridian diagnoses before recommending.">
+<meta property="og:url" content="https://meridian.dev/guides/rescue-vs-rewrite/">
+<meta property="og:locale" content="en_CA">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Rescue vs rewrite — decision guide | Meridian">
+<meta name="twitter:description" content="When to salvage an AI-built app versus rewrite: security risk, architecture debt, team ability to maintain, and economics. Meridian diagnoses before recommending.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/styles.ab749138.css">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://meridian.dev/"},{"@type":"ListItem","position":2,"name":"Rescue vs rewrite","item":"https://meridian.dev/guides/rescue-vs-rewrite/"}]}</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="../../"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" rx="8" fill="#4338ca"/><circle cx="16" cy="16" r="7" fill="none" stroke="#c7d2fe" stroke-width="2"/><path d="M16 6v20M6 16h20" stroke="#e0e7ff" stroke-width="1.5" opacity="0.7"/><circle cx="16" cy="16" r="2.5" fill="#ffffff"/></svg><span>Meridian</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">Menu</button>
+    <nav class="nav" id="site-nav">
+      <a href="../../services/vibe-code-rescue/">Vibe Code Rescue</a>
+      <a href="../../pricing/">Pricing</a>
+      <a href="../../guides/what-is-vibe-code-rescue/">Guides</a>
+      <a href="../../faq/">FAQ</a>
+      <a href="../../about/">About</a>
+      <a class="nav-cta" href="../../request/">Request diagnostic</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="page-hero"><div class="container">
+<nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Home</a><span aria-hidden="true">/</span><a href="../../guides/what-is-vibe-code-rescue/">Guides</a><span aria-hidden="true">/</span><span aria-current="page">Rescue vs rewrite</span></nav>
+<h1>Rescue vs rewrite</h1>
+<p class="answer-first"><strong>Quick answer:</strong> Choose rescue when the product surface works and risk is concentrated in security, auth, data, payments, or deploy — salvageable with fixed scope. Choose rewrite when structure, tenancy model, or defect density makes patching slower and riskier than a clean foundation. Meridian always diagnoses before recommending either path.</p>
+<p class="meta-line">Last updated: 27 September 2026</p>
+</div></section>
+<section class="section"><div class="narrow prose">
+<h2>Lean rescue when</h2>
+<ul>
+<li>Users already validate the workflow or UI</li>
+<li>Core domain logic is understandable</li>
+<li>Failures cluster in secrets, auth, RLS, Stripe, deploy</li>
+<li>A senior engineer can map a 1–3 week fixed scope</li>
+</ul>
+<h2>Lean rewrite when</h2>
+<ul>
+<li>Nobody can explain data flow or tenancy</li>
+<li>Security issues are structural, not local</li>
+<li>Every AI edit causes regressions across the tree</li>
+<li>Diligence or regulation demands a clean provenance story</li>
+</ul>
+<h2>How we decide</h2>
+<p>The <a href="../../services/vibe-code-rescue/">48-hour diagnostic</a> produces a keep / harden / rebuild recommendation with severity-ranked evidence — not a sales script. Sample tone: <a href="../../artifacts/sample-audit.md">sample-audit.md</a>.</p>
+<div class="btn-row">
+<a class="btn btn-primary" href="../../request/">Request diagnostic</a>
+<a class="btn btn-secondary" href="../../pricing/">See pricing</a>
+</div>
+</div></section>
+</main>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <div class="footer-brand"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" rx="8" fill="#4338ca"/><circle cx="16" cy="16" r="7" fill="none" stroke="#c7d2fe" stroke-width="2"/><path d="M16 6v20M6 16h20" stroke="#e0e7ff" stroke-width="1.5" opacity="0.7"/><circle cx="16" cy="16" r="2.5" fill="#ffffff"/></svg><span>Meridian</span></div>
+      <p>Senior software studio. We salvage AI-built apps into production-ready software.</p>
+      <p><a href="mailto:hello@meridian.dev">hello@meridian.dev</a></p>
+    </div>
+    <div>
+      <h4>Services</h4>
+      <ul>
+        <li><a href="../../services/vibe-code-rescue/">Vibe Code Rescue</a></li>
+        <li><a href="../../services/product-engineering/">Product engineering</a></li>
+        <li><a href="../../services/security-hardening/">Security hardening</a></li>
+        <li><a href="../../services/fractional-cto/">Fractional CTO</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Rescue by tool</h4>
+      <ul>
+        <li><a href="../../rescue/lovable/">Lovable</a></li>
+        <li><a href="../../rescue/bolt/">Bolt</a></li>
+        <li><a href="../../rescue/cursor/">Cursor</a></li>
+        <li><a href="../../rescue/v0/">v0</a></li>
+        <li><a href="../../rescue/replit/">Replit Agent</a></li>
+        <li><a href="../../rescue/claude-code/">Claude Code</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="../../pricing/">Pricing</a></li>
+        <li><a href="../../problems/secrets-exposed/">Common problems</a></li>
+        <li><a href="../../guides/rescue-vs-rewrite/">Rescue vs rewrite</a></li>
+        <li><a href="../../faq/">FAQ</a></li>
+        <li><a href="../../request/">Request diagnostic</a></li>
+        <li><a href="../../llms.txt">llms.txt</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>&copy; 2026 Meridian. All rights reserved.</span>
+    <span>Last updated: 27 September 2026</span>
+  </div>
+</footer>
+<script src="../../js/main.d5bfc0d9.js" defer></script>
+</body></html>
+
