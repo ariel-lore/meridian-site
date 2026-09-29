@@ -1,4 +1,4 @@
-# BUILD_NOTES — Meridian site
+# BUILD_NOTES: Meridian site
 
 **Built:** 29 September 2026 (PT)  
 **Path:** site root (`build.py` writes HTML next to itself)  
@@ -8,13 +8,13 @@
 
 | URI | Purpose |
 |-----|---------|
-| `/` | Meridian home — promise, experience, services grid, CTA |
+| `/` | Meridian home: studio intro, rescue, services, CTA |
 | `/vibe-code-rescue/` | Full product page + FAQPage schema + sample audit link |
-| `/product-engineering/` | Stub — coming soon / inquire |
-| `/security-hardening/` | Stub — coming soon / inquire |
-| `/fractional-cto/` | Stub — coming soon / inquire |
-| `/customer-growth/` | Scoped customer-growth package — root path, not under `/services/` |
-| `/virtual-bookkeeping/` | Monthly bookkeeping conversion page — pricing, onboarding, FAQ. Root path, not under `/services/` |
+| `/product-engineering/` | Stub: not packaged yet / inquire |
+| `/security-hardening/` | Stub: not packaged yet / inquire |
+| `/fractional-cto/` | Stub: not packaged yet / inquire |
+| `/customer-growth/` | Scoped customer-growth package. Root path, not under `/services/` |
+| `/virtual-bookkeeping/` | Monthly bookkeeping page: pricing, onboarding, FAQ. Root path, not under `/services/` |
 | `/virtual-bookkeeping/fit-check/` | Dedicated bookkeeping fit-check form (not the rescue diagnostic) |
 | `/virtual-bookkeeping/for-founders/` | Founders / SaaS / product operators |
 | `/virtual-bookkeeping/for-ecommerce/` | Shorter ecommerce niche page |
@@ -53,7 +53,7 @@
 
 ## Positioning copy used
 
-Senior engineers who salvage AI-built apps into production-ready software. Audit in 48 hours. Fix security, auth, data, and payments first. Keep what works. Fixed scope. You own the code. Optional AI guardrails after rescue. Empathy, no shame.
+Senior studio. Vibe Code Rescue: written diagnostic in about 48 hours, then a fixed scope on security, auth, data, and payments. Keep what works. The client owns the code. Bookkeeping prices stay Starter from $299/month, Standard from $449/month (featured), catch-up from $200 per month behind. Copy revised so it reads like a person wrote it, with no em dashes.
 
 ## No invented proof
 

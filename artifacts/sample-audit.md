@@ -3,7 +3,7 @@
 **Service:** Meridian Vibe Code Rescue
 **Date:** 27 September 2026
 **Engagement ID:** SAMPLE-000
-**Classification:** Illustrative — fictionalised findings; no real client data
+**Classification:** Illustrative. Fictionalised findings; no real client data
 
 ---
 
@@ -28,32 +28,32 @@ The product UI and primary workflow are salvageable. Blocking issues cluster in 
 
 ## Findings (excerpt)
 
-### P0 — Privileged API key referenced in client bundle
+### P0. Privileged API key referenced in client bundle
 - **Evidence:** Key prefix pattern present in a client-shipped module (redacted).
 - **Impact:** Anyone can extract and abuse the key.
 - **Action:** Rotate immediately; move to server-only env; add secret scanning to CI.
 
-### P0 — RLS disabled on `profiles` and `workspaces`
+### P0. RLS disabled on `profiles` and `workspaces`
 - **Evidence:** Policies absent / row level security not applied (redacted schema notes).
 - **Impact:** Cross-tenant read/write of user data.
 - **Action:** Enable RLS; policies keyed to verified auth UID; add cross-tenant denial tests.
 
-### P1 — Stripe webhooks accept unsigned payloads
+### P1. Stripe webhooks accept unsigned payloads
 - **Evidence:** Handler trusts body without signature verification.
 - **Impact:** Forged events can grant entitlements.
 - **Action:** Verify signatures; reconcile subscription state server-side; remove client-trusted success flags.
 
-### P1 — Authz checks only in React components
+### P1. Authz checks only in React components
 - **Evidence:** Sensitive routes gated by UI conditionals only.
 - **Impact:** Direct API access bypasses UI.
 - **Action:** Enforce authz on server/edge; treat UI checks as UX only.
 
-### P2 — Production deploy fails on missing env
+### P2. Production deploy fails on missing env
 - **Evidence:** Preview host injects vars that production host does not.
 - **Impact:** "Works in preview" false confidence.
 - **Action:** Document required env; fail closed; smoke test post-deploy.
 
-### P3 — Inconsistent folder patterns from agent sessions
+### P3. Inconsistent folder patterns from agent sessions
 - **Impact:** Onboarding and future AI edits drift.
 - **Action:** Light structure pass after P0/P1; optional agent rule files.
 
@@ -89,4 +89,4 @@ The product UI and primary workflow are salvageable. Blocking issues cluster in 
 
 Reply to approve scope or ask questions. Do **not** paste live secrets into email; share via your secret manager or a private channel after rotation.
 
-— Meridian · hello@meridian.dev
+Meridian · hello@meridian.dev

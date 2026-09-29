@@ -3,25 +3,25 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>RLS and tenancy failures — Meridian Vibe Code Rescue</title>
-<meta name="description" content="Disabled or weak Row Level Security (and missing tenancy checks) let users read or write each other data. Common in Supabase/Firebase vibe apps. We fix …">
+<title>RLS and tenancy failures | Meridian</title>
+<meta name="description" content="Weak or disabled Row Level Security lets one account read another's data. We fix policies and server-side authz before feature work.">
 <link rel="canonical" href="https://meridian.dev/problems/rls-tenancy/">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Meridian">
-<meta property="og:title" content="RLS and tenancy failures — Meridian Vibe Code Rescue">
-<meta property="og:description" content="Disabled or weak Row Level Security (and missing tenancy checks) let users read or write each other data. Common in Supabase/Firebase vibe apps. We fix …">
+<meta property="og:title" content="RLS and tenancy failures | Meridian">
+<meta property="og:description" content="Weak or disabled Row Level Security lets one account read another's data. We fix policies and server-side authz before feature work.">
 <meta property="og:url" content="https://meridian.dev/problems/rls-tenancy/">
 <meta property="og:locale" content="en_CA">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="RLS and tenancy failures — Meridian Vibe Code Rescue">
-<meta name="twitter:description" content="Disabled or weak Row Level Security (and missing tenancy checks) let users read or write each other data. Common in Supabase/Firebase vibe apps. We fix …">
+<meta name="twitter:title" content="RLS and tenancy failures | Meridian">
+<meta name="twitter:description" content="Weak or disabled Row Level Security lets one account read another's data. We fix policies and server-side authz before feature work.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../../css/styles.fddf3ee8.css">
+<link rel="stylesheet" href="../../css/styles.5054ab78.css">
 <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://meridian.dev/"},{"@type":"ListItem","position":2,"name":"RLS and tenancy failures","item":"https://meridian.dev/problems/rls-tenancy/"}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can Meridian help with rls and tenancy failures?","acceptedAnswer":{"@type":"Answer","text":"Yes. This is a standard diagnostic and rescue focus area. Request a 48-hour diagnostic and we will rank severity and propose fixed scope."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://meridian.dev/"},{"@type":"ListItem","position":2,"name":"RLS and tenancy failures","item":"https://meridian.dev/problems/rls-tenancy/"}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can Meridian help with rls and tenancy failures?","acceptedAnswer":{"@type":"Answer","text":"Yes. Bring it as a diagnostic. We will rank how bad it is and, if salvage makes sense, quote a fixed scope."}}]}</script>
 </head>
 <body>
 
@@ -47,7 +47,7 @@
 <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Home</a><span aria-hidden="true">/</span><a href="../../problems/secrets-exposed/">Problems</a><span aria-hidden="true">/</span><span aria-current="page">RLS and tenancy failures</span></nav>
 <p class="hero-kicker">Problem guide</p>
 <h1>RLS and tenancy failures</h1>
-<p class="answer-first"><strong>Quick answer:</strong> Disabled or weak Row Level Security (and missing tenancy checks) let users read or write each other data. Common in Supabase/Firebase vibe apps. We fix policies and server-side authz before feature work.</p>
+<p class="answer-first">If Row Level Security is off, or the only check is a user id the browser sent, one account can read another's rows. We see it constantly on Supabase and Firebase apps. Policies and server-side authz come before new features.</p>
 <p class="meta-line">Last updated: 29 September 2026</p>
 <div class="btn-row">
 <a class="btn btn-primary" href="../../request/">Request diagnostic</a>
@@ -55,8 +55,8 @@
 </div></div></section>
 <section class="section"><div class="narrow prose">
 <h2>What to do</h2>
-<ul><li>Enable and test RLS on every user-data table</li><li>Replace client-trusted user IDs with verified auth context</li><li>Add automated tests for cross-tenant denial</li><li>Review storage buckets and public URLs</li><li>Document the tenancy model for future AI edits</li></ul>
-<p>Tenancy bugs fail diligence and destroy trust. Our audits always include a cross-tenant read/write check.</p>
+<ul><li>Turn RLS on and test it for every table that holds user data</li><li>Stop trusting a user id that came from the client</li><li>Add a test that proves cross-tenant reads and writes fail</li><li>Check storage buckets and public URLs</li><li>Write the tenancy model down so the next AI edit has something to follow</li></ul>
+<p>A tenancy bug fails diligence and loses the customer who notices. The audit always includes a cross-tenant read and write.</p>
 <h2>Rescue by tool</h2>
 <div class="chip-row">
 <a class="chip" href="../../rescue/lovable/">Lovable</a>
@@ -67,13 +67,13 @@
 <a class="chip" href="../../rescue/claude-code/">Claude Code</a>
 </div>
 <h2>FAQ</h2>
-<div class="faq-list"><details class="faq-item"><summary>Can Meridian help with rls and tenancy failures?</summary><div class="faq-answer"><p>Yes. This is a standard diagnostic and rescue focus area. Request a 48-hour diagnostic and we will rank severity and propose fixed scope.</p></div></details></div>
+<div class="faq-list"><details class="faq-item"><summary>Can Meridian help with rls and tenancy failures?</summary><div class="faq-answer"><p>Yes. Bring it as a diagnostic. We will rank how bad it is and, if salvage makes sense, quote a fixed scope.</p></div></details></div>
 <p>See also <a href="../../pricing/">pricing</a> and <a href="../../guides/rescue-vs-rewrite/">rescue vs rewrite</a>.</p>
 </div></section>
 <section class="cta-band">
   <div class="container">
-    <h2>Ready for a 48-hour diagnostic?</h2>
-    <p>Tell us what you built and where it hurts. No shame. Fixed-scope options after the audit.</p>
+    <h2>If the app is stuck, start with a diagnostic.</h2>
+    <p>Tell us what you built and what is in the way. Written scorecard within about 48 hours of access.</p>
     <div class="btn-row" style="justify-content:center">
       <a class="btn btn-primary btn-lg" href="../../request/">Request diagnostic</a>
       <a class="btn btn-secondary btn-lg" href="../../pricing/">See pricing</a>
@@ -86,7 +86,7 @@
   <div class="container footer-grid">
     <div>
       <div class="footer-brand"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" rx="8" fill="#4338ca"/><circle cx="16" cy="16" r="7" fill="none" stroke="#c7d2fe" stroke-width="2"/><path d="M16 6v20M6 16h20" stroke="#e0e7ff" stroke-width="1.5" opacity="0.7"/><circle cx="16" cy="16" r="2.5" fill="#ffffff"/></svg><span>Meridian</span></div>
-      <p>Senior software studio. We salvage AI-built apps into production-ready software.</p>
+      <p>Senior studio. We take AI-built apps into production, and we run monthly books and a scoped growth package.</p>
       <p><a href="mailto:hello@meridian.dev">hello@meridian.dev</a></p>
     </div>
     <div>
