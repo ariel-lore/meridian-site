@@ -6,8 +6,13 @@ import shutil
 
 SITE = Path(__file__).resolve().parent
 BASE = "https://meridian.dev"
-LAST = "27 September 2026"
+LAST = "29 September 2026"
 CONTACT = "hello@meridian.dev"
+# Bookkeeping fit check only. Not the rescue diagnostic form.
+# Replace YOUR_BOOKKEEPING_FORM_ID with a Formspree id that delivers to hello@meridian.dev.
+# Until then, js/main.js opens a mailto draft and still shows the thank-you state.
+BOOKS_FORM = "https://formspree.io/f/YOUR_BOOKKEEPING_FORM_ID"
+FIT_PATH = "virtual-bookkeeping/fit-check/"
 BRAND = (
   '<svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">'
   '<rect width="32" height="32" rx="8" fill="#4338ca"/>'
@@ -95,8 +100,15 @@ def head(path, title, desc, canonical, extra=""):
 <body>
 """
 
-def header(path):
+def header(path, variant="studio"):
     p = depth(path)
+    if variant == "books":
+        nav_cta = (
+            f'<a class="nav-cta" href="{p}{FIT_PATH}" '
+            f'data-track="bookkeeping_cta_click" data-track-label="nav-fit-check">Check if it fits</a>'
+        )
+    else:
+        nav_cta = f'<a class="nav-cta" href="{p}request/">Request diagnostic</a>'
     return f"""<header class="site-header">
   <div class="header-inner">
     <a class="brand" href="{p}">{BRAND}<span>Meridian</span></a>
@@ -109,34 +121,58 @@ def header(path):
       <a href="{p}guides/what-is-vibe-code-rescue/">Guides</a>
       <a href="{p}faq/">FAQ</a>
       <a href="{p}about/">About</a>
-      <a class="nav-cta" href="{p}request/">Request diagnostic</a>
+      {nav_cta}
     </nav>
   </div>
 </header>
 """
 
-def footer(path):
+def footer(path, variant="studio"):
     p = depth(path)
-    return f"""<footer class="site-footer">
-  <div class="container footer-grid">
-    <div>
-      <div class="footer-brand">{BRAND}<span>Meridian</span></div>
-      <p>Senior software studio. We salvage AI-built apps into production-ready software.</p>
-      <p><a href="mailto:{CONTACT}">{CONTACT}</a></p>
-    </div>
-    <div>
-      <h4>Services</h4>
+    books_note = ""
+    if variant == "books":
+        studio_blurb = "Monthly bookkeeping, delivered as a written close."
+        books_note = (
+            f'<div class="container"><p class="footer-note">Meridian is a software studio. '
+            f'<a href="{p}vibe-code-rescue/">Vibe Code Rescue</a> is a separate engagement.</p></div>'
+        )
+    else:
+        studio_blurb = "Senior software studio. We salvage AI-built apps into production-ready software."
+    if variant == "books":
+        col_services = f"""<h4>Bookkeeping</h4>
+      <ul>
+        <li><a href="{p}virtual-bookkeeping/">Monthly close</a></li>
+        <li><a href="{p}catch-up-bookkeeping/">Catch-up bookkeeping</a></li>
+        <li><a href="{p}virtual-bookkeeping/for-founders/">For founders</a></li>
+        <li><a href="{p}virtual-bookkeeping/for-ecommerce/">For ecommerce</a></li>
+        <li><a href="{p}{FIT_PATH}">Fit check</a></li>
+      </ul>"""
+        col_mid = f"""<h4>Studio</h4>
+      <ul>
+        <li><a href="{p}">Home</a></li>
+        <li><a href="{p}customer-growth/">Customer growth</a></li>
+        <li><a href="{p}about/">About</a></li>
+      </ul>"""
+        col_resources = f"""<h4>Resources</h4>
+      <ul>
+        <li><a href="{p}pricing/">Pricing</a></li>
+        <li><a href="{p}faq/">FAQ</a></li>
+        <li><a href="{p}llms.txt">llms.txt</a></li>
+      </ul>"""
+    else:
+        col_services = f"""<h4>Services</h4>
       <ul>
         <li><a href="{p}vibe-code-rescue/">Vibe Code Rescue</a></li>
         <li><a href="{p}customer-growth/">Customer growth</a></li>
         <li><a href="{p}virtual-bookkeeping/">Virtual bookkeeping</a></li>
+        <li><a href="{p}catch-up-bookkeeping/">Catch-up bookkeeping</a></li>
+        <li><a href="{p}virtual-bookkeeping/for-founders/">Bookkeeping for founders</a></li>
+        <li><a href="{p}virtual-bookkeeping/for-ecommerce/">Bookkeeping for ecommerce</a></li>
         <li><a href="{p}product-engineering/">Product engineering</a></li>
         <li><a href="{p}security-hardening/">Security hardening</a></li>
         <li><a href="{p}fractional-cto/">Fractional CTO</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4>Rescue by tool</h4>
+      </ul>"""
+        col_mid = f"""<h4>Rescue by tool</h4>
       <ul>
         <li><a href="{p}rescue/lovable/">Lovable</a></li>
         <li><a href="{p}rescue/bolt/">Bolt</a></li>
@@ -144,10 +180,8 @@ def footer(path):
         <li><a href="{p}rescue/v0/">v0</a></li>
         <li><a href="{p}rescue/replit/">Replit Agent</a></li>
         <li><a href="{p}rescue/claude-code/">Claude Code</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4>Resources</h4>
+      </ul>"""
+        col_resources = f"""<h4>Resources</h4>
       <ul>
         <li><a href="{p}pricing/">Pricing</a></li>
         <li><a href="{p}problems/secrets-exposed/">Common problems</a></li>
@@ -155,9 +189,25 @@ def footer(path):
         <li><a href="{p}faq/">FAQ</a></li>
         <li><a href="{p}request/">Request diagnostic</a></li>
         <li><a href="{p}llms.txt">llms.txt</a></li>
-      </ul>
+      </ul>"""
+    return f"""<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <div class="footer-brand">{BRAND}<span>Meridian</span></div>
+      <p>{studio_blurb}</p>
+      <p><a href="mailto:{CONTACT}">{CONTACT}</a></p>
+    </div>
+    <div>
+      {col_services}
+    </div>
+    <div>
+      {col_mid}
+    </div>
+    <div>
+      {col_resources}
     </div>
   </div>
+  {books_note}
   <div class="container footer-bottom">
     <span>&copy; 2026 Meridian. All rights reserved.</span>
     <span>Last updated: {LAST}</span>
@@ -265,15 +315,23 @@ GROWTH_FAQS = [
 
 BOOKS_FAQS = [
  ("Do you join a weekly bookkeeping call?",
-  "No. The package is a monthly close: capture, categorisation, reconciliation, and a written report, plus the admin tasks in scope. Questions are async. We are not on a standing weekly call."),
+  "No. The package is a monthly close: capture, categorisation, reconciliation, and a written report, plus inbox triage, scheduling, and document handling when admin is in scope. Questions are async. We are not on a standing weekly call."),
  ("Is this a virtual assistant who sits in my day?",
   "No. Admin in this package is inbox triage, scheduling, and document handling, delivered with the monthly books work. It is not white-glove assistant work that depends on someone sitting with you."),
  ("What does the monthly close include?",
-  "Receipt and invoice capture, categorisation, reconciliation items, and a monthly report. If something needs your decision, we flag it in writing. That is not a weekly check-in."),
+  "Receipt and invoice capture, categorisation, reconciliation, and a monthly report. If something needs your decision, we flag it in writing. That is not a weekly check-in."),
  ("Will this replace my accountant?",
-  "No. You get cleaner books and less day-to-day admin. Tax filing, audit opinions, and licensed advice stay with your CPA."),
- ("How do I start?",
-  "Use the inquire form and describe how you invoice and where documents land today. We reply with whether a monthly close package fits."),
+  "No. The package complements your CPA. You get cleaner books and less day-to-day admin. Tax filing, audit opinions, and licensed advice stay with your CPA."),
+ ("How much does monthly bookkeeping cost?",
+  "Monthly close and admin starts at $399 per month. Transaction volume may adjust that fee. The monthly fee is flat — there are no hourly surprises. Catch-up is a separate project, quoted from $150 per month behind. Tax stays with your CPA."),
+ ("Which bookkeeping software do you use?",
+  "QuickBooks Online and Xero. If you are on spreadsheets or another system, say so on the fit-check form and we will tell you whether we can work in it."),
+ ("How do you access the books and documents?",
+  "Bank feeds and the access your software already supports. Documents live in a portal or shared drive we agree up front. Exceptions are flagged in writing. Questions stay async."),
+ ("What if the books are behind?",
+  "If you are current, you go straight to the monthly package. If you are behind, catch-up is a paid project to get you current, then the monthly close takes over."),
+ ("How do I start virtual bookkeeping?",
+  "Use the bookkeeping fit-check form. We reply within one business day, usually sooner, on whether the monthly package fits and what the next step is. Do not use the software diagnostic form for books."),
 ]
 
 TOOLS = [
@@ -394,7 +452,7 @@ def page_home():
 <div class="grid-2" style="margin-top:1.5rem">
 <div class="card"><span class="pill pill-ok">Flagship</span><h3>Vibe Code Rescue</h3><p>Salvage AI-built apps (Cursor, Lovable, Bolt, v0, Replit Agent, Claude Code, Windsurf) into production-ready software. 48h diagnostic. Fixed scope.</p><a class="card-link" href="{p}vibe-code-rescue/">View service →</a></div>
 <div class="card"><span class="pill pill-ok">Package</span><h3>Customer growth</h3><p>Search, campaigns, landing pages, CRM, and follow-up through to booking. A scoped package with a clear cadence, not a weekly marketing meeting.</p><a class="card-link" href="{p}customer-growth/">View service →</a></div>
-<div class="card"><span class="pill pill-ok">Package</span><h3>Virtual bookkeeping</h3><p>Professional books and admin on a monthly close: capture, categorisation, reconciliation, and a written report, plus inbox, scheduling, and documents.</p><a class="card-link" href="{p}virtual-bookkeeping/">View service →</a></div>
+<div class="card"><span class="pill pill-ok">Package</span><h3>Virtual bookkeeping</h3><p>Monthly books and a written close, from $399/month. Capture, categorisation, reconciliation, and admin. Async — no standing finance meeting. Tax stays with your CPA.</p><a class="card-link" href="{p}virtual-bookkeeping/">View service →</a></div>
 <div class="card"><span class="pill pill-muted">Inquire</span><h3>Product engineering</h3><p>Feature delivery, architecture, and product partnership beyond a one-time rescue.</p><a class="card-link" href="{p}product-engineering/">Learn more →</a></div>
 <div class="card"><span class="pill pill-muted">Inquire</span><h3>Security hardening</h3><p>Threat-focused hardening for apps that already have users or diligence on the calendar.</p><a class="card-link" href="{p}security-hardening/">Learn more →</a></div>
 <div class="card"><span class="pill pill-muted">Inquire</span><h3>Fractional CTO</h3><p>Ongoing technical leadership after rescue — roadmap, hiring, vendor calls, AI guardrails.</p><a class="card-link" href="{p}fractional-cto/">Learn more →</a></div>
@@ -579,49 +637,6 @@ OFFERINGS = [
   "cta_title": "See if a growth package fits",
   "cta_sub": "Tell us the offer and where a new customer should land. We reply with a scoped next step.",
  },
- {
-  "slug": "virtual-bookkeeping",
-  "name": "Virtual bookkeeping",
-  "title": "Virtual bookkeeping — monthly books and admin | Meridian",
-  "desc": "A professional books and admin package: receipt and invoice capture, categorisation, reconciliation, and a monthly close report, plus inbox triage, scheduling, and document handling.",
-  "kicker": "Meridian service · Package",
-  "quick": "Virtual bookkeeping is a professional books and admin package: receipt and invoice capture, categorisation, reconciliation, and a monthly close report, plus inbox triage, scheduling, and document handling. You review the monthly package. It is not a bookkeeper in your meetings, and it is not open-ended assistant work.",
-  "what_h": "What it is",
-  "what": [
-   "Bookkeeping: receipt and invoice capture, categorisation, and reconciliation",
-   "A monthly close package with a written report",
-   "Admin support: inbox triage, scheduling, and document handling",
-   "A written note when a transaction needs your decision",
-  ],
-  "not": [
-   "A weekly books meeting",
-   "White-glove assistant work that depends on someone sitting with you",
-   "A bookkeeper who joins your internal meetings",
-  ],
-  "steps": [
-   ("Open the books", "We connect the bank feed, receipt inbox, and the documents you already use."),
-   ("Keep the books current", "Receipts, invoices, and routine transactions are categorised through the month. You hear about exceptions, not every line."),
-   ("Close the month", "A written report when the month closes, with reconciliation items called out."),
-   ("Admin on the same package", "Inbox triage, scheduling, and document handling, delivered async. We do not join your calendar as a standing attendee."),
-  ],
-  "who": [
-   "Owners who want clean numbers and a monthly report they can read",
-   "Small businesses with a steady flow of receipts, invoices, and paperwork",
-   "Operators who want a defined monthly package rather than an open assistant calendar",
-  ],
-  "not_who": [
-   "Firms that want someone in every finance meeting",
-   "Work that is really a full-time executive assistant",
-   "Engagements that need licensed tax advice or an audit opinion — clean books are not a CPA replacement",
-  ],
-  "delivery": "A monthly close package. Books, the written report, and the admin tasks in scope are delivered async. There is no standing weekly call.",
-  "faqs": BOOKS_FAQS,
-  "sibling_slug": "customer-growth",
-  "sibling_name": "Customer growth",
-  "sibling_blurb": "scoped campaigns, pages, and follow-up",
-  "cta_title": "See if a monthly close fits",
-  "cta_sub": "Tell us how you invoice and where documents land today. We reply with whether a books and admin package fits.",
- },
 ]
 
 
@@ -669,7 +684,7 @@ def page_offering(o):
 <ul>{not_who_lis}</ul>
 <div class="callout"><strong>Delivery model:</strong> {o["delivery"]}</div>
 <h2>Same studio, different job</h2>
-<p>These pages sit under Meridian, next to <a href="{p}vibe-code-rescue/">Vibe Code Rescue</a>. The sibling service is <a href="{p}{o["sibling_slug"]}/">{o["sibling_name"]}</a> — {o["sibling_blurb"]}. The inquire form is the same one used for a rescue diagnostic. If the tool list does not apply, choose Mixed / other and describe the business.</p>
+<p>These pages sit under Meridian, next to <a href="{p}vibe-code-rescue/">Vibe Code Rescue</a>. The sibling service is <a href="{p}{o["sibling_slug"]}/">{o["sibling_name"]}</a> — {o["sibling_blurb"]}. This inquire form is the same one used for a rescue diagnostic. Bookkeeping does not use it — start at the <a href="{p}{FIT_PATH}">bookkeeping fit check</a>. If the tool list does not apply, choose Mixed / other and describe the business.</p>
 <h2>FAQ</h2>
 {faq_html(faqs)}
 </div></section>
@@ -685,6 +700,528 @@ def page_offering(o):
 </section>
 </main>
 {footer(path)}
+"""
+    write(path + "index.html", head(path, title, desc, "/" + path, extra) + body)
+
+CATCHUP_FAQS = [
+ ("Is catch-up billed by the hour?",
+  "No. It is a project quote, from $150 per month behind. The monthly close that follows is a flat fee, from $399 per month. Transaction volume may adjust the monthly fee."),
+ ("What do I get at the end of catch-up?",
+  "Books brought current: capture, categorisation, and reconciliation for the months in scope, plus a written note of what closed and what still needs you. Then a handoff into the monthly package if it fits."),
+ ("Does catch-up include tax filing?",
+  "No. Tax stays with your CPA. Catch-up produces books they can work from."),
+]
+
+FOUNDER_FAQS = [
+ ("Do I have to join a weekly finance meeting?",
+  "No. You review a written monthly package. We flag exceptions in writing. Questions are async."),
+ ("Will the numbers be ready for my CPA or an investor question?",
+  "The monthly close is a written set of books you can hand to your CPA, or use when someone asks where the numbers stand. Tax filing stays with your CPA. This is not an audit opinion."),
+ ("What if I am months behind?",
+  "Catch-up is a paid project to get you current, then the monthly package runs. Start with the fit check and say how far behind you are."),
+]
+
+ECOM_FAQS = [
+ ("Do you file sales tax?",
+  "No. We categorise and reconcile payouts, fees, and deposits. Sales tax filing stays with your CPA."),
+ ("Which software do you close ecommerce books in?",
+  "QuickBooks Online and Xero. If the store is on something else, say so on the fit check and we will tell you whether we can work in it."),
+]
+
+FIT_FAQS = [
+ ("What happens after I submit the fit check?",
+  "We reply within one business day, usually sooner, on whether the monthly package fits and what the next step is. Onboarding aims to answer fit the same day."),
+ ("Is this the software diagnostic?",
+  "No. This form is only for bookkeeping. It asks about the business, transaction volume, software, and how far behind the books are."),
+ ("What if I need catch-up and a monthly close?",
+  "Say how far behind you are. Catch-up is a paid project from $150 per month behind. If the monthly package fits, it starts once the books are current."),
+]
+
+
+def books_cta(title, sub, primary_label, primary_href, primary_track, secondary_label, secondary_href, secondary_track):
+    return f"""<section class="cta-band">
+  <div class="container">
+    <h2>{title}</h2>
+    <p>{sub}</p>
+    <div class="btn-row" style="justify-content:center">
+      <a class="btn btn-primary btn-lg" href="{primary_href}" data-track="bookkeeping_cta_click" data-track-label="{primary_track}">{primary_label}</a>
+      <a class="btn btn-secondary btn-lg" href="{secondary_href}" data-track="bookkeeping_cta_click" data-track-label="{secondary_track}">{secondary_label}</a>
+    </div>
+  </div>
+</section>
+"""
+
+
+def books_fit_form():
+    return f"""<div id="books-form-success" class="form-success" role="status" tabindex="-1">
+<p><strong>Got it. We'll reply within one business day (usually sooner) on whether the monthly package fits.</strong></p>
+<p id="books-form-delivery" class="form-delivery-note" hidden></p>
+</div>
+<div class="form-card" id="books-form-card">
+<!--
+  Bookkeeping fit check only. Do not post this to /request/ or the rescue diagnostic.
+  Endpoint is BOOKS_FORM in build.py. YOUR_BOOKKEEPING_FORM_ID does not deliver email.
+  Until a real Formspree id is set, js/main.js opens a mailto draft to hello@meridian.dev.
+-->
+<form id="bookkeeping-fit-form" action="{BOOKS_FORM}" method="POST" data-formspree="{BOOKS_FORM}" novalidate>
+<input type="hidden" name="_subject" value="Meridian bookkeeping fit check">
+<input type="hidden" name="_replyto" id="bk-replyto" value="">
+<input type="hidden" name="inquiry" id="bk-inquiry" value="Monthly package fit check">
+<input type="hidden" name="source" id="bk-source" value="fit-check">
+<div id="books-form-errors" class="form-errors" role="alert"></div>
+<div class="form-group">
+<label for="bk-name">Name</label>
+<input id="bk-name" name="name" type="text" autocomplete="name" maxlength="120" required aria-describedby="bk-name-error">
+<p class="field-error" id="bk-name-error"></p>
+</div>
+<div class="form-group">
+<label for="bk-email">Email</label>
+<input id="bk-email" name="email" type="email" autocomplete="email" maxlength="160" required aria-describedby="bk-email-error">
+<p class="field-error" id="bk-email-error"></p>
+</div>
+<div class="form-group">
+<label for="bk-business">Business / industry</label>
+<input id="bk-business" name="business" type="text" autocomplete="organization" maxlength="160" required aria-describedby="bk-business-error">
+<p class="field-error" id="bk-business-error"></p>
+</div>
+<div class="form-group">
+<label for="bk-transactions">Approx monthly transactions</label>
+<select id="bk-transactions" name="transactions" required aria-describedby="bk-transactions-error">
+<option value="">Select a band…</option>
+<option value="Under 50">Under 50</option>
+<option value="50-150">50–150</option>
+<option value="150-300">150–300</option>
+<option value="300+">300+</option>
+</select>
+<p class="field-error" id="bk-transactions-error"></p>
+</div>
+<div class="form-group">
+<label for="bk-software">Current software</label>
+<select id="bk-software" name="software" required aria-describedby="bk-software-error">
+<option value="">Select software…</option>
+<option value="QuickBooks Online">QuickBooks Online</option>
+<option value="Xero">Xero</option>
+<option value="Spreadsheets">Spreadsheets</option>
+<option value="Other">Other</option>
+</select>
+<p class="field-error" id="bk-software-error"></p>
+</div>
+<div class="form-group">
+<label for="bk-behind">How far behind</label>
+<select id="bk-behind" name="behind" required aria-describedby="bk-behind-error">
+<option value="">Select…</option>
+<option value="Current">Current</option>
+<option value="1-3 months">1–3 months</option>
+<option value="3+ months">3+ months</option>
+</select>
+<p class="field-error" id="bk-behind-error"></p>
+</div>
+<div class="form-group">
+<label for="bk-need">Need</label>
+<select id="bk-need" name="need" required aria-describedby="bk-need-error">
+<option value="">Select…</option>
+<option value="Books only">Books only</option>
+<option value="Books + admin">Books + admin</option>
+</select>
+<p class="field-error" id="bk-need-error"></p>
+</div>
+<div class="form-group">
+<label for="bk-deadline">Deadline</label>
+<select id="bk-deadline" name="deadline" required aria-describedby="bk-deadline-error">
+<option value="">Select…</option>
+<option value="Tax">Tax</option>
+<option value="Loan">Loan or financing</option>
+<option value="None">None</option>
+<option value="Other">Other</option>
+</select>
+<p class="field-error" id="bk-deadline-error"></p>
+</div>
+<div class="form-group" id="bk-deadline-other-wrap" hidden>
+<label for="bk-deadline-detail">What is the deadline?</label>
+<input id="bk-deadline-detail" name="deadline_detail" type="text" maxlength="120" aria-describedby="bk-deadline-detail-error">
+<p class="field-error" id="bk-deadline-detail-error"></p>
+</div>
+<div class="form-group">
+<label for="bk-notes">Anything else <span class="hint">(optional)</span></label>
+<textarea id="bk-notes" name="notes" maxlength="2000" placeholder="Where invoices land, who your CPA is, or what you want the first close to cover."></textarea>
+</div>
+<button class="btn btn-primary btn-lg" type="submit">Check if the package fits</button>
+</form>
+<p class="form-endpoint-note">This form is for bookkeeping only and is addressed to <a href="mailto:{CONTACT}">{CONTACT}</a>. A real Formspree id is still required for email delivery: replace <code>YOUR_BOOKKEEPING_FORM_ID</code> in <code>BOOKS_FORM</code> inside <code>build.py</code>. Until then, submit opens a draft in your email app and shows the thank-you message. The draft is not sent until you send it. Do not use the rescue diagnostic for this.</p>
+</div>
+"""
+
+
+def page_bookkeeping():
+    path = "virtual-bookkeeping/"
+    p = depth(path)
+    title = "Virtual bookkeeping — monthly close from $399 | Meridian"
+    desc = "Monthly books and a written close, without a standing meeting. Capture, categorisation, reconciliation, and a report, plus admin. From $399/month. Complements your CPA."
+    extra = (
+        crumbs_json([("Home", "/"), ("Virtual bookkeeping", "/virtual-bookkeeping/")])
+        + service_schema(
+            "Virtual bookkeeping",
+            "/virtual-bookkeeping/",
+            desc,
+            "Monthly close and admin from $399/month; catch-up from $150 per month behind",
+        )
+        + faq_schema(BOOKS_FAQS)
+        + ORG
+    )
+    crumbs = crumbs_html([("Home", p), ("Virtual bookkeeping", None)])
+    fit = f"{p}{FIT_PATH}"
+    catch = f"{p}catch-up-bookkeeping/"
+    body = f"""
+{header(path, "books")}
+<main>
+<section class="page-hero"><div class="container">
+{crumbs}
+<p class="hero-kicker">Virtual bookkeeping · Monthly package</p>
+<h1>Monthly books and a written close, without another standing meeting.</h1>
+<p class="lede">Receipt and invoice capture, categorisation, reconciliation, and a monthly report — plus inbox triage, scheduling, and document handling. Async. You review the package; we flag exceptions in writing.</p>
+<ul class="trust-bar">
+<li>QuickBooks Online &amp; Xero</li>
+<li>Complements your CPA (not a tax replacement)</li>
+<li>Defined monthly package</li>
+<li>Starting from $399/mo</li>
+</ul>
+<p class="meta-line">Last updated: {LAST}</p>
+<div class="btn-row">
+<a class="btn btn-primary btn-lg" href="{fit}" data-track="bookkeeping_cta_click" data-track-label="hero-fit-check">Check if the package fits</a>
+<a class="btn btn-secondary btn-lg" href="{catch}" data-track="bookkeeping_cta_click" data-track-label="hero-catch-up">Get a catch-up quote</a>
+</div>
+</div></section>
+<section class="section"><div class="narrow prose">
+<h2>What it is</h2>
+<ul>
+<li>Receipt and invoice capture</li>
+<li>Categorisation and reconciliation</li>
+<li>A written monthly report you review on your own</li>
+<li>Admin in the same package when you need it: inbox triage, scheduling, and document handling</li>
+<li>A written flag when a transaction needs your decision</li>
+</ul>
+<h2>What it is not</h2>
+<ul>
+<li>A weekly finance meeting, or a bookkeeper in your internal meetings</li>
+<li>White-glove assistant work that depends on someone sitting with you</li>
+<li>Hourly billing that moves when the month gets busy</li>
+<li>Tax filing, an audit opinion, or a replacement for your CPA</li>
+</ul>
+<div class="callout"><strong>Delivery:</strong> A flat monthly fee. You review the package. We flag exceptions in writing. There is no standing call.</div>
+</div></section>
+<section class="section section-alt" id="pricing"><div class="container">
+<h2 class="section-title">Pricing</h2>
+<p class="lede">Published starting points. Transaction volume may adjust the monthly fee. Tax stays with your CPA.</p>
+<div class="grid-2" style="margin-top:1.5rem">
+<div class="price-card featured"><span class="pill pill-ok">Monthly</span><h3>Monthly close + admin</h3>
+<div class="amount">$399 <span>/ month</span></div>
+<p>From $399/month. The fee is flat — no hourly surprises.</p>
+<ul>
+<li>Capture, categorisation, reconciliation, and a written close</li>
+<li>Inbox triage, scheduling, and document handling</li>
+<li>Exceptions flagged in writing</li>
+<li>Transaction volume may adjust the fee</li>
+</ul>
+<a class="btn btn-primary" href="{fit}" data-track="bookkeeping_cta_click" data-track-label="pricing-fit-check">Check if the package fits</a>
+</div>
+<div class="price-card"><span class="pill">Project</span><h3>Catch-up / cleanup</h3>
+<div class="amount">$150 <span>/ month behind</span></div>
+<p>A project quote from $150 per month behind, then a handoff into the monthly close.</p>
+<ul>
+<li>Paid project, not an open hourly tab</li>
+<li>Get the backlog categorised and reconciled</li>
+<li>Then the monthly package runs if it fits</li>
+<li>Tax stays with your CPA</li>
+</ul>
+<a class="btn btn-secondary" href="{catch}" data-track="bookkeeping_cta_click" data-track-label="pricing-catch-up">Get a catch-up quote</a>
+</div>
+</div>
+</div></section>
+<section class="section" id="software"><div class="container">
+<h2 class="section-title">Software and security</h2>
+<div class="grid-3" style="margin-top:1.5rem">
+<div class="card"><h3>QuickBooks Online and Xero</h3><p>Those are the systems we close in. Spreadsheets or another tool: say so on the fit check and we will tell you if we can work in it.</p></div>
+<div class="card"><h3>Bank feeds and a known place for documents</h3><p>We use bank feeds and the access your software already supports. Documents live in a portal or shared drive we agree up front.</p></div>
+<div class="card"><h3>Exceptions in writing</h3><p>We flag exceptions in writing. Questions are async. You do not need a meeting to get an answer.</p></div>
+</div>
+</div></section>
+<section class="section section-alt" id="onboarding"><div class="narrow prose">
+<h2>How onboarding works</h2>
+<ol class="steps">
+<li><strong>Fit check.</strong> We reply the same day with fit and the next step.</li>
+<li><strong>Connect the books.</strong> Bank feed, receipt inbox, and documents.</li>
+<li><strong>Optional catch-up.</strong> A paid project if you need to get current first.</li>
+<li><strong>Monthly close.</strong> The package runs async. You review it in writing.</li>
+</ol>
+<h2>Who it is for</h2>
+<p class="niche-line">Built for technical founders and busy operators who want clean numbers without a weekly finance meeting.</p>
+<p><a href="{p}virtual-bookkeeping/for-founders/">For technical founders</a> · <a href="{p}virtual-bookkeeping/for-ecommerce/">For ecommerce</a> · <a href="{catch}">Catch-up if you are behind</a></p>
+</div></section>
+<section class="section"><div class="narrow">
+<h2>FAQ</h2>
+{faq_html(BOOKS_FAQS)}
+</div></section>
+{books_cta(
+    "See if the monthly package fits",
+    "Tell us the software, the transaction band, and how far behind the books are. We reply within one business day, usually sooner.",
+    "Check if the package fits", fit, "bottom-fit-check",
+    "Get a catch-up quote", catch, "bottom-catch-up",
+)}
+</main>
+{footer(path, "books")}
+"""
+    write(path + "index.html", head(path, title, desc, "/" + path, extra) + body)
+
+
+def page_catchup_bookkeeping():
+    path = "catch-up-bookkeeping/"
+    p = depth(path)
+    title = "Catch-up bookkeeping — get current, then a monthly close | Meridian"
+    desc = "Behind on your books? A paid catch-up project from $150 per month behind, then a handoff into the monthly close. Tax stays with your CPA."
+    extra = (
+        crumbs_json([("Home", "/"), ("Catch-up bookkeeping", "/catch-up-bookkeeping/")])
+        + service_schema(
+            "Catch-up bookkeeping",
+            "/catch-up-bookkeeping/",
+            desc,
+            "Project quote from $150 per month behind",
+        )
+        + faq_schema(CATCHUP_FAQS)
+        + ORG
+    )
+    crumbs = crumbs_html([("Home", p), ("Catch-up bookkeeping", None)])
+    fit = f"{p}{FIT_PATH}?intent=catch-up"
+    monthly = f"{p}virtual-bookkeeping/"
+    body = f"""
+{header(path, "books")}
+<main>
+<section class="page-hero"><div class="container">
+{crumbs}
+<p class="hero-kicker">Catch-up bookkeeping · Paid project</p>
+<h1>Behind on your books? We'll get you current.</h1>
+<p class="lede">A paid catch-up project to categorise, reconcile, and close the months you missed — then a clean handoff into the monthly package if you want it to keep running.</p>
+<p class="meta-line">Last updated: {LAST} · From $150 per month behind</p>
+<div class="btn-row">
+<a class="btn btn-primary btn-lg" href="{fit}" data-track="bookkeeping_cta_click" data-track-label="catchup-hero-fit-check">Check if the package fits</a>
+<a class="btn btn-secondary btn-lg" href="{monthly}" data-track="bookkeeping_cta_click" data-track-label="catchup-hero-monthly">See the monthly package</a>
+</div>
+</div></section>
+<section class="section"><div class="narrow prose">
+<h2>When the books have slipped</h2>
+<ul>
+<li>The bank feed is months ahead of what is categorised</li>
+<li>Receipts are in an inbox you stopped opening</li>
+<li>A tax deadline, a loan, or a question about the numbers is closer than the last reconciliation</li>
+<li>You do not want a weekly meeting to dig out of it</li>
+</ul>
+<h2>Catch-up is a project, then the monthly close</h2>
+<p>We quote the backlog from $150 per month behind. The work is capture, categorisation, and reconciliation for those months, plus a written note of what closed and what still needs a decision from you.</p>
+<p>When the books are current, the <a href="{monthly}">monthly package</a> can take over: a flat fee from $399/month, a written close, and no standing meeting. Transaction volume may adjust that fee. Tax stays with your CPA either way.</p>
+<div class="callout"><strong>Not hourly.</strong> Catch-up is a project quote. The monthly close that follows is a flat fee. We do not bill the cleanup as an open clock.</div>
+<h2>What you do</h2>
+<ol class="steps">
+<li><strong>Fit check, with catch-up noted.</strong> Tell us how many months behind and which software. We reply the same day with fit and the next step.</li>
+<li><strong>We scope the backlog.</strong> You get a project quote from $150 per month behind before we start.</li>
+<li><strong>We get you current.</strong> Categorisation, reconciliation, and a written close of the missed months.</li>
+<li><strong>Handoff.</strong> If the monthly package fits, it runs from the first clean month. Async.</li>
+</ol>
+<h2>FAQ</h2>
+{faq_html(CATCHUP_FAQS)}
+</div></section>
+{books_cta(
+    "Get a catch-up quote",
+    "The fit check is the same form. We will see that this request is for catch-up, then say whether the monthly package should follow.",
+    "Check if the package fits", fit, "catchup-bottom-fit-check",
+    "See the monthly package", monthly, "catchup-bottom-monthly",
+)}
+</main>
+{footer(path, "books")}
+"""
+    write(path + "index.html", head(path, title, desc, "/" + path, extra) + body)
+
+
+def page_bookkeeping_founders():
+    path = "virtual-bookkeeping/for-founders/"
+    p = depth(path)
+    title = "Bookkeeping for technical founders | Meridian"
+    desc = "Monthly books for technical founders, SaaS, and product operators. A written close, no weekly finance meeting. QuickBooks Online or Xero. From $399/month."
+    extra = (
+        crumbs_json([
+            ("Home", "/"),
+            ("Virtual bookkeeping", "/virtual-bookkeeping/"),
+            ("For founders", "/virtual-bookkeeping/for-founders/"),
+        ])
+        + service_schema(
+            "Virtual bookkeeping for founders",
+            "/virtual-bookkeeping/for-founders/",
+            desc,
+            "Monthly close and admin from $399/month",
+        )
+        + faq_schema(FOUNDER_FAQS)
+        + ORG
+    )
+    crumbs = crumbs_html([
+        ("Home", p),
+        ("Virtual bookkeeping", f"{p}virtual-bookkeeping/"),
+        ("For founders", None),
+    ])
+    fit = f"{p}{FIT_PATH}?source=founders"
+    monthly = f"{p}virtual-bookkeeping/"
+    catch = f"{p}catch-up-bookkeeping/"
+    body = f"""
+{header(path, "books")}
+<main>
+<section class="page-hero"><div class="container">
+{crumbs}
+<p class="hero-kicker">Virtual bookkeeping · Founders</p>
+<h1>Bookkeeping for technical founders and product operators.</h1>
+<p class="lede">For technical founders, SaaS teams, and product operators who want the books current without a weekly finance meeting. You review a written close. We flag exceptions in writing.</p>
+<p class="niche-line">Built for technical founders and busy operators who want clean numbers without a weekly finance meeting.</p>
+<p class="meta-line">Last updated: {LAST} · From $399/month</p>
+<div class="btn-row">
+<a class="btn btn-primary btn-lg" href="{fit}" data-track="bookkeeping_cta_click" data-track-label="founders-fit-check">Check if the package fits</a>
+<a class="btn btn-secondary btn-lg" href="{monthly}" data-track="bookkeeping_cta_click" data-track-label="founders-monthly">See the monthly package</a>
+</div>
+</div></section>
+<section class="section"><div class="narrow prose">
+<h2>The work that lands at night</h2>
+<ul>
+<li>Receipts after the product work is done</li>
+<li>An investor update, a board question, or tax season — all asking for numbers you trust</li>
+<li>A standing finance meeting that restates a spreadsheet</li>
+<li>QuickBooks Online or Xero in a tab you meant to finish</li>
+</ul>
+<h2>What the package does instead</h2>
+<p>We capture receipts and invoices, categorise, reconcile, and send a written monthly report. Admin — inbox triage, scheduling, and documents — sits in the same package when you need it. You are not asked to attend a weekly books call.</p>
+<p>Monthly close and admin starts at $399/month. Transaction volume may adjust the fee. The fee is flat. If the books are behind, <a href="{catch}">catch-up</a> is a project from $150 per month behind, then the monthly close takes over. Tax stays with your CPA.</p>
+<div class="callout"><strong>Your CPA keeps tax.</strong> We complement them with books they can use. We do not replace licensed tax advice or an audit opinion.</div>
+<h2>FAQ</h2>
+{faq_html(FOUNDER_FAQS)}
+</div></section>
+{books_cta(
+    "Check if the package fits",
+    "Tell us the software and how far behind you are. We reply within one business day, usually sooner.",
+    "Check if the package fits", fit, "founders-bottom-fit-check",
+    "See the monthly package", monthly, "founders-bottom-monthly",
+)}
+</main>
+{footer(path, "books")}
+"""
+    write(path + "index.html", head(path, title, desc, "/" + path, extra) + body)
+
+
+def page_bookkeeping_ecommerce():
+    path = "virtual-bookkeeping/for-ecommerce/"
+    p = depth(path)
+    title = "Bookkeeping for ecommerce | Meridian"
+    desc = "Monthly bookkeeping for ecommerce: payouts, fees, and sales channels in QuickBooks Online or Xero. A written close. Sales tax stays with your CPA."
+    extra = (
+        crumbs_json([
+            ("Home", "/"),
+            ("Virtual bookkeeping", "/virtual-bookkeeping/"),
+            ("For ecommerce", "/virtual-bookkeeping/for-ecommerce/"),
+        ])
+        + service_schema(
+            "Virtual bookkeeping for ecommerce",
+            "/virtual-bookkeeping/for-ecommerce/",
+            desc,
+            "Monthly close and admin from $399/month",
+        )
+        + faq_schema(ECOM_FAQS)
+        + ORG
+    )
+    crumbs = crumbs_html([
+        ("Home", p),
+        ("Virtual bookkeeping", f"{p}virtual-bookkeeping/"),
+        ("For ecommerce", None),
+    ])
+    fit = f"{p}{FIT_PATH}?source=ecommerce"
+    monthly = f"{p}virtual-bookkeeping/"
+    catch = f"{p}catch-up-bookkeeping/"
+    body = f"""
+{header(path, "books")}
+<main>
+<section class="page-hero"><div class="container">
+{crumbs}
+<p class="hero-kicker">Virtual bookkeeping · Ecommerce</p>
+<h1>Ecommerce books, closed monthly.</h1>
+<p class="lede">Payouts, processor fees, and sales-channel deposits categorised and reconciled in QuickBooks Online or Xero. A written close. Sales tax filing stays with your CPA. No weekly ops meeting.</p>
+<p class="meta-line">Last updated: {LAST}</p>
+<div class="btn-row">
+<a class="btn btn-primary btn-lg" href="{fit}" data-track="bookkeeping_cta_click" data-track-label="ecommerce-fit-check">Check if the package fits</a>
+<a class="btn btn-secondary btn-lg" href="{monthly}" data-track="bookkeeping_cta_click" data-track-label="ecommerce-monthly">See the monthly package</a>
+</div>
+</div></section>
+<section class="section"><div class="narrow prose">
+<h2>What we close</h2>
+<ul>
+<li>Sales deposits, processor fees, and refunds categorised</li>
+<li>Reconciliation against the bank and the payout reports you already export</li>
+<li>A written month-end package</li>
+<li><a href="{catch}">Catch-up</a> if the store books are behind, then the monthly close</li>
+</ul>
+<h2>What we do not take on</h2>
+<ul>
+<li>Sales-tax filing, or a stand-in for your CPA</li>
+<li>A weekly ecommerce meeting</li>
+<li>Warehouse inventory accounting as the main job — say so on the fit check if that is what you actually need</li>
+</ul>
+<p>The monthly package starts at $399/month. Transaction volume may adjust the fee. Details and the full boundary of the work are on the <a href="{monthly}">monthly bookkeeping page</a>.</p>
+<h2>FAQ</h2>
+{faq_html(ECOM_FAQS)}
+</div></section>
+{books_cta(
+    "Check if the package fits",
+    "Tell us the channel, the software, and how far behind the books are.",
+    "Check if the package fits", fit, "ecommerce-bottom-fit-check",
+    "See the monthly package", monthly, "ecommerce-bottom-monthly",
+)}
+</main>
+{footer(path, "books")}
+"""
+    write(path + "index.html", head(path, title, desc, "/" + path, extra) + body)
+
+
+def page_bookkeeping_fit_check():
+    path = FIT_PATH
+    p = depth(path)
+    title = "Bookkeeping fit check | Meridian"
+    desc = "Tell us your software, transaction volume, and how far behind the books are. We reply within one business day on whether the monthly package fits."
+    extra = (
+        crumbs_json([
+            ("Home", "/"),
+            ("Virtual bookkeeping", "/virtual-bookkeeping/"),
+            ("Fit check", "/virtual-bookkeeping/fit-check/"),
+        ])
+        + faq_schema(FIT_FAQS)
+        + ORG
+    )
+    crumbs = crumbs_html([
+        ("Home", p),
+        ("Virtual bookkeeping", f"{p}virtual-bookkeeping/"),
+        ("Fit check", None),
+    ])
+    body = f"""
+{header(path, "books")}
+<main>
+<section class="page-hero"><div class="container">
+{crumbs}
+<p class="hero-kicker">Virtual bookkeeping · Fit check</p>
+<h1>Check if the monthly package fits</h1>
+<p class="lede">Tell us the business, the software, and how far behind the books are. We reply within one business day — usually sooner, and the same day when we can — on fit and the next step.</p>
+<p class="meta-line">Last updated: {LAST} · This is not a software diagnostic.</p>
+</div></section>
+<section class="section"><div class="container" style="max-width:640px">
+<div id="catchup-note" class="callout" hidden>
+<strong>Catch-up quote.</strong> This is the same fit check. We have noted that you want a project quote to get the books current, from $150 per month behind, then a handoff into the monthly close. Say how far behind you are below.
+</div>
+{books_fit_form()}
+<h2>Before you send it</h2>
+{faq_html(FIT_FAQS)}
+<p><a href="{p}virtual-bookkeeping/">Monthly package</a> · <a href="{p}catch-up-bookkeeping/">Catch-up bookkeeping</a> · <a href="{p}virtual-bookkeeping/for-founders/">For founders</a></p>
+</div></section>
+</main>
+{footer(path, "books")}
 """
     write(path + "index.html", head(path, title, desc, "/" + path, extra) + body)
 
@@ -729,6 +1266,18 @@ def page_pricing():
 <ul><li>Strangler or clean rebuild options</li><li>Still fixed-scope where possible</li><li>See <a href="{p}guides/rescue-vs-rewrite/">rescue vs rewrite</a></li></ul>
 <a class="btn btn-secondary" href="{p}request/">Discuss rebuild path</a></div>
 </div>
+<div class="narrow prose" style="margin-top:2.5rem">
+<h2>Virtual bookkeeping</h2>
+<p>A separate package from software rescue. Flat monthly fee. No hourly surprises. Tax stays with your CPA.</p>
+<ul>
+<li><strong>Monthly close + admin:</strong> from $399/month. Transaction volume may adjust the fee.</li>
+<li><strong>Catch-up / cleanup:</strong> a project quote from $150 per month behind, then a handoff into the monthly close.</li>
+</ul>
+<div class="btn-row">
+<a class="btn btn-primary" href="{p}virtual-bookkeeping/" data-track="bookkeeping_cta_click" data-track-label="pricing-page-monthly">Monthly package</a>
+<a class="btn btn-secondary" href="{p}catch-up-bookkeeping/" data-track="bookkeeping_cta_click" data-track-label="pricing-page-catch-up">Catch-up bookkeeping</a>
+</div>
+</div>
 <div class="not-for-you">
 <h3>Not for you (and that is OK)</h3>
 <ul>
@@ -772,7 +1321,7 @@ def page_request(slug="request"):
 <p class="answer-first"><strong>Quick answer:</strong> Tell us what you built, which AI tools you used, and what is broken or scary. We reply with next steps and aim for a written diagnostic within 48 hours of access. Do not paste API keys, tokens, or passwords into this form.</p>
 <p class="meta-line">Last updated: {LAST}</p>
 {alias}
-<p>The same form covers <a href="{p}customer-growth/">Customer growth</a> and <a href="{p}virtual-bookkeeping/">Virtual bookkeeping</a>. If the tool list does not apply, choose Mixed / other and describe the business. Do not paste secrets.</p>
+<p>This form is for a software diagnostic, and for <a href="{p}customer-growth/">Customer growth</a>. Bookkeeping has its own form: <a href="{p}{FIT_PATH}">check if the package fits</a>. Do not paste secrets.</p>
 </div></section>
 <section class="section"><div class="container" style="max-width:640px">
 <div id="form-success" class="form-success" role="status">
@@ -934,7 +1483,7 @@ def page_faq():
 </div></section>
 <section class="section"><div class="narrow">
 {faq_html(SITE_FAQS)}
-<p>Deep dive: <a href="{p}vibe-code-rescue/">Vibe Code Rescue</a> · <a href="{p}customer-growth/">Customer growth</a> · <a href="{p}virtual-bookkeeping/">Virtual bookkeeping</a> · <a href="{p}guides/what-is-vibe-code-rescue/">What is vibe code rescue?</a> · <a href="{p}request/">Request diagnostic</a></p>
+<p>Deep dive: <a href="{p}vibe-code-rescue/">Vibe Code Rescue</a> · <a href="{p}customer-growth/">Customer growth</a> · <a href="{p}virtual-bookkeeping/">Virtual bookkeeping</a> · <a href="{p}catch-up-bookkeeping/">Catch-up bookkeeping</a> · <a href="{p}guides/what-is-vibe-code-rescue/">What is vibe code rescue?</a> · <a href="{p}request/">Request diagnostic</a></p>
 </div></section>
 </main>
 {footer(path)}
@@ -971,11 +1520,11 @@ def page_about():
 <p><a href="{p}vibe-code-rescue/">Vibe Code Rescue</a> is the flagship: salvage AI-built apps into production-ready software. Two sibling packages sit beside it:</p>
 <ul>
 <li><a href="{p}customer-growth/">Customer growth</a> — search, campaigns, landing pages, CRM, and follow-up through to booking. A defined package, not a weekly marketing meeting.</li>
-<li><a href="{p}virtual-bookkeeping/">Virtual bookkeeping</a> — monthly books and admin: capture, categorisation, reconciliation, a written close, plus inbox, scheduling, and documents.</li>
+<li><a href="{p}virtual-bookkeeping/">Virtual bookkeeping</a> — monthly books and a written close, from $399/month, plus admin. <a href="{p}catch-up-bookkeeping/">Catch-up</a> is a separate project from $150 per month behind. Start at the <a href="{p}{FIT_PATH}">fit check</a>, not the software diagnostic.</li>
 </ul>
 <p>Product engineering, security hardening, and fractional CTO remain inquire-only while those packages are scoped.</p>
 <h2>Contact</h2>
-<p>Email <a href="mailto:{CONTACT}">{CONTACT}</a> or use the <a href="{p}request/">diagnostic request form</a>.</p>
+<p>Email <a href="mailto:{CONTACT}">{CONTACT}</a>. Software diagnostic: <a href="{p}request/">request form</a>. Bookkeeping: <a href="{p}{FIT_PATH}">fit check</a>.</p>
 <p>We do not invent fake case-study metrics or client names. Fit conversations happen one-to-one.</p>
 </div></section>
 {cta(path)}
@@ -1098,7 +1647,7 @@ Sitemap: {BASE}/sitemap.xml
 
 def write_sitemap(urls):
     locs = "\n".join(
-        f"  <url>\n    <loc>{BASE}{u}</loc>\n    <lastmod>2026-09-27</lastmod>\n    <changefreq>weekly</changefreq>\n  </url>"
+        f"  <url>\n    <loc>{BASE}{u}</loc>\n    <lastmod>2026-09-29</lastmod>\n    <changefreq>weekly</changefreq>\n  </url>"
         for u in urls
     )
     write("sitemap.xml", f"""<?xml version="1.0" encoding="UTF-8"?>
@@ -1144,7 +1693,11 @@ Last updated: {LAST}
 
 ## Service packages
 - [Customer growth]({BASE}/customer-growth/): Scoped package for search, paid campaigns, landing pages, CRM, and follow-up through to booking. Not a weekly marketing meeting.
-- [Virtual bookkeeping]({BASE}/virtual-bookkeeping/): Monthly books and admin package — capture, categorisation, reconciliation, a written close, inbox triage, scheduling, and documents. Not a bookkeeper in your meetings.
+- [Virtual bookkeeping]({BASE}/virtual-bookkeeping/): Monthly books and a written close, without a standing meeting. Capture, categorisation, reconciliation, a monthly report, plus inbox triage, scheduling, and documents. From $399/month. QuickBooks Online and Xero. Complements a CPA; not a tax replacement. Not a bookkeeper in your meetings.
+- [Catch-up bookkeeping]({BASE}/catch-up-bookkeeping/): Paid project to get books current, from $150 per month behind, then a handoff into the monthly close.
+- [Bookkeeping for founders]({BASE}/virtual-bookkeeping/for-founders/): Technical founders, SaaS, and product operators.
+- [Bookkeeping for ecommerce]({BASE}/virtual-bookkeeping/for-ecommerce/): Payouts, fees, and sales-channel deposits. Sales tax stays with the CPA.
+- [Bookkeeping fit check]({BASE}/virtual-bookkeeping/fit-check/): Intake for bookkeeping. Not the software diagnostic at /request/.
 
 ## Other services (inquire)
 - [Product engineering]({BASE}/product-engineering/)
@@ -1208,17 +1761,33 @@ A: No. It is a scoped package for search, paid campaigns, landing pages, CRM, an
 Q: Does virtual bookkeeping include a weekly books call?
 A: No. It is a monthly close package: receipt and invoice capture, categorisation, reconciliation, a written report, plus inbox triage, scheduling, and document handling. Questions are async. It is not a bookkeeper in your meetings, and it does not replace a CPA.
 
+Q: How much does virtual bookkeeping cost?
+A: Monthly close and admin from $399 per month. Transaction volume may adjust the fee. Catch-up is a project quote from $150 per month behind. The monthly fee is flat — no hourly surprises. Tax stays with the client's CPA.
+
+## Virtual bookkeeping
+Monthly close and a written report, without a standing meeting. Tools: QuickBooks Online and Xero. Bank feeds and an agreed portal or shared drive for documents. Exceptions flagged in writing.
+- Monthly package: {BASE}/virtual-bookkeeping/
+- Catch-up: {BASE}/catch-up-bookkeeping/
+- For founders: {BASE}/virtual-bookkeeping/for-founders/
+- For ecommerce: {BASE}/virtual-bookkeeping/for-ecommerce/
+- Fit check (not the rescue diagnostic): {BASE}/virtual-bookkeeping/fit-check/
+- Pricing: from $399/month monthly close + admin; catch-up from $150 per month behind
+
 ## Sibling service packages
 Customer growth: {BASE}/customer-growth/
 Virtual bookkeeping: {BASE}/virtual-bookkeeping/
 
-Both sit under the Meridian umbrella, next to Vibe Code Rescue. They are scoped professional packages — growth, and books plus admin — delivered async or as a monthly close. They do not include a standing weekly meeting. Clients use the same inquire form at {BASE}/request/.
+Both sit under the Meridian umbrella. They are scoped professional packages — growth, and books plus admin — delivered async or as a monthly close. They do not include a standing weekly meeting. Customer growth uses the inquire form at {BASE}/request/. Bookkeeping uses the fit check at {BASE}/virtual-bookkeeping/fit-check/ and does not use the rescue diagnostic.
 
 ## Key URLs
 {BASE}/
 {BASE}/vibe-code-rescue/
 {BASE}/customer-growth/
 {BASE}/virtual-bookkeeping/
+{BASE}/virtual-bookkeeping/fit-check/
+{BASE}/virtual-bookkeeping/for-founders/
+{BASE}/virtual-bookkeeping/for-ecommerce/
+{BASE}/catch-up-bookkeeping/
 {BASE}/pricing/
 {BASE}/request/
 {BASE}/faq/
@@ -1342,6 +1911,11 @@ def main():
         page_stub(slug, name, blurb, text)
     for offering in OFFERINGS:
         page_offering(offering)
+    page_bookkeeping()
+    page_catchup_bookkeeping()
+    page_bookkeeping_founders()
+    page_bookkeeping_ecommerce()
+    page_bookkeeping_fit_check()
     page_pricing()
     page_request("request")
     page_request("diagnostic")
@@ -1364,6 +1938,10 @@ def main():
         "/fractional-cto/",
         "/customer-growth/",
         "/virtual-bookkeeping/",
+        "/virtual-bookkeeping/fit-check/",
+        "/virtual-bookkeeping/for-founders/",
+        "/virtual-bookkeeping/for-ecommerce/",
+        "/catch-up-bookkeeping/",
         "/pricing/",
         "/request/",
         "/diagnostic/",

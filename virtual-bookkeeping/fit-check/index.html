@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bookkeeping fit check | Meridian</title>
+<meta name="description" content="Tell us your software, transaction volume, and how far behind the books are. We reply within one business day on whether the monthly package fits.">
+<link rel="canonical" href="https://meridian.dev/virtual-bookkeeping/fit-check/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Meridian">
+<meta property="og:title" content="Bookkeeping fit check | Meridian">
+<meta property="og:description" content="Tell us your software, transaction volume, and how far behind the books are. We reply within one business day on whether the monthly package fits.">
+<meta property="og:url" content="https://meridian.dev/virtual-bookkeeping/fit-check/">
+<meta property="og:locale" content="en_CA">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Bookkeeping fit check | Meridian">
+<meta name="twitter:description" content="Tell us your software, transaction volume, and how far behind the books are. We reply within one business day on whether the monthly package fits.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/styles.9d758cac.css">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://meridian.dev/"},{"@type":"ListItem","position":2,"name":"Virtual bookkeeping","item":"https://meridian.dev/virtual-bookkeeping/"},{"@type":"ListItem","position":3,"name":"Fit check","item":"https://meridian.dev/virtual-bookkeeping/fit-check/"}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What happens after I submit the fit check?","acceptedAnswer":{"@type":"Answer","text":"We reply within one business day, usually sooner, on whether the monthly package fits and what the next step is. Onboarding aims to answer fit the same day."}},{"@type":"Question","name":"Is this the software diagnostic?","acceptedAnswer":{"@type":"Answer","text":"No. This form is only for bookkeeping. It asks about the business, transaction volume, software, and how far behind the books are."}},{"@type":"Question","name":"What if I need catch-up and a monthly close?","acceptedAnswer":{"@type":"Answer","text":"Say how far behind you are. Catch-up is a paid project from $150 per month behind. If the monthly package fits, it starts once the books are current."}}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":["Organization","ProfessionalService"],"name":"Meridian","url":"https://meridian.dev/","email":"hello@meridian.dev","description":"Senior software studio with 30+ years combined experience across video games, finance, and web. Home of Vibe Code Rescue.","areaServed":["CA","US","GB","EU"],"knowsAbout":["Vibe Code Rescue","AI-generated code","Software security","Product engineering","Fractional CTO","Customer growth","Virtual bookkeeping"]}</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="../../"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" rx="8" fill="#4338ca"/><circle cx="16" cy="16" r="7" fill="none" stroke="#c7d2fe" stroke-width="2"/><path d="M16 6v20M6 16h20" stroke="#e0e7ff" stroke-width="1.5" opacity="0.7"/><circle cx="16" cy="16" r="2.5" fill="#ffffff"/></svg><span>Meridian</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">Menu</button>
+    <nav class="nav" id="site-nav">
+      <a href="../../vibe-code-rescue/">Vibe Code Rescue</a>
+      <a href="../../customer-growth/">Customer growth</a>
+      <a href="../../virtual-bookkeeping/">Bookkeeping</a>
+      <a href="../../pricing/">Pricing</a>
+      <a href="../../guides/what-is-vibe-code-rescue/">Guides</a>
+      <a href="../../faq/">FAQ</a>
+      <a href="../../about/">About</a>
+      <a class="nav-cta" href="../../virtual-bookkeeping/fit-check/" data-track="bookkeeping_cta_click" data-track-label="nav-fit-check">Check if it fits</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="page-hero"><div class="container">
+<nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Home</a><span aria-hidden="true">/</span><a href="../../virtual-bookkeeping/">Virtual bookkeeping</a><span aria-hidden="true">/</span><span aria-current="page">Fit check</span></nav>
+<p class="hero-kicker">Virtual bookkeeping · Fit check</p>
+<h1>Check if the monthly package fits</h1>
+<p class="lede">Tell us the business, the software, and how far behind the books are. We reply within one business day — usually sooner, and the same day when we can — on fit and the next step.</p>
+<p class="meta-line">Last updated: 29 September 2026 · This is not a software diagnostic.</p>
+</div></section>
+<section class="section"><div class="container" style="max-width:640px">
+<div id="catchup-note" class="callout" hidden>
+<strong>Catch-up quote.</strong> This is the same fit check. We have noted that you want a project quote to get the books current, from $150 per month behind, then a handoff into the monthly close. Say how far behind you are below.
+</div>
+<div id="books-form-success" class="form-success" role="status" tabindex="-1">
+<p><strong>Got it. We'll reply within one business day (usually sooner) on whether the monthly package fits.</strong></p>
+<p id="books-form-delivery" class="form-delivery-note" hidden></p>
+</div>
+<div class="form-card" id="books-form-card">
+<!--
+  Bookkeeping fit check only. Do not post this to /request/ or the rescue diagnostic.
+  Endpoint is BOOKS_FORM in build.py. YOUR_BOOKKEEPING_FORM_ID does not deliver email.
+  Until a real Formspree id is set, js/main.js opens a mailto draft to hello@meridian.dev.
+-->
+<form id="bookkeeping-fit-form" action="https://formspree.io/f/YOUR_BOOKKEEPING_FORM_ID" method="POST" data-formspree="https://formspree.io/f/YOUR_BOOKKEEPING_FORM_ID" novalidate>
+<input type="hidden" name="_subject" value="Meridian bookkeeping fit check">
+<input type="hidden" name="_replyto" id="bk-replyto" value="">
+<input type="hidden" name="inquiry" id="bk-inquiry" value="Monthly package fit check">
+<input type="hidden" name="source" id="bk-source" value="fit-check">
+<div id="books-form-errors" class="form-errors" role="alert"></div>
+<div class="form-group">
+<label for="bk-name">Name</label>
+<input id="bk-name" name="name" type="text" autocomplete="name" maxlength="120" required aria-describedby="bk-name-error">
+<p class="field-error" id="bk-name-error"></p>
+</div>
+<div class="form-group">
+<label for="bk-email">Email</label>
+<input id="bk-email" name="email" type="email" autocomplete="email" maxlength="160" required aria-describedby="bk-email-error">
+<p class="field-error" id="bk-email-error"></p>
+</div>
+<div class="form-group">
+<label for="bk-business">Business / industry</label>
+<input id="bk-business" name="business" type="text" autocomplete="organization" maxlength="160" required aria-describedby="bk-business-error">
+<p class="field-error" id="bk-business-error"></p>
+</div>
+<div class="form-group">
+<label for="bk-transactions">Approx monthly transactions</label>
+<select id="bk-transactions" name="transactions" required aria-describedby="bk-transactions-error">
+<option value="">Select a band…</option>
+<option value="Under 50">Under 50</option>
+<option value="50-150">50–150</option>
+<option value="150-300">150–300</option>
+<option value="300+">300+</option>
+</select>
+<p class="field-error" id="bk-transactions-error"></p>
+</div>
+<div class="form-group">
+<label for="bk-software">Current software</label>
+<select id="bk-software" name="software" required aria-describedby="bk-software-error">
+<option value="">Select software…</option>
+<option value="QuickBooks Online">QuickBooks Online</option>
+<option value="Xero">Xero</option>
+<option value="Spreadsheets">Spreadsheets</option>
+<option value="Other">Other</option>
+</select>
+<p class="field-error" id="bk-software-error"></p>
+</div>
+<div class="form-group">
+<label for="bk-behind">How far behind</label>
+<select id="bk-behind" name="behind" required aria-describedby="bk-behind-error">
+<option value="">Select…</option>
+<option value="Current">Current</option>
+<option value="1-3 months">1–3 months</option>
+<option value="3+ months">3+ months</option>
+</select>
+<p class="field-error" id="bk-behind-error"></p>
+</div>
+<div class="form-group">
+<label for="bk-need">Need</label>
+<select id="bk-need" name="need" required aria-describedby="bk-need-error">
+<option value="">Select…</option>
+<option value="Books only">Books only</option>
+<option value="Books + admin">Books + admin</option>
+</select>
+<p class="field-error" id="bk-need-error"></p>
+</div>
+<div class="form-group">
+<label for="bk-deadline">Deadline</label>
+<select id="bk-deadline" name="deadline" required aria-describedby="bk-deadline-error">
+<option value="">Select…</option>
+<option value="Tax">Tax</option>
+<option value="Loan">Loan or financing</option>
+<option value="None">None</option>
+<option value="Other">Other</option>
+</select>
+<p class="field-error" id="bk-deadline-error"></p>
+</div>
+<div class="form-group" id="bk-deadline-other-wrap" hidden>
+<label for="bk-deadline-detail">What is the deadline?</label>
+<input id="bk-deadline-detail" name="deadline_detail" type="text" maxlength="120" aria-describedby="bk-deadline-detail-error">
+<p class="field-error" id="bk-deadline-detail-error"></p>
+</div>
+<div class="form-group">
+<label for="bk-notes">Anything else <span class="hint">(optional)</span></label>
+<textarea id="bk-notes" name="notes" maxlength="2000" placeholder="Where invoices land, who your CPA is, or what you want the first close to cover."></textarea>
+</div>
+<button class="btn btn-primary btn-lg" type="submit">Check if the package fits</button>
+</form>
+<p class="form-endpoint-note">This form is for bookkeeping only and is addressed to <a href="mailto:hello@meridian.dev">hello@meridian.dev</a>. A real Formspree id is still required for email delivery: replace <code>YOUR_BOOKKEEPING_FORM_ID</code> in <code>BOOKS_FORM</code> inside <code>build.py</code>. Until then, submit opens a draft in your email app and shows the thank-you message. The draft is not sent until you send it. Do not use the rescue diagnostic for this.</p>
+</div>
+
+<h2>Before you send it</h2>
+<div class="faq-list"><details class="faq-item"><summary>What happens after I submit the fit check?</summary><div class="faq-answer"><p>We reply within one business day, usually sooner, on whether the monthly package fits and what the next step is. Onboarding aims to answer fit the same day.</p></div></details>
+<details class="faq-item"><summary>Is this the software diagnostic?</summary><div class="faq-answer"><p>No. This form is only for bookkeeping. It asks about the business, transaction volume, software, and how far behind the books are.</p></div></details>
+<details class="faq-item"><summary>What if I need catch-up and a monthly close?</summary><div class="faq-answer"><p>Say how far behind you are. Catch-up is a paid project from $150 per month behind. If the monthly package fits, it starts once the books are current.</p></div></details></div>
+<p><a href="../../virtual-bookkeeping/">Monthly package</a> · <a href="../../catch-up-bookkeeping/">Catch-up bookkeeping</a> · <a href="../../virtual-bookkeeping/for-founders/">For founders</a></p>
+</div></section>
+</main>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <div class="footer-brand"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" rx="8" fill="#4338ca"/><circle cx="16" cy="16" r="7" fill="none" stroke="#c7d2fe" stroke-width="2"/><path d="M16 6v20M6 16h20" stroke="#e0e7ff" stroke-width="1.5" opacity="0.7"/><circle cx="16" cy="16" r="2.5" fill="#ffffff"/></svg><span>Meridian</span></div>
+      <p>Monthly bookkeeping, delivered as a written close.</p>
+      <p><a href="mailto:hello@meridian.dev">hello@meridian.dev</a></p>
+    </div>
+    <div>
+      <h4>Bookkeeping</h4>
+      <ul>
+        <li><a href="../../virtual-bookkeeping/">Monthly close</a></li>
+        <li><a href="../../catch-up-bookkeeping/">Catch-up bookkeeping</a></li>
+        <li><a href="../../virtual-bookkeeping/for-founders/">For founders</a></li>
+        <li><a href="../../virtual-bookkeeping/for-ecommerce/">For ecommerce</a></li>
+        <li><a href="../../virtual-bookkeeping/fit-check/">Fit check</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Studio</h4>
+      <ul>
+        <li><a href="../../">Home</a></li>
+        <li><a href="../../customer-growth/">Customer growth</a></li>
+        <li><a href="../../about/">About</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="../../pricing/">Pricing</a></li>
+        <li><a href="../../faq/">FAQ</a></li>
+        <li><a href="../../llms.txt">llms.txt</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container"><p class="footer-note">Meridian is a software studio. <a href="../../vibe-code-rescue/">Vibe Code Rescue</a> is a separate engagement.</p></div>
+  <div class="container footer-bottom">
+    <span>&copy; 2026 Meridian. All rights reserved.</span>
+    <span>Last updated: 29 September 2026</span>
+  </div>
+</footer>
+<script src="../../js/main.acbb3832.js" defer></script>
+</body></html>
+

@@ -380,3 +380,46 @@ tr:hover td { background: var(--slate-50); }
 }
 .stat .num { font-size: 1.75rem; font-weight: 750; color: var(--indigo-700); letter-spacing: -0.02em; }
 .stat .label { font-size: 0.875rem; color: var(--slate-500); margin-top: 0.25rem; }
+
+.trust-bar {
+  display: flex; flex-wrap: wrap; gap: 0.65rem 1.35rem;
+  margin: 0.25rem 0 0.5rem; padding: 0; list-style: none;
+  font-size: 0.92rem; font-weight: 600; color: var(--slate-600);
+}
+.trust-bar li {
+  display: flex; align-items: center; gap: 0.45rem; margin: 0;
+}
+.trust-bar li::before {
+  content: ""; width: 0.45rem; height: 0.45rem; border-radius: 50%;
+  background: var(--accent); flex-shrink: 0;
+}
+.niche-line {
+  font-size: 1.125rem; font-weight: 650; color: var(--slate-800); margin-top: 0;
+}
+.page-hero .lede { max-width: 46rem; color: var(--slate-600); }
+
+.price-card .btn { margin-top: auto; align-self: flex-start; }
+.btn:disabled { opacity: 0.65; cursor: not-allowed; }
+
+.field-error {
+  color: var(--danger); font-size: 0.85rem; font-weight: 550; margin: 0;
+}
+.field-error:not(:empty) { margin-top: 0.35rem; }
+.form-group input.invalid, .form-group select.invalid, .form-group textarea.invalid {
+  border-color: var(--danger);
+}
+.form-errors {
+  display: none; background: #3f1d24; border: 1px solid var(--danger); color: #fecdd3;
+  padding: 0.85rem 1rem; border-radius: 8px; font-size: 0.925rem; margin-bottom: 1.25rem;
+}
+.form-errors.show { display: block; }
+.form-errors ul { margin: 0.35rem 0 0; }
+.form-endpoint-note {
+  font-size: 0.85rem; color: var(--slate-500); margin: 1.25rem 0 0;
+}
+.form-success .form-delivery-note {
+  color: #d1fae5; font-size: 0.9rem; margin: 0.75rem 0 0;
+}
+.footer-note {
+  font-size: 0.85rem; color: var(--slate-500); margin: 0 0 1.25rem; max-width: 40rem;
+}

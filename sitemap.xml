@@ -2,147 +2,167 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://meridian.dev/</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://meridian.dev/vibe-code-rescue/</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://meridian.dev/product-engineering/</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://meridian.dev/security-hardening/</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://meridian.dev/fractional-cto/</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://meridian.dev/customer-growth/</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://meridian.dev/virtual-bookkeeping/</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://meridian.dev/virtual-bookkeeping/fit-check/</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://meridian.dev/virtual-bookkeeping/for-founders/</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://meridian.dev/virtual-bookkeeping/for-ecommerce/</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://meridian.dev/catch-up-bookkeeping/</loc>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://meridian.dev/pricing/</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://meridian.dev/request/</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://meridian.dev/diagnostic/</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://meridian.dev/faq/</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://meridian.dev/about/</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://meridian.dev/guides/what-is-vibe-code-rescue/</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://meridian.dev/guides/rescue-vs-rewrite/</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://meridian.dev/artifacts/sample-audit.md</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://meridian.dev/llms.txt</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://meridian.dev/llms-full.txt</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://meridian.dev/rescue/lovable/</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://meridian.dev/rescue/bolt/</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://meridian.dev/rescue/cursor/</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://meridian.dev/rescue/v0/</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://meridian.dev/rescue/replit/</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://meridian.dev/rescue/claude-code/</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://meridian.dev/rescue/windsurf/</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://meridian.dev/problems/secrets-exposed/</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://meridian.dev/problems/rls-tenancy/</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://meridian.dev/problems/stripe-payments/</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://meridian.dev/problems/wont-deploy/</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://meridian.dev/problems/ai-fix-loop/</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-29</lastmod>
     <changefreq>weekly</changefreq>
   </url>
 </urlset>
