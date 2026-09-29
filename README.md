@@ -68,6 +68,16 @@ Published prices on the bookkeeping pages: Starter from $299/month (close only),
 
 Do not point bookkeeping traffic at `/request/` or `/diagnostic/`. Those pages redirect `?interest=virtual-bookkeeping` (and catch-up) to the fit check.
 
+## Bookkeeping copy index (September 2026)
+
+Source for the live bookkeeping tweaks. Ship **Variant A** only. Do not publish Variant B or C, and do not leave `[N]`, `[industry]`, or `[CPA name]` on a page.
+
+- [15-page-tweaks-sept-2026.md](docs/bookkeeping/15-page-tweaks-sept-2026.md): paste-ready blocks A–E
+- [16-proof-points.md](docs/bookkeeping/16-proof-points.md): proof ladder. Variant B/C only after real data
+- [TECHIE-BRIEF-tweaks.md](docs/bookkeeping/TECHIE-BRIEF-tweaks.md): implement order and QA
+
+These files stay in the repo for the team. `deploy.sh` does not upload `docs/`.
+
 ## Analytics
 
 No analytics snippet is installed. `js/main.js` emits events only when `window.dataLayer`, `window.gtag`, or `window.plausible` already exists:

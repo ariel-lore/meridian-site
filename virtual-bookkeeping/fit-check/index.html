@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../../css/styles.5054ab78.css">
+<link rel="stylesheet" href="../../css/styles.aca24c2f.css">
 <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://meridian.dev/"},{"@type":"ListItem","position":2,"name":"Virtual bookkeeping","item":"https://meridian.dev/virtual-bookkeeping/"},{"@type":"ListItem","position":3,"name":"Fit check","item":"https://meridian.dev/virtual-bookkeeping/fit-check/"}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What happens after I submit the fit check?","acceptedAnswer":{"@type":"Answer","text":"We review your answers and reply to your email within one business day. If you are a strong fit, we suggest next steps, including catch-up if the books are behind."}},{"@type":"Question","name":"Is this the software diagnostic?","acceptedAnswer":{"@type":"Answer","text":"No. This form is only for bookkeeping. It asks about the company, the software, how far behind the books are, and which package you want."}},{"@type":"Question","name":"What if I am not sure which package?","acceptedAnswer":{"@type":"Answer","text":"Choose Not sure. Starter is the close only, from $299 per month. Standard adds light admin capped at 3 hours a month, from $449 per month. Catch-up is a project from $200 per month behind, quoted after this form."}}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":["Organization","ProfessionalService"],"name":"Meridian","url":"https://meridian.dev/","email":"hello@meridian.dev","description":"Senior software studio with 30+ years combined experience across video games, finance, and web. Home of Vibe Code Rescue.","areaServed":["CA","US","GB","EU"],"knowsAbout":["Vibe Code Rescue","AI-generated code","Software security","Product engineering","Fractional CTO","Customer growth","Virtual bookkeeping"]}</script>
 </head>
@@ -48,9 +48,11 @@
 <p class="hero-kicker">Virtual bookkeeping · Fit check</p>
 <h1>Start a fit check</h1>
 <p class="lede">Tell us the company, the software, how far behind the books are, and which package you want. We reply within one business day. Standard is from $449/mo. Starter is from $299/mo. Catch-up is from $200 per month behind, quoted after this form.</p>
+<p class="trust-strip">Reply in 1 business day · No weekly meeting upsell · Not a CPA.</p><p class="trust-strip-secondary">Not sure? Choose Not sure. We’ll recommend Starter vs Standard.</p><p class="trust-strip-secondary trust-strip-micro">Fit check first. Quote before catch-up work. Boundaries in writing.</p>
 <p class="meta-line">Last updated: 29 September 2026 · This is not a software diagnostic.</p>
 </div></section>
 <section class="section"><div class="container" style="max-width:640px">
+<div class="callout"><strong>Coming online.</strong> This form is wired for Formspree. Until a live id replaces <code>YOUR_BOOKKEEPING_FORM_ID</code>, submit opens a draft to <a href="mailto:hello@meridian.dev">hello@meridian.dev</a>. Send that draft, or email that address directly.</div>
 <div id="catchup-note" class="callout" hidden>
 <strong>Catch-up quote.</strong> This is the same fit check. We have noted that you want a project quote to get the books current, from $200 per month behind. Simple books can be lower; complex books higher. Say how far behind you are below.
 </div>
@@ -78,6 +80,10 @@
 <input type="hidden" name="utm_medium" id="bk-utm-medium" value="">
 <input type="hidden" name="utm_campaign" id="bk-utm-campaign" value="">
 <input type="hidden" name="utm_content" id="bk-utm-content" value="">
+<div class="sr-only" aria-hidden="true">
+<label for="bk-gotcha">Leave this field empty</label>
+<input id="bk-gotcha" type="text" name="_gotcha" tabindex="-1" autocomplete="off" value="">
+</div>
 <div id="books-form-errors" class="form-errors" role="alert"></div>
 <h2 class="form-section-title">About you</h2>
 <div class="form-group">
@@ -192,7 +198,8 @@
 <h2 class="form-section-title">Fit signals</h2>
 <div class="form-group">
 <label for="bk-package">Package interest</label>
-<select id="bk-package" name="package" required aria-describedby="bk-package-error">
+<p class="hint trust-strip-secondary" id="bk-package-hint">Not sure? Choose Not sure. We’ll recommend Starter vs Standard.</p>
+<select id="bk-package" name="package" required aria-describedby="bk-package-hint bk-package-error">
 <option value="">Select…</option>
 <option value="Starter">Starter, from $299/mo</option>
 <option value="Standard">Standard, from $449/mo</option>
@@ -297,6 +304,6 @@
     <span>Last updated: 29 September 2026</span>
   </div>
 </footer>
-<script src="../../js/main.2310a0d1.js" defer></script>
+<script src="../../js/main.9491b285.js" defer></script>
 </body></html>
 

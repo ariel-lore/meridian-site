@@ -34,11 +34,11 @@ Last updated: 29 September 2026
 
 ## Service packages
 - [Customer growth](https://meridian.dev/customer-growth/): Scoped package for search, paid campaigns, landing pages, CRM, and follow-up through to booking. Not a weekly marketing meeting.
-- [Virtual bookkeeping](https://meridian.dev/virtual-bookkeeping/): Async monthly close. Starter from $299/month (close only). Standard from $449/month (close plus light admin, capped at 3 hours a month; launch promo $399 on request). QuickBooks Online and Xero. Complements a CPA. Not a weekly meeting.
-- [Catch-up bookkeeping](https://meridian.dev/catch-up-bookkeeping/): Project to get books current, from $200 per month behind, quoted after the fit check. Simple books can be lower; complex books higher. Then optional monthly close.
-- [Bookkeeping for founders](https://meridian.dev/virtual-bookkeeping/for-founders/): Technical founders, SaaS, and product operators.
+- [Virtual bookkeeping](https://meridian.dev/virtual-bookkeeping/): Async monthly close. Starter from $299/month (close only). Standard from $449/month (close plus light admin, capped at 3 hours a month; launch promo $399 on request). QuickBooks Online and Xero. Complements a CPA. Not a weekly meeting. Hero proof is studio and process only: Meridian studio, async written monthly close, clear scope, hard admin cap. Comparison is three operating styles: weekly team, AI finance OS, and Meridian async written close.
+- [Catch-up bookkeeping](https://meridian.dev/catch-up-bookkeeping/): Project to get books current, from $200 per month behind, quoted after the fit check. Simple books can be lower; complex books higher. Then optional monthly close. Worked examples on the page are labelled illustrative. They are not a flat quote.
+- [Bookkeeping for founders](https://meridian.dev/virtual-bookkeeping/for-founders/): Technical founders, SaaS, and product operators. Built for technical founders. Async written close. No weekly meeting treadmill.
 - [Bookkeeping for ecommerce](https://meridian.dev/virtual-bookkeeping/for-ecommerce/): Payouts, fees, and sales-channel deposits. Sales tax stays with the CPA.
-- [Bookkeeping fit check](https://meridian.dev/virtual-bookkeeping/fit-check/): Intake for bookkeeping. Not the software diagnostic at /request/.
+- [Bookkeeping fit check](https://meridian.dev/virtual-bookkeeping/fit-check/): Intake for bookkeeping. Not the software diagnostic at /request/. Reply in 1 business day. No weekly meeting upsell. Not a CPA. Choose Not sure and the reply will recommend Starter vs Standard.
 
 ## Other services (inquire)
 - [Product engineering](https://meridian.dev/product-engineering/)

@@ -298,6 +298,11 @@
         if (submitBtn) submitBtn.disabled = false;
       }
 
+      if ((data.get("_gotcha") || "").toString().trim()) {
+        showSuccess(false);
+        return;
+      }
+
       if (configured) {
         if (submitBtn) submitBtn.disabled = true;
         fetch(endpoint, {
