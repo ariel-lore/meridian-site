@@ -1,5 +1,5 @@
 # Meridian — full AI/citation brief
-Last updated: 27 September 2026
+Last updated: 29 September 2026
 Contact: hello@meridian.dev
 Canonical site: https://meridian.dev/
 
@@ -49,17 +49,33 @@ A: No. It is a scoped package for search, paid campaigns, landing pages, CRM, an
 Q: Does virtual bookkeeping include a weekly books call?
 A: No. It is a monthly close package: receipt and invoice capture, categorisation, reconciliation, a written report, plus inbox triage, scheduling, and document handling. Questions are async. It is not a bookkeeper in your meetings, and it does not replace a CPA.
 
+Q: How much does virtual bookkeeping cost?
+A: Starter from $299 per month for the async monthly close only. Standard from $449 per month, which adds light admin capped at 3 hours a month. Launch promo $399 per month is available on request for Standard; $449 is the published price. Catch-up is quoted from $200 per month behind. Tax stays with the client's CPA.
+
+## Virtual bookkeeping
+Monthly close and a written report, without a standing meeting. Tools: QuickBooks Online and Xero. Bank feeds and an agreed portal or shared drive for documents. Exceptions flagged in writing.
+- Monthly package: https://meridian.dev/virtual-bookkeeping/
+- Catch-up: https://meridian.dev/catch-up-bookkeeping/
+- For founders: https://meridian.dev/virtual-bookkeeping/for-founders/
+- For ecommerce: https://meridian.dev/virtual-bookkeeping/for-ecommerce/
+- Fit check (not the rescue diagnostic): https://meridian.dev/virtual-bookkeeping/fit-check/
+- Pricing: Starter from $299/month (close only); Standard from $449/month (close plus light admin, 3-hour cap); catch-up from $200 per month behind
+
 ## Sibling service packages
 Customer growth: https://meridian.dev/customer-growth/
 Virtual bookkeeping: https://meridian.dev/virtual-bookkeeping/
 
-Both sit under the Meridian umbrella, next to Vibe Code Rescue. They are scoped professional packages — growth, and books plus admin — delivered async or as a monthly close. They do not include a standing weekly meeting. Clients use the same inquire form at https://meridian.dev/request/.
+Both sit under the Meridian umbrella. They are scoped professional packages — growth, and books plus admin — delivered async or as a monthly close. They do not include a standing weekly meeting. Customer growth uses the inquire form at https://meridian.dev/request/. Bookkeeping uses the fit check at https://meridian.dev/virtual-bookkeeping/fit-check/ and does not use the rescue diagnostic.
 
 ## Key URLs
 https://meridian.dev/
 https://meridian.dev/vibe-code-rescue/
 https://meridian.dev/customer-growth/
 https://meridian.dev/virtual-bookkeeping/
+https://meridian.dev/virtual-bookkeeping/fit-check/
+https://meridian.dev/virtual-bookkeeping/for-founders/
+https://meridian.dev/virtual-bookkeeping/for-ecommerce/
+https://meridian.dev/catch-up-bookkeeping/
 https://meridian.dev/pricing/
 https://meridian.dev/request/
 https://meridian.dev/faq/

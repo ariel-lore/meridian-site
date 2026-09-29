@@ -1,10 +1,10 @@
 # BUILD_NOTES — Meridian site
 
-**Built:** 27 September 2026 (PT)  
-**Path:** `/workspace/vibe-code-rescue/site/`  
+**Built:** 29 September 2026 (PT)  
+**Path:** site root (`build.py` writes HTML next to itself)  
 **Stack:** Plain HTML + CSS + minimal JS; `build.py` regenerates pages
 
-## Pages created (26 HTML)
+## Pages created (30 HTML)
 
 | URI | Purpose |
 |-----|---------|
@@ -14,9 +14,13 @@
 | `/security-hardening/` | Stub — coming soon / inquire |
 | `/fractional-cto/` | Stub — coming soon / inquire |
 | `/customer-growth/` | Scoped customer-growth package — root path, not under `/services/` |
-| `/virtual-bookkeeping/` | Monthly bookkeeping and admin package — root path, not under `/services/` |
-| `/pricing/` | Transparent ladder + not-for-you |
-| `/request/` | Lead capture form |
+| `/virtual-bookkeeping/` | Monthly bookkeeping conversion page — pricing, onboarding, FAQ. Root path, not under `/services/` |
+| `/virtual-bookkeeping/fit-check/` | Dedicated bookkeeping fit-check form (not the rescue diagnostic) |
+| `/virtual-bookkeeping/for-founders/` | Founders / SaaS / product operators |
+| `/virtual-bookkeeping/for-ecommerce/` | Shorter ecommerce niche page |
+| `/catch-up-bookkeeping/` | Catch-up project, then handoff to the monthly close |
+| `/pricing/` | Rescue ladder, plus published bookkeeping starting prices |
+| `/request/` | Software diagnostic lead form. Bookkeeping interest redirects to the fit check |
 | `/diagnostic/` | Alias of request form |
 | `/rescue/lovable/` … `/rescue/windsurf/` | 7 tool pages (incl. Windsurf bonus) |
 | `/problems/*` | 5 symptom pages |
@@ -33,11 +37,11 @@
 - BreadcrumbList JSON-LD where breadcrumbs appear
 - Answer-first paragraphs under H1
 - Open Graph + Twitter card tags on every HTML page
-- `last updated: 27 September 2026` on key pages
+- `last updated: 29 September 2026` on key pages
 - Internal linking: tool ↔ symptom ↔ pricing ↔ request
 - `/robots.txt` allows GPTBot, ChatGPT-User, OAI-SearchBot, ClaudeBot, Claude-User, anthropic-ai, PerplexityBot, Google-Extended, Googlebot
 - Real markdown `/llms.txt` and `/llms-full.txt` (not HTML shells)
-- `/sitemap.xml` with 29 URLs
+- `/sitemap.xml` with 33 URLs
 - Sample redacted audit: `/artifacts/sample-audit.md`
 
 ## Design

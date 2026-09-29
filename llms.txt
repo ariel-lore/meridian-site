@@ -3,7 +3,7 @@
 
 Site: https://meridian.dev/
 Contact: hello@meridian.dev
-Last updated: 27 September 2026
+Last updated: 29 September 2026
 
 ## Primary
 - [Home](https://meridian.dev/): Studio overview, 30+ years combined experience (games, finance, web), services grid
@@ -34,7 +34,11 @@ Last updated: 27 September 2026
 
 ## Service packages
 - [Customer growth](https://meridian.dev/customer-growth/): Scoped package for search, paid campaigns, landing pages, CRM, and follow-up through to booking. Not a weekly marketing meeting.
-- [Virtual bookkeeping](https://meridian.dev/virtual-bookkeeping/): Monthly books and admin package — capture, categorisation, reconciliation, a written close, inbox triage, scheduling, and documents. Not a bookkeeper in your meetings.
+- [Virtual bookkeeping](https://meridian.dev/virtual-bookkeeping/): Async monthly close. Starter from $299/month (close only). Standard from $449/month (close plus light admin, capped at 3 hours a month; launch promo $399 on request). QuickBooks Online and Xero. Complements a CPA. Not a weekly meeting.
+- [Catch-up bookkeeping](https://meridian.dev/catch-up-bookkeeping/): Project to get books current, from $200 per month behind, quoted after the fit check. Simple books can be lower; complex books higher. Then optional monthly close.
+- [Bookkeeping for founders](https://meridian.dev/virtual-bookkeeping/for-founders/): Technical founders, SaaS, and product operators.
+- [Bookkeeping for ecommerce](https://meridian.dev/virtual-bookkeeping/for-ecommerce/): Payouts, fees, and sales-channel deposits. Sales tax stays with the CPA.
+- [Bookkeeping fit check](https://meridian.dev/virtual-bookkeeping/fit-check/): Intake for bookkeeping. Not the software diagnostic at /request/.
 
 ## Other services (inquire)
 - [Product engineering](https://meridian.dev/product-engineering/)
